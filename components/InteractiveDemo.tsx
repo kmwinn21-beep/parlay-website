@@ -203,7 +203,7 @@ export default function InteractiveDemo() {
               Card to contact in under 5 seconds
             </h2>
             <p className="font-inter text-lg text-brand-steel leading-relaxed mb-8">
-              Parlay's scanning flow is designed for speed. No app-switching, no manual entry. Scan, confirm, and you're back in conversation before the moment passes.
+              Parlay&apos;s scanning flow is designed for speed. No app-switching, no manual entry. Scan, confirm, and you&apos;re back in conversation before the moment passes.
             </p>
 
             {/* Step indicators */}
