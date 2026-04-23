@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="34" viewBox="0 0 110 34">
+  <!-- Replace this file with the actual logo-color.png and update Nav.tsx + Footer.tsx src paths -->
+  <text
+    x="0"
+    y="26"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="26"
+    font-weight="700"
+    fill="#223A5E"
+    letter-spacing="-0.5"
+  >Parlay</text>
+  <circle cx="98" cy="8" r="4" fill="#34D399"/>
+</svg>
