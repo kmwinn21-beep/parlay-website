@@ -90,7 +90,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-inter text-sm text-white/30">
-            © {year} Parlay. All rights reserved.
+            © {year} Parlay Conference Management, LLC. All rights reserved.
           </p>
           <p className="font-inter text-sm text-white/30">
             Made for the conference floor.{" "}
