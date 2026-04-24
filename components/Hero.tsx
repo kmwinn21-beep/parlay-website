@@ -43,8 +43,8 @@ export default function Hero() {
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
         <div className="text-center">
           {/* Split headline */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 lg:gap-10 mb-8">
-            <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-0 mb-8">
+            <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight md:pr-8 lg:pr-12">
               Parlay
             </h1>
 
@@ -59,15 +59,15 @@ export default function Hero() {
               aria-hidden="true"
             />
 
-            <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight">
+            <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight md:pl-8 lg:pl-12">
               <AnimatedWord />
             </div>
           </div>
 
           {/* Subhead */}
           <p className="font-inter text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            The conference relationship platform that turns every card scan,
-            conversation, and follow-up into business results.
+            Capture conversations in the moment, know exactly who talked to who, and
+            turn conference interactions into real follow-through—without CRM drag.
           </p>
 
           {/* CTAs */}
@@ -87,17 +87,171 @@ export default function Hero() {
           </div>
 
           {/* Tagline */}
-          <p className="font-inter text-sm text-white/40 tracking-widest uppercase">
+          <p className="font-inter text-sm text-white/40 tracking-widest uppercase mb-10">
             From Conversations to Follow-Through
           </p>
+
+          {/* Dashboard teaser */}
+          <div className="relative mx-auto" style={{ maxWidth: "860px" }}>
+            {/* Fade overlay cropping the bottom edge */}
+            <div
+              className="absolute bottom-0 left-0 right-0 pointer-events-none"
+              style={{
+                height: "120px",
+                background: "linear-gradient(to bottom, transparent, #223A5E)",
+                zIndex: 2,
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Mock card */}
+            <div
+              style={{
+                background: "#0f2035",
+                borderRadius: "12px 12px 0 0",
+                borderTop: "1px solid rgba(255,255,255,0.12)",
+                borderLeft: "1px solid rgba(255,255,255,0.12)",
+                borderRight: "1px solid rgba(255,255,255,0.12)",
+              }}
+            >
+              {/* Window bar */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5" aria-hidden="true">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-amber-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
+                  <p className="font-inter text-white/60 text-xs">
+                    NIC Spring 2026 — Nashville, TN
+                  </p>
+                </div>
+                <span
+                  className="font-inter text-xs text-brand-teal px-2.5 py-1 rounded-full"
+                  style={{ background: "rgba(52,211,153,0.15)" }}
+                >
+                  9 reps · live
+                </span>
+              </div>
+
+              {/* Tab row */}
+              <div className="flex gap-5 px-5 pt-3 pb-0 border-b border-white/10 overflow-x-auto">
+                {[
+                  { label: "Attendees", active: true },
+                  { label: "Companies", active: false },
+                  { label: "Meetings (36)", active: false },
+                  { label: "Follow Ups", active: false },
+                  { label: "Social", active: false },
+                  { label: "Insights", active: false },
+                ].map((tab) => (
+                  <span
+                    key={tab.label}
+                    className={`font-inter text-xs whitespace-nowrap pb-3 ${
+                      tab.active
+                        ? "text-brand-teal border-b-2 border-brand-teal"
+                        : "text-white/50"
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Stat row */}
+              <div className="grid grid-cols-3 border-b border-white/10">
+                {[
+                  { value: "2,324", label: "Attendees" },
+                  { value: "61", label: "ICP companies" },
+                  { value: "36", label: "Meetings booked" },
+                ].map((stat, i) => (
+                  <div
+                    key={stat.label}
+                    className={`px-5 py-4 ${i < 2 ? "border-r border-white/10" : ""}`}
+                  >
+                    <p className="font-inter text-white font-semibold text-lg text-left">
+                      {stat.value}
+                    </p>
+                    <p className="font-inter text-white/40 text-xs mt-0.5 text-left">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Attendee rows */}
+              <div>
+                {[
+                  {
+                    initials: "CB",
+                    name: "Cameron Bell",
+                    role: "VP of Investments",
+                    company: "NHI",
+                    type: "Capital",
+                    status: "Meeting held",
+                    statusClass: "text-brand-teal",
+                    statusBg: "rgba(52,211,153,0.15)",
+                  },
+                  {
+                    initials: "SO",
+                    name: "Sarah Okonkwo",
+                    role: "Director of Ops",
+                    company: "Sunrise Senior Living",
+                    type: "Own/Op",
+                    status: "Follow-up due",
+                    statusClass: "text-amber-400",
+                    statusBg: "rgba(251,191,36,0.15)",
+                  },
+                  {
+                    initials: "JM",
+                    name: "James Mullen",
+                    role: "President & CEO",
+                    company: "Sabra Health Care REIT",
+                    type: "Capital",
+                    status: "New contact",
+                    statusClass: "text-brand-teal",
+                    statusBg: "rgba(52,211,153,0.15)",
+                  },
+                ].map((row) => (
+                  <div
+                    key={row.name}
+                    className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06] last:border-b-0"
+                  >
+                    <div className="flex items-center gap-3 text-left">
+                      <div
+                        className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ background: "#3A506B" }}
+                      >
+                        <span className="font-inter text-xs text-white font-semibold">
+                          {row.initials}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-inter text-white text-sm font-semibold">
+                          {row.name}
+                        </p>
+                        <p className="font-inter text-white/45 text-xs">
+                          {row.role} · {row.company}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="font-inter text-xs text-white/40 px-2 py-0.5 border border-white/10 rounded">
+                        {row.type}
+                      </span>
+                      <span
+                        className={`font-inter text-xs px-2.5 py-1 rounded-full ${row.statusClass}`}
+                        style={{ background: row.statusBg }}
+                      >
+                        {row.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Gradient fade to next section */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-light to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
     </section>
   );
 }

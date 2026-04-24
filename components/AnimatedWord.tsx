@@ -1,55 +1,62 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-const WORDS: { text: string; weight: number }[] = [
-  { text: "Connections", weight: 500 },
-  { text: "Conversations", weight: 600 },
-  { text: "Context", weight: 700 },
-  { text: "Relationships", weight: 800 },
-  { text: "Follow-Through", weight: 700 },
-  { text: "Conversation", weight: 600 },
-];
-
-const HOLD_MS = 2200;
-const TRANSITION_MS = 250;
+const WORDS = ["Conversations", "Context", "Relationships", "Connections"];
 
 export default function AnimatedWord() {
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const cycle = () => {
-      setVisible(false);
-      timerRef.current = setTimeout(() => {
-        setIndex((i) => (i + 1) % WORDS.length);
-        setVisible(true);
-      }, TRANSITION_MS);
-    };
+    const el = spanRef.current;
+    if (!el) return;
 
-    const interval = setInterval(cycle, HOLD_MS);
-    return () => {
-      clearInterval(interval);
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    let i = 0;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    function cycle() {
+      if (!el) return;
+
+      if (i >= WORDS.length - 1) {
+        // Final word — slow 1.8s fade, never cycles again
+        el.style.transition = "opacity 1.8s ease";
+        el.style.opacity = "0";
+        timers.push(
+          setTimeout(() => {
+            el.textContent = WORDS[i];
+            el.style.opacity = "1";
+          }, 400)
+        );
+        return;
+      }
+
+      el.style.transition = "opacity 0.3s ease";
+      el.style.opacity = "0";
+      timers.push(
+        setTimeout(() => {
+          el.textContent = WORDS[i];
+          el.style.transition = "opacity 0.4s ease";
+          el.style.opacity = "1";
+          i++;
+          timers.push(setTimeout(cycle, 1200));
+        }, 300)
+      );
+    }
+
+    timers.push(setTimeout(cycle, 800));
+    return () => timers.forEach(clearTimeout);
   }, []);
-
-  const { text, weight } = WORDS[index];
 
   return (
     <span
+      ref={spanRef}
       style={{
         display: "inline-block",
         color: "#34D399",
-        fontWeight: weight,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(10px)",
-        transition: `opacity ${TRANSITION_MS}ms ease, transform ${TRANSITION_MS}ms ease`,
+        fontWeight: 600,
+        opacity: 0,
         minWidth: "12ch",
       }}
-    >
-      {text}
-    </span>
+    />
   );
 }
