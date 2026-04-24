@@ -43,8 +43,8 @@ export default function Hero() {
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
         <div className="text-center">
           {/* Split headline */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 lg:gap-10 mb-8">
-            <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-0 mb-8">
+            <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight md:pr-8 lg:pr-12">
               Parlay
             </h1>
 
@@ -59,7 +59,7 @@ export default function Hero() {
               aria-hidden="true"
             />
 
-            <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight">
+            <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight md:pl-8 lg:pl-12">
               <AnimatedWord />
             </div>
           </div>
