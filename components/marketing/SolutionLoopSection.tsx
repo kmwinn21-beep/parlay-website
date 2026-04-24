@@ -40,8 +40,8 @@ export default function SolutionLoopSection() {
 
         <blockquote className="border-l-[3px] border-brand-teal pl-4 mb-16 max-w-2xl">
           <p className="font-inter text-brand-primary font-medium">
-            "For event-heavy sales orgs, that's a real strategic advantage over standard
-            CRM workflows."
+            &ldquo;For event-heavy sales orgs, that&apos;s a real strategic advantage over
+            standard CRM workflows.&rdquo;
           </p>
         </blockquote>
 
