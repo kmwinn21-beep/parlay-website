@@ -2,8 +2,8 @@ const PROBLEMS = [
   "The team travels to different conferences, not knowing who talked to who",
   "Notes are scattered across memory, phones, and spreadsheets that no one checks",
   "Follow-ups fall through the cracks",
-  "Multiple reps unknowingly chase the same prospect",
-  "Sales leaders are left to make uncomfortable account ownership decisions with little-to-no justification.",
+  "Multiple reps chase the same company",
+  "The deal goes to whoever moves first; not who built the relationship",
 ];
 
 export default function ProblemSection() {
@@ -12,13 +12,13 @@ export default function ProblemSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-px bg-brand-teal" aria-hidden="true" />
-          <p className="font-inter text-sm font-semibold tracking-widest uppercase text-brand-teal">
+          <p className="font-inter text-lg font-semibold tracking-widest uppercase text-brand-teal">
             The real problem
           </p>
         </div>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6 max-w-3xl">
-          Conferences create more problems than they solve
+          Conferences create more problems than pipeline.
         </h2>
 
         <p className="font-inter text-lg text-white/50 mb-12 max-w-2xl">
