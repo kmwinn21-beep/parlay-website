@@ -2,8 +2,8 @@ const PROBLEMS = [
   "No one remembers who talked to who",
   "Notes are scattered across phones, spreadsheets, and memory",
   "Follow-ups fall through the cracks",
-  "Multiple reps chase the same company",
-  "The deal goes to whoever moves first—not who built the relationship",
+  "Multiple reps unknownky chase the same prosoect",
+  "Sales leaders are left to make uncomfortable account ownership decisions; with little-to-no justification.",
 ];
 
 export default function ProblemSection() {
@@ -22,7 +22,7 @@ export default function ProblemSection() {
         </h2>
 
         <p className="font-inter text-lg text-white/50 mb-12 max-w-2xl">
-          You spend thousands to show up. Your team has great conversations. And then—
+          You spend thousands to show up. Your team has great conversations. And then...
         </p>
 
         <div className="space-y-3 mb-12">
@@ -41,7 +41,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            All that momentum disappears when the conference ends.
+            Momentum fades when the conference ends and the cylce starts again 
           </p>
         </div>
       </div>
