@@ -425,7 +425,7 @@ export default function CommandCenterSection() {
             </h2>
             <p className="font-inter text-lg text-brand-steel mb-8 leading-relaxed">
               One view. Every person, every meeting, every note. Your whole team on the
-              same page—in real time, across every conference you run.
+              same page in real time, across every conference you run.
             </p>
             <ul className="space-y-4 mb-8">
               {CHECKLIST.map((item) => (
