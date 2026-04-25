@@ -53,7 +53,7 @@ export default function Nav() {
               />
             ) : (
               <Image
-                src="/logo-white.svg"
+                src="/ParlayLogoWhite_Green.png"
                 alt="Parlay"
                 width={120}
                 height={40}
