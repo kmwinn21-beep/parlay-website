@@ -188,7 +188,104 @@ function Slide1() {
 
 /* ── Slides 2–4 placeholders (filled in next batches) ─────────────────── */
 function Slide2() {
-  return <div style={{ padding: 16, color: "#94a3b8", fontSize: 13 }}>Loading…</div>;
+  return (
+    <>
+      {/* Meetings card */}
+      <div style={{ background: "white", borderRadius: 14, padding: 14, marginBottom: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <span style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Meetings (1)</span>
+          <span style={{ fontSize: 11, color: "#3b82f6" }}>📅 Schedule</span>
+        </div>
+        <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "10px 12px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>Jack McCallister</span>
+            <div style={{ display: "flex", gap: 8 }}>
+              <span style={{ color: "#94a3b8", fontSize: 14 }}>ℹ</span>
+              <span style={{ color: "#94a3b8", fontSize: 14 }}>✏</span>
+            </div>
+          </div>
+          <p style={{ fontSize: 11, color: "#64748b", marginBottom: 4 }}>Founding Principal &amp; CEO</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 11, color: "#475569" }}>Mar 30, 2026 at 7:08 AM</span>
+            <span style={{ fontSize: 10, color: "#64748b", background: "#f1f5f9", border: "1px solid #e2e8f0", borderRadius: 20, padding: "2px 7px" }}>Pre-Scheduled</span>
+          </div>
+          <p style={{ fontSize: 11, color: "#94a3b8", marginBottom: 8 }}>Expo 2026</p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: 11, color: "#059669", background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.3)", borderRadius: 20, padding: "3px 10px" }}>Held ∨</span>
+            <span style={{ fontSize: 10, color: "#059669", background: "rgba(52,211,153,0.15)", borderRadius: 20, padding: "2px 8px" }}>KW</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Follow Ups card */}
+      <div style={{ background: "white", borderRadius: 14, padding: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <span style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Follow Ups (2 pending)</span>
+          <span style={{ fontSize: 11, color: "#3b82f6" }}>✅ Follow Up</span>
+        </div>
+
+        {/* Row 1 */}
+        <div style={{ borderBottom: "1px solid rgba(34,58,94,0.06)", paddingBottom: 10, marginBottom: 10 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>Jane Smith</span>
+              <span style={{ fontSize: 10, color: "#b45309", background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)", borderRadius: 20, padding: "2px 8px" }}>👤 CA</span>
+            </div>
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <span style={{ fontSize: 11, color: "#64748b", border: "1px solid #e2e8f0", borderRadius: 6, padding: "2px 8px" }}>Done</span>
+              <span style={{ fontSize: 12, color: "#94a3b8" }}>🗑</span>
+            </div>
+          </div>
+          <p style={{ fontSize: 11, color: "#64748b", marginBottom: 4 }}>Chief Financial Officer · Globadyn</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 10, color: "white", background: "#223A5E", borderRadius: 20, padding: "2px 8px", fontWeight: 500 }}>Event</span>
+            <span style={{ fontSize: 10, color: "#64748b" }}>Auto-created from touchpoint: Event</span>
+          </div>
+          <p style={{ fontSize: 10, color: "#94a3b8" }}>Expo 2026 · Mar 30, 2026 · 🗒 1</p>
+        </div>
+
+        {/* Row 2 */}
+        <div style={{ borderBottom: "1px solid rgba(34,58,94,0.06)", paddingBottom: 10, marginBottom: 10 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>Jack McCallister</span>
+              <span style={{ fontSize: 10, color: "#059669", background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.3)", borderRadius: 20, padding: "2px 8px" }}>👤 KW</span>
+            </div>
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <span style={{ fontSize: 11, color: "#64748b", border: "1px solid #e2e8f0", borderRadius: 6, padding: "2px 8px" }}>Done</span>
+              <span style={{ fontSize: 12, color: "#94a3b8" }}>🗑</span>
+            </div>
+          </div>
+          <p style={{ fontSize: 11, color: "#64748b", marginBottom: 4 }}>Founding Principal &amp; CEO · Globadyn</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 10, color: "white", background: "#223A5E", borderRadius: 20, padding: "2px 8px", fontWeight: 500 }}>Coffee</span>
+            <span style={{ fontSize: 10, color: "#64748b" }}>Auto-created from touchpoint: Coffee</span>
+          </div>
+          <p style={{ fontSize: 10, color: "#94a3b8" }}>Expo 2026 · Mar 30, 2026 · 🗒 2</p>
+        </div>
+
+        {/* Row 3 — completed */}
+        <div style={{ background: "rgba(52,211,153,0.04)", borderRadius: 8, padding: "8px 10px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>Jamie Floyd</span>
+              <span style={{ fontSize: 10, color: "#059669", background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.3)", borderRadius: 20, padding: "2px 8px" }}>👤 KW</span>
+            </div>
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <span style={{ fontSize: 11, color: "white", background: "#34D399", borderRadius: 6, padding: "2px 8px" }}>✓ Done</span>
+              <span style={{ fontSize: 12, color: "#94a3b8" }}>🗑</span>
+            </div>
+          </div>
+          <p style={{ fontSize: 11, color: "#64748b", marginBottom: 4 }}>Dlr. Sales Support · Globadyn</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 10, color: "white", background: "#223A5E", borderRadius: 20, padding: "2px 8px", fontWeight: 500 }}>Event</span>
+            <span style={{ fontSize: 10, color: "#64748b" }}>Auto-created from touchpoint: Event</span>
+          </div>
+          <p style={{ fontSize: 10, color: "#94a3b8" }}>SHN Build · Nov 5, 2025 · 🗒 0</p>
+        </div>
+      </div>
+    </>
+  );
 }
 function Slide3() {
   return <div style={{ padding: 16, color: "#94a3b8", fontSize: 13 }}>Loading…</div>;
