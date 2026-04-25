@@ -34,22 +34,22 @@ interface ContactData {
   delta: string | null;
   title: string;
   company: string;
-  id: string | null;
+  rep: string | null;
   firstSeen: string | null;
   pills: [string, PillType][];
 }
 
 const DESKTOP_CONTACTS: ContactData[] = [
-  { name: "Ben Adams",      delta: "↑+45 pts", title: "Chief Investment Officer", company: "Harmony Senior Services", id: "5532", firstSeen: null,                 pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
-  { name: "Lori Alford",    delta: "↑+12 pts", title: "CEO",                      company: "Avanti Senior Living",   id: "5648", firstSeen: "ASHA Annual Meeting", pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"],["Scheduled","scheduled"]] },
-  { name: "Brett Anderson", delta: null,        title: "President & CEO",          company: "Ebenezer",               id: "5647", firstSeen: "SL 100 2026",         pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
+  { name: "Mary Swanson",  delta: "↑+45 pts", title: "Chief Investment Officer", company: "iGot Worms Services", rep: "Lloyd Christmas", firstSeen: null,                 pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
+  { name: "Fletcher Reed", delta: "↑+12 pts", title: "CEO",                      company: "Acme Brick",          rep: "Ashley Behm",     firstSeen: "ASHA Annual Meeting", pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"],["Scheduled","scheduled"]] },
+  { name: "Bruce Nolan",   delta: null,        title: "President & CEO",          company: "Heavenly, Inc.",      rep: "Morgan Freeman",  firstSeen: "SL 100 2026",         pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
 ];
 
 const MOBILE_CONTACTS: ContactData[] = [
-  { name: "Ben Adams",      delta: "↑+45 pts", title: "Chief Investment Officer", company: "Harmony Senior Services", id: "5532", firstSeen: null,                 pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
-  { name: "Lori Alford",    delta: "↑+12 pts", title: "CEO",                      company: "Avanti Senior Living",   id: "5648", firstSeen: "ASHA Annual Meeting", pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"],["Scheduled","scheduled"]] },
-  { name: "Brett Anderson", delta: null,        title: "President & CEO",          company: "Ebenezer",               id: "5647", firstSeen: null,                  pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
-  { name: "Greg Anderson",  delta: null,        title: "Senior Vice President",    company: "Northbridge Companies",  id: null,   firstSeen: null,                  pills: [["ICP","icp"],["VP/SVP","neutral"]] },
+  { name: "Mary Swanson",  delta: "↑+45 pts", title: "Chief Investment Officer", company: "iGot Worms Services", rep: "Lloyd Christmas", firstSeen: null,                 pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
+  { name: "Fletcher Reed", delta: "↑+12 pts", title: "CEO",                      company: "Acme Brick",          rep: "Ashley Behm",     firstSeen: "ASHA Annual Meeting", pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"],["Scheduled","scheduled"]] },
+  { name: "Bruce Nolan",   delta: null,        title: "President & CEO",          company: "Heavenly, Inc.",      rep: "Morgan Freeman",  firstSeen: null,                  pills: [["ICP","icp"],["C-Suite","neutral"],["Operator","neutral"]] },
+  { name: "Dick Harper",   delta: null,        title: "Senior Vice President",    company: "Globadyn",            rep: null,              firstSeen: null,                  pills: [["ICP","icp"],["VP/SVP","neutral"]] },
 ];
 
 function ContactCard({ contact, truncate }: { contact: ContactData; truncate?: boolean }) {
@@ -67,12 +67,13 @@ function ContactCard({ contact, truncate }: { contact: ContactData; truncate?: b
       <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 6, overflow: truncate ? "hidden" : undefined, textOverflow: truncate ? "ellipsis" : undefined, whiteSpace: truncate ? "nowrap" : undefined }}>
         {contact.company}
       </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: contact.id || contact.firstSeen ? 6 : 0 }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: contact.rep || contact.firstSeen ? 6 : 0 }}>
         {contact.pills.map(([label, type]) => <Pill key={label} label={label} type={type} />)}
       </div>
-      {contact.id && (
-        <span style={{ fontSize: 9, color: "#94a3b8", background: "#f1f5f9", border: "1px solid #e2e8f0", borderRadius: 20, padding: "1px 6px", display: "inline-block" }}>
-          #{contact.id}
+      {contact.rep && (
+        <span style={{ fontSize: 9, color: "#94a3b8", background: "#f1f5f9", border: "1px solid #e2e8f0", borderRadius: 20, padding: "2px 8px", display: "inline-flex", alignItems: "center", gap: 4 }}>
+          <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#94a3b8", display: "inline-block", flexShrink: 0 }} />
+          {contact.rep}
         </span>
       )}
       {contact.firstSeen && (
