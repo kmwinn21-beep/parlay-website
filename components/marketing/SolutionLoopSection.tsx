@@ -30,7 +30,7 @@ export default function SolutionLoopSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6 max-w-4xl">
-          A system built for the conference floor—not retrofitted from account software
+          A system built for the conference floor
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-10 max-w-3xl">

@@ -1,6 +1,6 @@
 const PROBLEMS = [
-  "No one remembers who talked to who",
-  "Notes are scattered across phones, spreadsheets, and memory",
+  "The team travels to different conferences, not knowing who talked to who",
+  "Notes are scattered across memory, phones, and spreadsheets that no one checks",
   "Follow-ups fall through the cracks",
   "Multiple reps chase the same company",
   "The deal goes to whoever moves first; not who built the relationship",
@@ -41,7 +41,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            All that momentum disappears when the conference ends.
+            Momentum fades when the conference ends and the cylce starts again with the next one 
           </p>
         </div>
       </div>
