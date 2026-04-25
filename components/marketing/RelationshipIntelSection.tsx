@@ -34,7 +34,7 @@ export default function RelationshipIntelSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* Left column — relationship health card */}
-          <div style={{
+          <div className="order-2 md:order-1" style={{
             background: "#fff",
             border: "1px solid rgba(34,58,94,0.1)",
             borderRadius: 14,
@@ -142,7 +142,7 @@ export default function RelationshipIntelSection() {
           </div>
 
           {/* Right column — unchanged */}
-          <div>
+          <div className="order-1 md:order-2">
             <p className="font-inter text-sm font-semibold tracking-widest uppercase text-brand-teal mb-4">
               Relationship intelligence
             </p>
