@@ -92,161 +92,339 @@ export default function Hero() {
           </p>
 
           {/* Dashboard teaser */}
-          <div className="relative mx-auto" style={{ maxWidth: "860px" }}>
-            {/* Fade overlay cropping the bottom edge */}
+          <div className="relative mx-auto" style={{ maxWidth: "900px" }}>
+            {/* Fade overlay — crops bottom of card */}
             <div
-              className="absolute bottom-0 left-0 right-0 pointer-events-none"
-              style={{
-                height: "120px",
-                background: "linear-gradient(to bottom, transparent, #223A5E)",
-                zIndex: 2,
-              }}
               aria-hidden="true"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "110px",
+                background: "linear-gradient(to bottom, transparent, #223A5E)",
+                zIndex: 3,
+                pointerEvents: "none",
+              }}
             />
 
-            {/* Mock card */}
+            {/* Card */}
             <div
               style={{
-                background: "#0f2035",
+                background: "#111c2e",
+                border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: "12px 12px 0 0",
-                borderTop: "1px solid rgba(255,255,255,0.12)",
-                borderLeft: "1px solid rgba(255,255,255,0.12)",
-                borderRight: "1px solid rgba(255,255,255,0.12)",
+                borderBottom: "none",
+                overflow: "hidden",
+                textAlign: "left",
               }}
             >
-              {/* Window bar */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="flex gap-1.5" aria-hidden="true">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-amber-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                  </div>
-                  <p className="font-inter text-white/60 text-xs">
-                    NIC Spring 2026 — Nashville, TN
-                  </p>
-                </div>
-                <span
-                  className="font-inter text-xs text-brand-teal px-2.5 py-1 rounded-full"
-                  style={{ background: "rgba(52,211,153,0.15)" }}
-                >
-                  9 reps · live
-                </span>
+              {/* Layer 1 — Window chrome */}
+              <div
+                style={{
+                  background: "#0d1828",
+                  padding: "10px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 7,
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#ef4444", flexShrink: 0 }} />
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#f59e0b", flexShrink: 0 }} />
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
               </div>
 
-              {/* Tab row */}
-              <div className="flex gap-5 px-5 pt-3 pb-0 border-b border-white/10 overflow-x-auto">
+              {/* Layer 2 — Pre-conference review header */}
+              <div
+                style={{
+                  background: "#1e3354",
+                  padding: "12px 20px",
+                  borderBottom: "1px solid rgba(255,255,255,0.06)",
+                }}
+              >
+                <p style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>
+                  PRE-CONFERENCE REVIEW
+                </p>
+                <p style={{ fontSize: 17, fontWeight: 600, color: "white", letterSpacing: "-0.01em" }}>
+                  Conference Expo 2026
+                </p>
+              </div>
+
+              {/* Layer 3 — Stat pills */}
+              <div style={{ display: "flex", gap: 10, padding: "12px 20px", overflowX: "auto" }}>
                 {[
-                  { label: "Attendees", active: true },
-                  { label: "Companies", active: false },
-                  { label: "Meetings (36)", active: false },
-                  { label: "Follow Ups", active: false },
-                  { label: "Social", active: false },
-                  { label: "Insights", active: false },
-                ].map((tab) => (
-                  <span
-                    key={tab.label}
-                    className={`font-inter text-xs whitespace-nowrap pb-3 ${
-                      tab.active
-                        ? "text-brand-teal border-b-2 border-brand-teal"
-                        : "text-white/50"
-                    }`}
+                  { value: "2323", label: "Attendees" },
+                  { value: "1062", label: "Companies" },
+                  { value: "186",  label: "ICP" },
+                  { value: "20",   label: "Targets" },
+                  { value: "40",   label: "Meetings" },
+                  { value: "21",   label: "Open Follow-ups" },
+                ].map((pill) => (
+                  <div
+                    key={pill.label}
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: 10,
+                      padding: "10px 18px",
+                      textAlign: "center",
+                      flexShrink: 0,
+                    }}
                   >
-                    {tab.label}
+                    <p style={{ fontSize: 20, fontWeight: 600, color: "white", lineHeight: 1 }}>{pill.value}</p>
+                    <p style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>{pill.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Layer 4 — Tab navigation */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: 20,
+                  padding: "0 20px",
+                  borderBottom: "1px solid rgba(255,255,255,0.08)",
+                  overflowX: "auto",
+                }}
+              >
+                {["Landscape", "ICP Companies", "Meetings", "Social Events", "By Rep", "Relationships", "Conference Targets"].map((tab) => (
+                  <span
+                    key={tab}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: tab === "Landscape" ? 500 : 400,
+                      color: tab === "Landscape" ? "#34D399" : "rgba(255,255,255,0.4)",
+                      padding: "10px 0",
+                      borderBottom: tab === "Landscape" ? "2px solid #34D399" : "2px solid transparent",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {tab}
                   </span>
                 ))}
               </div>
 
-              {/* Stat row */}
-              <div className="grid grid-cols-3 border-b border-white/10">
-                {[
-                  { value: "2,324", label: "Attendees" },
-                  { value: "61", label: "ICP companies" },
-                  { value: "36", label: "Meetings booked" },
-                ].map((stat, i) => (
-                  <div
-                    key={stat.label}
-                    className={`px-5 py-4 ${i < 2 ? "border-r border-white/10" : ""}`}
-                  >
-                    <p className="font-inter text-white font-semibold text-lg text-left">
-                      {stat.value}
-                    </p>
-                    <p className="font-inter text-white/40 text-xs mt-0.5 text-left">
-                      {stat.label}
-                    </p>
+              {/* Layer 5 — Landscape body: 3-column grid */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "160px 1fr 200px",
+                  minHeight: 260,
+                }}
+              >
+                {/* Left — summary stats */}
+                <div
+                  style={{
+                    padding: "20px 16px",
+                    borderRight: "1px solid rgba(255,255,255,0.06)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 24,
+                  }}
+                >
+                  {[
+                    { value: "2323", label: "Total Attendees" },
+                    { value: "1062", label: "Companies" },
+                    { value: "186",  label: "ICP Companies" },
+                  ].map((s) => (
+                    <div key={s.label}>
+                      <p style={{ fontSize: 28, fontWeight: 600, color: "white", lineHeight: 1 }}>{s.value}</p>
+                      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginTop: 4 }}>{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Center — breakdown bars */}
+                <div
+                  style={{
+                    padding: "16px 20px",
+                    borderRight: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 10 }}>
+                    Company Type Breakdown
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 20 }}>
+                    {[
+                      { label: "Capital",     pct: 65,  count: 686 },
+                      { label: "Operator",    pct: 51,  count: 543 },
+                      { label: "Vendor",      pct: 37,  count: 396 },
+                      { label: "Other",       pct: 35,  count: 376 },
+                      { label: "Unknown",     pct: 28,  count: 303 },
+                      { label: "Association", pct: 2,   count: 17  },
+                    ].map((row) => (
+                      <div key={row.label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 72 }}>{row.label}</span>
+                        <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.07)", borderRadius: 3, overflow: "hidden" }}>
+                          <div style={{ width: `${row.pct}%`, height: "100%", background: "#223A5E", borderRadius: 3 }} />
+                        </div>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 30, textAlign: "right" }}>{row.count}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+
+                  <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 10 }}>
+                    Seniority Breakdown
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                    {[
+                      { label: "Unknown",  pct: 100, count: 1994 },
+                      { label: "VP/SVP",   pct: 16,  count: 319  },
+                      { label: "C-Suite",  pct: 0.5, count: 9    },
+                      { label: "Director", pct: 0.1, count: 1    },
+                    ].map((row) => (
+                      <div key={row.label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 72 }}>{row.label}</span>
+                        <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.07)", borderRadius: 3, overflow: "hidden" }}>
+                          <div style={{ width: `${row.pct}%`, height: "100%", background: "#34D399", borderRadius: 3 }} />
+                        </div>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 30, textAlign: "right" }}>{row.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right — client attendees */}
+                <div style={{ padding: "16px 14px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                    <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      Client Attendees
+                    </p>
+                    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>9</span>
+                  </div>
+                  {[
+                    { company: "Cable Guy, Inc.",          count: 18 },
+                    { company: "Cornerstone Management",   count: 3  },
+                    { company: "Bay Harbor Freight",       count: 2  },
+                    { company: "Good Living",              count: 2  },
+                    { company: "Health Group Partners",    count: 2  },
+                    { company: "SilverCrest",              count: 2  },
+                    { company: "Universal Studios",        count: 2  },
+                    { company: "American Fortress",        count: 1  },
+                  ].map((row) => (
+                    <div
+                      key={row.company}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "7px 0",
+                        borderBottom: "1px solid rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)" }}>{row.company}</span>
+                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>{row.count} ∨</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Attendee rows */}
-              <div>
-                {[
-                  {
-                    initials: "CB",
-                    name: "Cameron Bell",
-                    role: "VP of Investments",
-                    company: "NHI",
-                    type: "Capital",
-                    status: "Meeting held",
-                    statusClass: "text-brand-teal",
-                    statusBg: "rgba(52,211,153,0.15)",
-                  },
-                  {
-                    initials: "SO",
-                    name: "Sarah Okonkwo",
-                    role: "Director of Ops",
-                    company: "Sunrise Senior Living",
-                    type: "Own/Op",
-                    status: "Follow-up due",
-                    statusClass: "text-amber-400",
-                    statusBg: "rgba(251,191,36,0.15)",
-                  },
-                  {
-                    initials: "JM",
-                    name: "James Mullen",
-                    role: "President & CEO",
-                    company: "Sabra Health Care REIT",
-                    type: "Capital",
-                    status: "New contact",
-                    statusClass: "text-brand-teal",
-                    statusBg: "rgba(52,211,153,0.15)",
-                  },
-                ].map((row) => (
-                  <div
-                    key={row.name}
-                    className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06] last:border-b-0"
+              {/* Layer 6 — Prior Conference Overlap */}
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "14px 20px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                  <p style={{ fontSize: 11, textTransform: "uppercase", color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em" }}>
+                    Prior Conference Overlap
+                  </p>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      color: "#34D399",
+                      background: "rgba(52,211,153,0.12)",
+                      padding: "2px 8px",
+                      borderRadius: 20,
+                    }}
                   >
-                    <div className="flex items-center gap-3 text-left">
-                      <div
-                        className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ background: "#3A506B" }}
-                      >
-                        <span className="font-inter text-xs text-white font-semibold">
-                          {row.initials}
+                    105 Operator&apos;s
+                  </span>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+                  {[
+                    { initials: "AA", name: "Colleen Adkins",  company: "Westminister Abby, Inc.", parentConf: "HJ SIMS",            conf: "HJ SIMS",            rep: "John Baker"   },
+                    { initials: "BA", name: "Lloyd Christmas", company: "Warner Brothers",          parentConf: "SL 100 2026",         conf: "SL 100 2026",         rep: "Mary Swanson" },
+                    { initials: "LA", name: "Ace Ventura",     company: "Laces Out, LLC",           parentConf: "ASHA Annual Meeting", conf: "ASHA Annual Meeting", rep: "Ray Finkle"   },
+                    { initials: "BA", name: "Truman Burbank",  company: "Seaside Vending",          parentConf: "SL 100 2026",         conf: "SL 100 2026",         rep: "Meryl Burbank"},
+                  ].map((card) => (
+                    <div
+                      key={card.name}
+                      style={{
+                        background: "rgba(255,255,255,0.03)",
+                        border: "1px solid rgba(255,255,255,0.06)",
+                        borderRadius: 8,
+                        padding: "10px 12px",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                        <div
+                          style={{
+                            width: 26,
+                            height: 26,
+                            borderRadius: "50%",
+                            background: "rgba(34,58,94,0.6)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <span style={{ fontSize: 9, fontWeight: 600, color: "white" }}>{card.initials}</span>
+                        </div>
+                        <span
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 500,
+                            color: "rgba(255,255,255,0.75)",
+                            flex: 1,
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {card.name}
                         </span>
+                        <div
+                          style={{
+                            width: 14,
+                            height: 14,
+                            borderRadius: "50%",
+                            border: "1px solid rgba(255,255,255,0.25)",
+                            flexShrink: 0,
+                          }}
+                        />
                       </div>
-                      <div>
-                        <p className="font-inter text-white text-sm font-semibold">
-                          {row.name}
-                        </p>
-                        <p className="font-inter text-white/45 text-xs">
-                          {row.role} · {row.company}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <span className="font-inter text-xs text-white/40 px-2 py-0.5 border border-white/10 rounded">
-                        {row.type}
-                      </span>
-                      <span
-                        className={`font-inter text-xs px-2.5 py-1 rounded-full ${row.statusClass}`}
-                        style={{ background: row.statusBg }}
+                      <p
+                        style={{
+                          fontSize: 10,
+                          color: "rgba(255,255,255,0.35)",
+                          marginBottom: 2,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
                       >
-                        {row.status}
-                      </span>
+                        {card.company} ({card.parentConf})
+                      </p>
+                      <p style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", marginBottom: 6 }}>
+                        {card.conf}
+                      </p>
+                      <div
+                        style={{
+                          background: "rgba(255,255,255,0.06)",
+                          borderRadius: 20,
+                          padding: "3px 8px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 5,
+                        }}
+                      >
+                        <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", flexShrink: 0 }} />
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.5)" }}>{card.rep}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
