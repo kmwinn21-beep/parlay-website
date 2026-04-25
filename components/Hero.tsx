@@ -43,7 +43,7 @@ export default function Hero() {
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
         <div className="text-center">
           {/* Split headline */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-0 mb-8">
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-0 mb-8 md:w-fit md:mx-auto">
             <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight md:pr-8 lg:pr-12">
               Parlay
             </h1>
@@ -248,19 +248,18 @@ export default function Hero() {
                   </p>
                   <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 20 }}>
                     {[
-                      { label: "Capital",     pct: 65,  count: 686 },
-                      { label: "Operator",    pct: 51,  count: 543 },
-                      { label: "Vendor",      pct: 37,  count: 396 },
-                      { label: "Other",       pct: 35,  count: 376 },
-                      { label: "Unknown",     pct: 28,  count: 303 },
-                      { label: "Association", pct: 2,   count: 17  },
+                      { label: "Capital",     pct: 65 },
+                      { label: "Operator",    pct: 51 },
+                      { label: "Vendor",      pct: 37 },
+                      { label: "Other",       pct: 35 },
+                      { label: "Unknown",     pct: 28 },
+                      { label: "Association", pct: 2  },
                     ].map((row) => (
                       <div key={row.label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 72 }}>{row.label}</span>
                         <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.07)", borderRadius: 3, overflow: "hidden" }}>
                           <div style={{ width: `${row.pct}%`, height: "100%", background: "#223A5E", borderRadius: 3 }} />
                         </div>
-                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", minWidth: 30, textAlign: "right" }}>{row.count}</span>
                       </div>
                     ))}
                   </div>

@@ -55,7 +55,6 @@ export default function AnimatedWord() {
         color: "#34D399",
         fontWeight: 600,
         opacity: 0,
-        minWidth: "12ch",
       }}
     />
   );
