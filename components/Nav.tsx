@@ -45,7 +45,7 @@ export default function Nav() {
           <Link href="/" className="flex items-center shrink-0">
             {scrolled ? (
               <Image
-                src="/logo-color.svg"
+                src="/V2ParlayLogoNew.png"
                 alt="Parlay"
                 width={120}
                 height={40}

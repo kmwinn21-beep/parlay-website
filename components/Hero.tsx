@@ -91,7 +91,8 @@ export default function Hero() {
             From Conversations to Follow-Through
           </p>
 
-          {/* Dashboard teaser */}
+          {/* Dashboard teaser — desktop */}
+          <div className="hidden md:block">
           <div className="relative mx-auto" style={{ maxWidth: "900px" }}>
             {/* Fade overlay — crops bottom of card */}
             <div
@@ -426,6 +427,298 @@ export default function Hero() {
               </div>
             </div>
           </div>
+          </div>
+
+          {/* Dashboard teaser — mobile */}
+          <div className="block md:hidden">
+          <div className="relative mx-auto" style={{ maxWidth: "100%" }}>
+            {/* Fade overlay */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "100px",
+                background: "linear-gradient(to bottom, transparent, #223A5E)",
+                zIndex: 3,
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Mobile card */}
+            <div
+              style={{
+                background: "#111c2e",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "12px 12px 0 0",
+                borderBottom: "none",
+                overflow: "hidden",
+                textAlign: "left",
+              }}
+            >
+              {/* Layer 1 — Window chrome */}
+              <div
+                style={{
+                  background: "#0d1828",
+                  padding: "10px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                }}
+              >
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ef4444", flexShrink: 0 }} />
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#f59e0b", flexShrink: 0 }} />
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
+              </div>
+
+              {/* Layer 2 — PCR header */}
+              <div
+                style={{
+                  background: "#1e3354",
+                  padding: "12px 16px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <p style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>
+                    PRE-CONFERENCE REVIEW
+                  </p>
+                  <p style={{ fontSize: 16, fontWeight: 700, color: "white" }}>Conference Expo 2026</p>
+                </div>
+                <div style={{ display: "flex", gap: 10, color: "rgba(255,255,255,0.4)", fontSize: 14 }}>
+                  <span>∨</span>
+                  <span>✕</span>
+                </div>
+              </div>
+
+              {/* Layer 3 — 2×3 stat grid */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 8,
+                  padding: 12,
+                }}
+              >
+                {[
+                  { value: "2324", label: "Attendees" },
+                  { value: "1063", label: "Companies" },
+                  { value: "186",  label: "ICP" },
+                  { value: "25",   label: "Targets" },
+                  { value: "40",   label: "Meetings" },
+                  { value: "8",    label: "Open Follow-ups" },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    style={{
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: 10,
+                      padding: "10px 12px",
+                    }}
+                  >
+                    <p style={{ fontSize: 20, fontWeight: 700, color: "white", lineHeight: 1 }}>{stat.value}</p>
+                    <p style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Layer 4 — Tab navigation */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: 16,
+                  padding: "0 16px",
+                  borderBottom: "1px solid rgba(255,255,255,0.08)",
+                  overflowX: "auto",
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                } as React.CSSProperties}
+              >
+                {["Meetings", "Social Events", "By Rep", "Relationships", "Conference Targets"].map((tab) => (
+                  <span
+                    key={tab}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: tab === "Conference Targets" ? 600 : 400,
+                      color: tab === "Conference Targets" ? "#34D399" : "rgba(255,255,255,0.4)",
+                      padding: "10px 0",
+                      borderBottom: tab === "Conference Targets" ? "2px solid #34D399" : "2px solid transparent",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {tab}
+                  </span>
+                ))}
+              </div>
+
+              {/* Layer 5 — Targets stat + seniority breakdown */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1px 1fr",
+                  padding: "14px 16px",
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                {/* Left — large target stat */}
+                <div style={{ paddingRight: 14 }}>
+                  <p style={{ fontSize: 32, fontWeight: 700, color: "white", lineHeight: 1 }}>25</p>
+                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>Targets</p>
+                </div>
+
+                {/* Vertical divider */}
+                <div style={{ background: "rgba(255,255,255,0.07)" }} />
+
+                {/* Right — seniority breakdown */}
+                <div style={{ paddingLeft: 14 }}>
+                  <p style={{ fontSize: 9, textTransform: "uppercase", fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em", marginBottom: 8 }}>
+                    SENIORITY BREAKDOWN
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    {[
+                      { label: "C-Suite",  pct: 100, color: "#8b5cf6" },
+                      { label: "Director", pct: 10,  color: "#34D399"  },
+                      { label: "VP/SVP",   pct: 10,  color: "#3b82f6"  },
+                    ].map((row) => (
+                      <div key={row.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", minWidth: 48 }}>{row.label}</span>
+                        <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.07)", borderRadius: 3, overflow: "hidden" }}>
+                          <div style={{ width: `${row.pct}%`, height: "100%", background: row.color, borderRadius: 3 }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Layer 6 — Conference Targets list */}
+              <div style={{ padding: "12px 16px" }}>
+                <p style={{ fontSize: 12, fontWeight: 700, color: "white", marginBottom: 10 }}>
+                  Conference Expo 2026 Targets
+                </p>
+                {/* Tier card */}
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.07)",
+                    borderRadius: 8,
+                  }}
+                >
+                  {/* Tier header */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "8px 12px",
+                      borderBottom: "1px solid rgba(255,255,255,0.07)",
+                    }}
+                  >
+                    <span style={{ fontSize: 11, fontWeight: 700, color: "#ef4444" }}>TIER 1</span>
+                    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>9</span>
+                  </div>
+
+                  {/* Contact 1 — Peter Gibbons */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      padding: "10px 12px",
+                      borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    }}
+                  >
+                    <div style={{ flex: 1, marginRight: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2, overflow: "hidden" }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "white", flexShrink: 0 }}>Peter Gibbons</span>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Director Strategic Growth</span>
+                      </div>
+                      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>Initech</p>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                        <span
+                          style={{
+                            fontSize: 10, color: "rgba(255,255,255,0.6)",
+                            background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)",
+                            borderRadius: 20, padding: "2px 8px",
+                          }}
+                        >
+                          Director
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 10, color: "rgba(255,255,255,0.5)",
+                            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
+                            borderRadius: 20, padding: "2px 8px",
+                            display: "inline-flex", alignItems: "center", gap: 4,
+                          }}
+                        >
+                          <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block", flexShrink: 0 }} />
+                          Bill Lumbergh
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: 18, height: 18, borderRadius: "50%",
+                        border: "1.5px solid rgba(239,68,68,0.5)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0, marginTop: 2,
+                      }}
+                    >
+                      <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(239,68,68,0.6)" }} />
+                    </div>
+                  </div>
+
+                  {/* Contact 2 — Milton Waddams */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      padding: "10px 12px",
+                    }}
+                  >
+                    <div style={{ flex: 1, marginRight: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2, overflow: "hidden" }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "white", flexShrink: 0 }}>Milton Waddams</span>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Vice President, Operational Exce...</span>
+                      </div>
+                      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>Swinline</p>
+                      <div style={{ display: "flex", gap: 6 }}>
+                        <span
+                          style={{
+                            fontSize: 10, color: "rgba(255,255,255,0.6)",
+                            background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)",
+                            borderRadius: 20, padding: "2px 8px",
+                          }}
+                        >
+                          VP/SVP
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: 18, height: 18, borderRadius: "50%",
+                        border: "1.5px solid rgba(239,68,68,0.5)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0, marginTop: 2,
+                      }}
+                    >
+                      <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(239,68,68,0.6)" }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
         </div>
       </div>
     </section>
