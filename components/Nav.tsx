@@ -15,7 +15,7 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -47,14 +47,18 @@ export default function Nav() {
               <Image
                 src="/logo-color.svg"
                 alt="Parlay"
-                width={110}
-                height={34}
+                width={120}
+                height={40}
                 priority
               />
             ) : (
-              <span className="font-playfair text-2xl font-bold text-white tracking-tight">
-                Parlay
-              </span>
+              <Image
+                src="/logo-white.svg"
+                alt="Parlay"
+                width={120}
+                height={40}
+                priority
+              />
             )}
           </Link>
 
