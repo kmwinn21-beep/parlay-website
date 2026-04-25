@@ -1,9 +1,9 @@
 const PROBLEMS = [
-  "No one remembers who talked to who",
-  "Notes are scattered across phones, spreadsheets, and memory",
+  "The team travels to different conferences, not knowing who talked to who",
+  "Notes are scattered across memory, phones, and spreadsheets that no one checks",
   "Follow-ups fall through the cracks",
-  "Multiple reps unknownky chase the same prosoect",
-  "Sales leaders are left to make uncomfortable account ownership decisions; with little-to-no justification.",
+  "Multiple reps unknowingly chase the same prospect",
+  "Sales leaders are left to make uncomfortable account ownership decisions with little-to-no justification.",
 ];
 
 export default function ProblemSection() {
@@ -41,7 +41,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            Momentum fades when the conference ends and the cylce starts again 
+            Momentum fades when the conference ends and the cylce starts again with the next one 
           </p>
         </div>
       </div>
