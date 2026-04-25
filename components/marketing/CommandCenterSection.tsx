@@ -288,10 +288,115 @@ function Slide2() {
   );
 }
 function Slide3() {
-  return <div style={{ padding: 16, color: "#94a3b8", fontSize: 13 }}>Loading…</div>;
+  return (
+    <div style={{ background: "white", borderRadius: 14, padding: 16 }}>
+      {/* Title row */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
+        <span style={{ fontSize: 16, fontWeight: 700, color: "#223A5E", lineHeight: 1.2, flex: 1 }}>Edit Fields — Custom Form Builder</span>
+        <span style={{ fontSize: 18, color: "#64748b", marginLeft: 8, flexShrink: 0 }}>✕</span>
+      </div>
+
+      {/* Existing field row */}
+      <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "10px 12px", display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        <span style={{ fontSize: 14, color: "#94a3b8" }}>⇕</span>
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#1e293b", flex: 1 }}>Email Address</span>
+        <span style={{ fontSize: 10, color: "#64748b", background: "#f1f5f9", border: "1px solid #e2e8f0", borderRadius: 20, padding: "2px 8px" }}>Text (Single Line)</span>
+        <span style={{ fontSize: 10, color: "#3b82f6", background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.25)", borderRadius: 20, padding: "2px 8px" }}>Template</span>
+        <span style={{ fontSize: 12, color: "#94a3b8" }}>✏</span>
+        <span style={{ fontSize: 12, color: "#94a3b8" }}>🗑</span>
+      </div>
+
+      {/* New Field card */}
+      <div style={{ border: "1.5px solid #223A5E", borderRadius: 14, padding: 14, marginBottom: 12 }}>
+        <p style={{ fontSize: 14, fontWeight: 700, color: "#223A5E", marginBottom: 12 }}>New Field</p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 10 }}>
+          <div>
+            <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>Field Type</p>
+            <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 8, padding: "8px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 12, color: "#1e293b" }}>Dropdown</span>
+              <span style={{ fontSize: 10, color: "#94a3b8" }}>⇕</span>
+            </div>
+          </div>
+          <div>
+            <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>Label</p>
+            <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 8, padding: "8px 10px" }}>
+              <span style={{ fontSize: 12, color: "#1e293b" }}>Product</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 10 }}>
+          <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>Placeholder</p>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 8, padding: "8px 10px" }}>
+            <span style={{ fontSize: 12, color: "#94a3b8" }}>What piqued your interest?</span>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+          <div style={{ width: 16, height: 16, borderRadius: 4, border: "1.5px solid #e2e8f0", background: "white", flexShrink: 0 }} />
+          <span style={{ fontSize: 12, color: "#1e293b" }}>Required</span>
+        </div>
+
+        <div style={{ marginBottom: 10 }}>
+          <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>Options Source</p>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 8, padding: "8px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: 12, color: "#1e293b" }}>Custom options (enter below)</span>
+            <span style={{ fontSize: 10, color: "#94a3b8" }}>⇕</span>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 12 }}>
+          <p style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>Options</p>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 8, padding: "8px 10px", marginBottom: 6 }}>
+            <span style={{ fontSize: 12, color: "#1e293b" }}>Product / Service</span>
+          </div>
+          <span style={{ fontSize: 12, color: "#3b82f6" }}>+ Add option</span>
+        </div>
+
+        <div style={{ display: "flex", gap: 8 }}>
+          <button style={{ flex: 1, background: "#223A5E", color: "white", borderRadius: 8, padding: "10px", fontSize: 13, fontWeight: 600, border: "none", cursor: "default" }}>Add Field</button>
+          <button style={{ flex: 1, background: "transparent", color: "#223A5E", borderRadius: 8, padding: "10px", fontSize: 13, fontWeight: 600, border: "1.5px solid #223A5E", cursor: "default" }}>Cancel</button>
+        </div>
+      </div>
+
+      <button style={{ width: "100%", background: "#223A5E", color: "white", borderRadius: 8, padding: "12px", fontSize: 14, fontWeight: 700, border: "none", cursor: "default" }}>Done</button>
+    </div>
+  );
 }
+const TOUCHPOINT_CONFERENCES = [
+  { label: "SHN Build",  pills: [{ text: "Dinner",     count: 1, color: "#ef4444" }, { text: "Coffee",     count: 1, color: "#f59e0b" }] },
+  { label: "ASHA",       pills: [{ text: "Booth Stop", count: 1, color: "#3b82f6" }, { text: "Event",      count: 1, color: "#7c3aed" }] },
+  { label: "SL 100",     pills: [{ text: "Booth Stop", count: 1, color: "#3b82f6" }, { text: "Coffee",     count: 1, color: "#f59e0b" }, { text: "Event", count: 1, color: "#7c3aed" }] },
+  { label: "Expo 2026",  pills: [{ text: "Booth Stop", count: 1, color: "#3b82f6" }, { text: "Coffee",     count: 1, color: "#f59e0b" }] },
+];
+
 function Slide4() {
-  return <div style={{ padding: 16, color: "#94a3b8", fontSize: 13 }}>Loading…</div>;
+  return (
+    <div style={{ background: "white", borderRadius: 14, padding: 16 }}>
+      {/* Total row */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 12, borderBottom: "1px solid #e2e8f0", marginBottom: 14 }}>
+        <span style={{ fontSize: 14, color: "#1e293b" }}>Total Touchpoints</span>
+        <span style={{ fontSize: 20, fontWeight: 700, color: "#223A5E" }}>9</span>
+      </div>
+
+      {TOUCHPOINT_CONFERENCES.map((section) => (
+        <div key={section.label} style={{ marginBottom: 14 }}>
+          <p style={{ fontSize: 10, textTransform: "uppercase", color: "#94a3b8", letterSpacing: "0.05em", fontWeight: 600, marginBottom: 8 }}>{section.label}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {section.pills.map((pill) => (
+              <span
+                key={pill.text}
+                style={{ fontSize: 13, fontWeight: 700, padding: "8px 14px", borderRadius: 10, border: `2px solid ${pill.color}`, color: pill.color, display: "inline-flex", alignItems: "center", gap: 6 }}
+              >
+                {pill.text} <span style={{ fontWeight: 400 }}>{pill.count}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 /* ── Main section ─────────────────────────────────────────────────────── */
