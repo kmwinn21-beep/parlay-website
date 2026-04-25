@@ -5,13 +5,6 @@ const BULLETS = [
   "Add notes and follow-ups in the same flow—no app switching, no lost context",
 ];
 
-const RECORD_FIELDS = [
-  ["Name", "James Mullen"],
-  ["Title", "President & CEO"],
-  ["Company", "Sabra Health Care REIT"],
-  ["Type", "Capital · ICP"],
-  ["Owned by", "Your Rep"],
-];
 
 export default function CardScanSection() {
   return (
@@ -40,39 +33,186 @@ export default function CardScanSection() {
             </ul>
           </div>
 
-          <div className="space-y-4">
+          {/* Right column — card scan flow mock */}
+          <div>
+            {/* Section 1 — Drop zone */}
             <div
-              className="rounded-xl border border-white/10 p-5"
-              style={{ background: "#0f2035" }}
+              style={{
+                border: "1.5px dashed rgba(255,255,255,0.15)",
+                borderBottom: "none",
+                borderRadius: "10px 10px 0 0",
+                background: "rgba(255,255,255,0.03)",
+                padding: "20px 16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 12,
+              }}
             >
-              <p className="font-inter text-xs text-white/40 uppercase tracking-widest mb-3">
-                Card scanned
-              </p>
-              <p className="font-inter text-white font-semibold text-lg">James Mullen</p>
-              <p className="font-inter text-sm mt-1" style={{ color: "rgba(255,255,255,0.55)" }}>
-                President &amp; CEO · Sabra Health Care REIT
-              </p>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.6)"
+                strokeWidth="1.5"
+                width="32"
+                height="32"
+                style={{ opacity: 0.35, flexShrink: 0 }}
+                aria-hidden="true"
+              >
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
+                Drop or click to scan another photo
+              </span>
             </div>
 
-            <div className="flex items-center gap-3 px-2">
-              <div className="flex-1 h-px bg-white/20" />
-              <p className="font-inter text-xs text-brand-teal tracking-wide whitespace-nowrap">
-                AI extraction + matching
-              </p>
-              <div className="flex-1 h-px bg-white/20" />
-            </div>
+            {/* Section 2 — Scanned card */}
+            <div
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderTop: "none",
+                padding: 16,
+              }}
+            >
+              {/* Header row */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  Scanned Card
+                </span>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 500,
+                    color: "#34D399",
+                    background: "rgba(52,211,153,0.15)",
+                    border: "1px solid rgba(52,211,153,0.3)",
+                    borderRadius: 20,
+                    padding: "3px 10px",
+                  }}
+                >
+                  Match Found
+                </span>
+              </div>
 
-            <div className="rounded-xl border border-brand-teal/30 p-5" style={{ background: "rgba(52,211,153,0.10)" }}>
-              <p className="font-inter text-xs text-brand-teal uppercase tracking-widest mb-4">
-                Record created · NIC Spring 2026
-              </p>
-              <div className="space-y-2.5">
-                {RECORD_FIELDS.map(([key, val]) => (
-                  <div key={key} className="flex justify-between items-center">
-                    <span className="font-inter text-white/40 text-sm">{key}</span>
-                    <span className="font-inter text-white text-sm font-medium">{val}</span>
+              {/* Fields */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {/* Row 1: First + Last name */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                  {[["FIRST NAME", "Harry"], ["LAST NAME", "Dunn"]].map(([label, value]) => (
+                    <div key={label}>
+                      <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+                        {label}
+                      </p>
+                      <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "9px 11px", fontSize: 13, color: "rgba(255,255,255,0.85)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Row 2: Title */}
+                <div>
+                  <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+                    TITLE
+                  </p>
+                  <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "9px 11px", fontSize: 13, color: "rgba(255,255,255,0.85)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    Chief Strategy Officer
                   </div>
-                ))}
+                </div>
+
+                {/* Row 3: Company */}
+                <div>
+                  <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+                    COMPANY
+                  </p>
+                  <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "9px 11px", fontSize: 13, color: "rgba(255,255,255,0.85)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    Mutt Cutts
+                  </div>
+                </div>
+
+                {/* Row 4: Email + Phone */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                  {[["EMAIL", "harry@muttcutts.com"], ["PHONE", "555555555555"]].map(([label, value]) => (
+                    <div key={label}>
+                      <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+                        {label}
+                      </p>
+                      <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "9px 11px", fontSize: 13, color: "rgba(255,255,255,0.85)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3 — Best match */}
+            <div
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderTop: "none",
+                borderRadius: "0 0 10px 10px",
+                padding: 16,
+              }}
+            >
+              <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>
+                Best Match
+              </p>
+
+              {/* Match result card */}
+              <div
+                style={{
+                  background: "rgba(52,211,153,0.05)",
+                  border: "1px solid rgba(52,211,153,0.2)",
+                  borderRadius: 8,
+                  padding: "12px 14px",
+                  marginBottom: 14,
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "white" }}>Harry Dunn</span>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      color: "rgba(255,255,255,0.6)",
+                      background: "rgba(34,58,94,0.5)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: 20,
+                      padding: "2px 9px",
+                    }}
+                  >
+                    Email
+                  </span>
+                </div>
+                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>Chief Strategy Officer</p>
+                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>Mutt Cutts</p>
+                <p style={{ fontSize: 12, color: "#34D399" }}>harry@muttcutts.com</p>
+              </div>
+
+              {/* Action row */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <button
+                  style={{
+                    flex: 1,
+                    background: "#223A5E",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    borderRadius: 8,
+                    padding: 10,
+                    fontSize: 13,
+                    fontWeight: 500,
+                    color: "white",
+                    cursor: "pointer",
+                    textAlign: "center",
+                  }}
+                >
+                  Confirm Match
+                </button>
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", whiteSpace: "nowrap" }}>
+                  Not a match
+                </span>
               </div>
             </div>
           </div>
