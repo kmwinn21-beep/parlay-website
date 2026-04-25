@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 const NAV_LINKS = [
@@ -9,6 +8,52 @@ const NAV_LINKS = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
 ];
+
+function ParlayLogo({ scrolled }: { scrolled: boolean }) {
+  return (
+    <div className="flex items-center gap-2.5">
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 39 36"
+        fill="none"
+        aria-hidden="true"
+      >
+        {/* P body with counter hole — evenodd fill rule */}
+        <path
+          fillRule="evenodd"
+          style={{
+            fill: scrolled ? "#223A5E" : "#ffffff",
+            transition: "fill 300ms",
+          }}
+          d="M3,0 H19 C39,0 39,27 19,27 H10.5 V36 H3 C1.3,36 0,34.7 0,33 V3 C0,1.3 1.3,0 3,0 Z M10.5,7 H17 C33,7 33,20 17,20 H10.5 Z"
+        />
+        {/* Teal accent on lower-left stem — fades in when scrolled */}
+        <path
+          style={{
+            fill: "#34D399",
+            opacity: scrolled ? 1 : 0,
+            transition: "opacity 300ms",
+          }}
+          d="M0,20 V33 C0,34.7 1.3,36 3,36 H10.5 V27 C8,27 5,24.5 2.5,20 Z"
+        />
+      </svg>
+      <span
+        className="font-inter"
+        style={{
+          fontSize: "20px",
+          fontWeight: 800,
+          color: scrolled ? "#223A5E" : "#ffffff",
+          letterSpacing: "-0.4px",
+          lineHeight: 1,
+          transition: "color 300ms",
+        }}
+      >
+        Parlay
+      </span>
+    </div>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,19 +88,7 @@ export default function Nav() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            {scrolled ? (
-              <Image
-                src="/logo-color.svg"
-                alt="Parlay"
-                width={110}
-                height={34}
-                priority
-              />
-            ) : (
-              <span className="font-playfair text-2xl font-bold text-white tracking-tight">
-                Parlay
-              </span>
-            )}
+            <ParlayLogo scrolled={scrolled} />
           </Link>
 
           {/* Desktop links */}
