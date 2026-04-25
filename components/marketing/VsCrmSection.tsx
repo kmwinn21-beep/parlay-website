@@ -20,12 +20,12 @@ export default function VsCrmSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6 max-w-4xl">
-          CRMs record pipeline state. Parlay operationalizes conference execution.
+          CRMs show pipeline state. Parlay enables conference execution.
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-12 max-w-3xl">
-          A CRM answers who owns the account. Parlay answers what your team should do
-          before, during, and after every conference—and whether it actually worked.
+          A CRM shows you who owns the account, deal stage, & last activity. Parlay shows what your team should do
+          before, during, and after every conference, and whether it actually worked.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
