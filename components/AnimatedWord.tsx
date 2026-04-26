@@ -69,7 +69,11 @@ export default function AnimatedWord() {
     <span
       ref={spanRef}
       style={{
-        display: "inline-block",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        display: "block",
+        width: "100%",
         color: "#34D399",
         fontWeight: 600,
         opacity: 0,
