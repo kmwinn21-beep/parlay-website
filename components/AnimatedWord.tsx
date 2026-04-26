@@ -74,7 +74,6 @@ export default function AnimatedWord() {
         left: 0,
         display: "block",
         width: "100%",
-        textAlign: "left",
         color: "#34D399",
         fontWeight: 600,
         opacity: 0,
