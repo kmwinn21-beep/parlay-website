@@ -59,14 +59,13 @@ export default function Hero() {
               aria-hidden="true"
             />
 
-            <div
-              className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight md:pl-8 lg:pl-12"
-              style={{ position: "relative" }}
-            >
-              <span aria-hidden="true" style={{ visibility: "hidden", userSelect: "none", display: "block" }}>
-                Conversations
-              </span>
-              <AnimatedWord />
+            <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight md:pl-8 lg:pl-12">
+              <div style={{ position: "relative" }}>
+                <span aria-hidden="true" style={{ visibility: "hidden", userSelect: "none", display: "block" }}>
+                  Conversations
+                </span>
+                <AnimatedWord />
+              </div>
             </div>
           </div>
 
