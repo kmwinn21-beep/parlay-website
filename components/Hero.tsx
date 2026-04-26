@@ -60,7 +60,7 @@ export default function Hero() {
             />
 
             <div className="font-playfair text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight md:pl-8 lg:pl-12">
-              <div style={{ position: "relative" }}>
+              <div style={{ position: "relative" }} className="text-center md:text-left">
                 <span aria-hidden="true" style={{ visibility: "hidden", userSelect: "none", display: "block" }}>
                   Conversations
                 </span>
