@@ -1,8 +1,8 @@
 const BULLETS = [
-  "Scan a card or badge — AI extracts name, title, company, and email instantly",
-  "Smart matching finds existing records or creates new ones—no duplicates, no manual cleanup",
+  "Scan a card, badge, or handwritten notes. Parlay extracts badge and card details instantly",
+  "Smart matching finds existing records or creates new ones in one-click. No duplicates, No manual cleanup",
   "Contact is immediately tied to the conference, the rep, and the right company record",
-  "Add notes and follow-ups in the same flow—no app switching, no lost context",
+  "Add notes and follow-ups in the same flow. No app switching, no lost context",
 ];
 
 
@@ -16,11 +16,11 @@ export default function CardScanSection() {
               Field capture
             </p>
             <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6">
-              From badge scan to pipeline record in seconds
+              From scan, to context, to pipeline
             </h2>
             <p className="font-inter text-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Conference floors move fast. Parlay&apos;s AI card scan and matching engine
-              turns chaotic badge and card capture into usable pipeline data before the
+              Conference floors move fast. Parlay&apos;s AI scanning and matching engine
+              turns chaotic badge, card, and notes capture into usable pipeline data before the
               conversation is over.
             </p>
             <ul className="space-y-4">
