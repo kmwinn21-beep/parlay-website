@@ -174,24 +174,32 @@ export default function Pricing() {
               borderRadius: 14, padding: 28, position: "relative",
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 16 }}>
+              {/* Label */}
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Starter
               </p>
-              <div style={{ display: "flex", alignItems: "flex-end", gap: 4, marginBottom: 4 }}>
+              {/* Price */}
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 4, minHeight: 72 }}>
                 <span className="font-playfair" style={{ fontSize: 52, fontWeight: 700, color: "#223A5E", lineHeight: 1 }}>
                   ${billing === "monthly" ? PLANS.starter.monthly : PLANS.starter.annual}
                 </span>
-                <span style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>/mo</span>
+                <span style={{ fontSize: 13, color: "#94a3b8", marginBottom: 6 }}>/mo</span>
                 {billing === "annual" && (
-                  <span style={{ fontSize: 12, color: "#cbd5e1", marginBottom: 8, textDecoration: "line-through" }}>
+                  <span style={{ fontSize: 12, color: "#cbd5e1", marginBottom: 6, textDecoration: "line-through" }}>
                     ${PLANS.starter.monthly}
                   </span>
                 )}
               </div>
-              <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 10 }}>Up to 3 users · unlimited events</p>
-              <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65, marginBottom: 20 }}>
-                For small teams who want shared visibility and accountability across every conference they attend.
-              </p>
+              {/* Subtitle — separated from price with its own row */}
+              <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
+                <p style={{ fontSize: 12, color: "#94a3b8" }}>Up to 3 users · unlimited events</p>
+              </div>
+              {/* Description */}
+              <div style={{ minHeight: 88, marginBottom: 20 }}>
+                <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65 }}>
+                  For small teams who want shared visibility and accountability across every conference they attend.
+                </p>
+              </div>
               <Link
                 href="/signup?plan=starter"
                 style={{
@@ -205,11 +213,11 @@ export default function Pricing() {
               >
                 Start Free Trial
               </Link>
-              <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 12 }}>
                 What&apos;s included
               </p>
               <FeatureList features={STARTER_FEATURES} />
-              <p style={{ fontSize: 12, color: "#94a3b8", marginTop: 16 }}>Additional seats: $49/user/mo</p>
+              <p style={{ fontSize: 12, color: "#94a3b8", marginTop: "auto", paddingTop: 16 }}>Additional seats: $49/user/mo</p>
             </div>
 
             {/* ── Professional (featured) ── */}
@@ -227,24 +235,32 @@ export default function Pricing() {
                   Most Popular
                 </span>
               </div>
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", marginBottom: 16 }}>
+              {/* Label */}
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Professional
               </p>
-              <div style={{ display: "flex", alignItems: "flex-end", gap: 4, marginBottom: 4 }}>
+              {/* Price */}
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 4, minHeight: 72 }}>
                 <span className="font-playfair" style={{ fontSize: 52, fontWeight: 700, color: "#fff", lineHeight: 1 }}>
                   ${billing === "monthly" ? PLANS.professional.monthly : PLANS.professional.annual}
                 </span>
-                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 8 }}>/mo</span>
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 6 }}>/mo</span>
                 {billing === "annual" && (
-                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginBottom: 8, textDecoration: "line-through" }}>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginBottom: 6, textDecoration: "line-through" }}>
                     ${PLANS.professional.monthly}
                   </span>
                 )}
               </div>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 10 }}>Up to 10 users · unlimited events</p>
-              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, marginBottom: 20 }}>
-                For active conference teams who need intelligence, coordination, and accountability across every event.
-              </p>
+              {/* Subtitle */}
+              <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
+                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)" }}>Up to 10 users · unlimited events</p>
+              </div>
+              {/* Description */}
+              <div style={{ minHeight: 88, marginBottom: 20 }}>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+                  For active conference teams who need intelligence, coordination, and accountability across every event.
+                </p>
+              </div>
               <Link
                 href="/signup?plan=professional"
                 style={{
@@ -257,12 +273,14 @@ export default function Pricing() {
               >
                 Start Free Trial →
               </Link>
-              <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.05em", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 12 }}>
                 Everything in Starter, plus
               </p>
               <FeatureList features={PRO_FEATURES} onDark />
-              <div style={{ marginTop: 16, background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "8px 12px" }}>
-                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Additional seats: $49/user/mo</p>
+              <div style={{ marginTop: "auto", paddingTop: 16 }}>
+                <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "8px 12px" }}>
+                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Additional seats: $49/user/mo</p>
+                </div>
               </div>
             </div>
 
@@ -272,17 +290,27 @@ export default function Pricing() {
               borderRadius: 14, padding: 28, position: "relative",
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 16 }}>
+              {/* Label */}
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Enterprise
               </p>
-              <span className="font-playfair" style={{ fontSize: 38, fontWeight: 700, color: "#223A5E", lineHeight: 1, display: "block", marginBottom: 4 }}>
-                Custom
-              </span>
-              <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 6 }}>contact us for pricing</p>
-              <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 10 }}>25+ users · unlimited everything</p>
-              <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65, marginBottom: 20 }}>
-                For large organizations with multiple conference programs, multiple teams, and enterprise compliance needs.
-              </p>
+              {/* Price */}
+              <div style={{ display: "flex", alignItems: "flex-end", minHeight: 72 }}>
+                <span className="font-playfair" style={{ fontSize: 38, fontWeight: 700, color: "#223A5E", lineHeight: 1 }}>
+                  Custom
+                </span>
+              </div>
+              {/* Subtitle — 2 lines to match Enterprise's pricing note */}
+              <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
+                <p style={{ fontSize: 12, color: "#94a3b8" }}>contact us for pricing</p>
+                <p style={{ fontSize: 12, color: "#94a3b8", marginTop: 4 }}>25+ users · unlimited everything</p>
+              </div>
+              {/* Description */}
+              <div style={{ minHeight: 88, marginBottom: 20 }}>
+                <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65 }}>
+                  For large organizations with multiple conference programs, multiple teams, and enterprise compliance needs.
+                </p>
+              </div>
               <Link
                 href="/contact-sales"
                 style={{
@@ -295,7 +323,7 @@ export default function Pricing() {
               >
                 Talk to Sales
               </Link>
-              <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 12 }}>
                 Everything in Professional, plus
               </p>
               <FeatureList features={ENTERPRISE_FEATURES} />
