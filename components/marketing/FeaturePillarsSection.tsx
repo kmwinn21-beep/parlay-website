@@ -1,8 +1,8 @@
 const PILLARS = [
   {
     num: "01",
-    title: "Instant card capture",
-    body: "Point your phone at any business card or badge. AI extracts name, company, role, and contact details in seconds—no typing, no lost cards.",
+    title: "Instant card and note capture",
+    body: "Point your phone at any business card, badge, or handwritten notes. Parlay extracts the details and assigns automatically. No typing, no lost cards.",
   },
   {
     num: "02",
@@ -12,22 +12,22 @@ const PILLARS = [
   {
     num: "03",
     title: "Follow-through built in",
-    body: "Notes become follow-ups. Forms create records and assign tasks. Your team leaves with clear next steps—not a cleanup project.",
+    body: "Notes become follow-ups. Forms create records and assign tasks. Your team leaves with clear next steps, not a cleanup project.",
   },
   {
     num: "04",
-    title: "Pre-conference intelligence",
-    body: "A planning cockpit—not just reporting. ICP coverage, relationship gaps, meeting assignments—all surfaced before the conference opens.",
+    title: "Pre and post-conference intelligence",
+    body: "A planning cockpit and debriefing room; not just reporting. ICP coverage, relationship gaps, meeting assignments, rep performance all surfaced before and after the conference.",
   },
   {
     num: "05",
     title: "Relationship health scoring",
-    body: "Depth scores built from meetings, outcomes, notes, social attendance, and follow-up completion. Ghost penalties applied when contacts go dark.",
+    body: "Depth scores built from meetings, outcomes, notes, touchpoints, and follow-up completion. Ghost penalties applied when reps don't engage.",
   },
   {
     num: "06",
     title: "Multi-conference continuity",
-    body: "Relationship trajectory builds across every conference—not just the last touch. Momentum compounds. Starting from scratch stops.",
+    body: "Relationship trajectory builds across every conference, not just the last touch. Momentum compounds and starting from scratch stops.",
   },
 ];
 
@@ -40,11 +40,11 @@ export default function FeaturePillarsSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6">
-          Six things Parlay does that your CRM doesn&apos;t
+          Not an add-on. Not a workaround.
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-12 max-w-2xl">
-          Built conference-native. Not an add-on. Not a workaround.
+          Built for natural pre, during, and post-conference motions
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
