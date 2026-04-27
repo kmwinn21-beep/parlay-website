@@ -3,7 +3,7 @@ const PROBLEMS = [
   "Notes are scattered across memory, phones, and spreadsheets that no one checks",
   "Follow-ups fall through the cracks",
   "Multiple reps chase the same company",
-  "The deal goes to whoever moves first; not who built the relationship",
+  "Sales leaders a left to make uncomfortable account ownership decisions",
 ];
 
 export default function ProblemSection() {
@@ -41,7 +41,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            Momentum fades when the conference ends and the cylce starts again with the next one 
+            Momentum fades when the conference ends and then cylce restarts with the next one 
           </p>
         </div>
       </div>
