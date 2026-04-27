@@ -38,13 +38,6 @@ export default function SolutionLoopSection() {
           activities attached to a CRM record.
         </p>
 
-        <blockquote className="border-l-[3px] border-brand-teal pl-4 mb-16 max-w-2xl">
-          <p className="font-inter text-brand-primary font-medium">
-            &ldquo;For event-heavy sales orgs, that&apos;s a real strategic advantage over
-            standard CRM workflows.&rdquo;
-          </p>
-        </blockquote>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">
           {STEPS.map((step, i) => (
             <div
