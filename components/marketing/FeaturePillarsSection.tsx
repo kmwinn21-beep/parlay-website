@@ -44,7 +44,7 @@ export default function FeaturePillarsSection() {
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-12 max-w-2xl">
-          Built for natural pre, during, and post-conference motions
+          Built for natural pre, live, and post-conference motions
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
