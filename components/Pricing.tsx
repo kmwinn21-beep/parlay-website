@@ -366,7 +366,7 @@ export default function Pricing() {
                   1 user · unlimited events
                 </span>
               </div>
-              <p style={{ fontSize: 13, color: "#64748b", maxWidth: 540, lineHeight: 1.65, marginBottom: 14 }}>
+              <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65, marginBottom: 14 }}>
                 For the individual sales rep who attends conferences on their own. Every feature from the full system — card scan, meeting logs, relationship scores, pre &amp; post-conference review — built for one person.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px" }}>
