@@ -415,7 +415,7 @@ export default function Pricing() {
 
       {/* ═══ BLOCK 2: FREE TRIAL CTA ═══ */}
       <section style={{ background: "#223A5E" }} className="py-24">
-        <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 32px", textAlign: "center" }}>
 
           {/* Eyebrow */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 16 }}>
@@ -433,7 +433,8 @@ export default function Pricing() {
           >
             Your next conference is in{" "}
             {/* TODO: wire to dynamic conference countdown */}
-            <span style={{ color: "#34D399" }}>X days.</span>{" "}
+            <span style={{ color: "#34D399" }}>X days.</span>
+            <br />
             Don&apos;t walk in blind again.
           </h2>
 
@@ -465,10 +466,10 @@ export default function Pricing() {
                 </svg>
               </div>
               <div style={{ flex: 1 }}>
-                <p style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>
+                <p style={{ fontSize: 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>
                   Upload up to 3 past conference lists to hit the ground running
                 </p>
-                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: 12 }}>
+                <p style={{ fontSize: 14.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: 14 }}>
                   See multi-conference relationship tracking work immediately — not after months of use. Upload CSV attendee lists from previous events and Parlay builds your relationship history on day one: health scores, prior touchpoint mapping, ICP scoring, and overlap analysis before you even attend your next event.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
