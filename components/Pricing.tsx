@@ -196,7 +196,7 @@ export default function Pricing() {
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
-                <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65 }}>
                   For small teams who want shared visibility and accountability across every conference they attend.
                 </p>
               </div>
@@ -257,7 +257,7 @@ export default function Pricing() {
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
-                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
                   For active conference teams who need intelligence, coordination, and accountability across every event.
                 </p>
               </div>
@@ -307,7 +307,7 @@ export default function Pricing() {
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
-                <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65 }}>
                   For large organizations with multiple conference programs, multiple teams, and enterprise compliance needs.
                 </p>
               </div>
@@ -348,12 +348,12 @@ export default function Pricing() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
                 <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#94a3b8" }}>Solo</span>
-                <span className="font-playfair" style={{ fontSize: 22, fontWeight: 700, color: "#223A5E" }}>
+                <span className="font-playfair" style={{ fontSize: 52, fontWeight: 700, color: "#223A5E" }}>
                   ${billing === "monthly" ? PLANS.solo.monthly : PLANS.solo.annual}
                 </span>
                 <span style={{ fontSize: 13, color: "#94a3b8" }}>/month</span>
                 {billing === "annual" && (
-                  <span style={{ fontSize: 12, color: "#cbd5e1", textDecoration: "line-through" }}>
+                  <span style={{ fontSize: 14, color: "#cbd5e1", textDecoration: "line-through" }}>
                     ${PLANS.solo.monthly}
                   </span>
                 )}
