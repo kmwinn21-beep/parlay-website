@@ -99,7 +99,7 @@ export default function Pricing() {
     <>
       {/* ═══ BLOCK 1: PRICING GRID ═══ */}
       <section id="pricing" className="bg-white py-24">
-        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 44 }}>
@@ -162,13 +162,15 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* 3-column card grid */}
+          {/* 3-column card grid — paddingTop reserves space for the badge */}
+          <div style={{ paddingTop: 20, marginBottom: 20 }}>
           <div
             className="grid grid-cols-1 md:grid-cols-3"
-            style={{ gap: 20, alignItems: "start", marginBottom: 20 }}
+            style={{ gap: 20, alignItems: "stretch" }}
           >
             {/* ── Starter ── */}
             <div style={{
+              display: "flex", flexDirection: "column",
               borderRadius: 14, padding: 28, position: "relative",
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
@@ -212,8 +214,8 @@ export default function Pricing() {
 
             {/* ── Professional (featured) ── */}
             <div style={{
-              borderRadius: 14,
-              paddingTop: 46, paddingBottom: 28, paddingLeft: 28, paddingRight: 28,
+              display: "flex", flexDirection: "column",
+              borderRadius: 14, padding: 28,
               position: "relative", background: "#223A5E",
             }}>
               <div style={{ position: "absolute", top: -13, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
@@ -266,6 +268,7 @@ export default function Pricing() {
 
             {/* ── Enterprise ── */}
             <div style={{
+              display: "flex", flexDirection: "column",
               borderRadius: 14, padding: 28, position: "relative",
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
@@ -297,6 +300,7 @@ export default function Pricing() {
               </p>
               <FeatureList features={ENTERPRISE_FEATURES} />
             </div>
+          </div>
           </div>
 
           {/* Solo banner */}
