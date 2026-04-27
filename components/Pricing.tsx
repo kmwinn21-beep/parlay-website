@@ -495,7 +495,7 @@ export default function Pricing() {
           {/* CTA buttons */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
             <Link
-              href="/signup"
+              href="/signup?plan=professional"
               style={{
                 fontSize: 15, fontWeight: 600,
                 padding: "13px 28px", borderRadius: 10,

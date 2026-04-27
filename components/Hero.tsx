@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 
 export default function Hero() {
@@ -77,12 +78,12 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a
-              href="https://app.useparlay.app/signup"
+            <Link
+              href="/signup?plan=professional"
               className="w-full sm:w-auto font-inter font-semibold text-lg px-8 py-4 rounded-lg bg-brand-teal text-brand-charcoal hover:bg-brand-glow transition-colors duration-200"
             >
               Start Free Trial →
-            </a>
+            </Link>
             <a
               href="#how-it-works"
               className="w-full sm:w-auto font-inter font-medium text-lg px-8 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"

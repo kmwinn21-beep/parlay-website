@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CtaBanner() {
   return (
     <section className="bg-brand-primary py-24 relative overflow-hidden">
@@ -16,12 +18,12 @@ export default function CtaBanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="https://app.useparlay.app/signup"
+          <Link
+            href="/signup?plan=professional"
             className="w-full sm:w-auto font-inter font-semibold text-lg px-10 py-4 rounded-lg bg-brand-teal text-brand-charcoal hover:bg-brand-glow transition-colors duration-200"
           >
             Start Free Trial →
-          </a>
+          </Link>
           <a
             href="https://app.useparlay.app/demo"
             className="w-full sm:w-auto font-inter font-medium text-lg px-10 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"
