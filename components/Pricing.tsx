@@ -175,7 +175,7 @@ export default function Pricing() {
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
               {/* Label */}
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
+              <p style={{ fontSize: 16, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Starter
               </p>
               {/* Price */}
@@ -192,7 +192,7 @@ export default function Pricing() {
               </div>
               {/* Subtitle — separated from price with its own row */}
               <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
-                <p style={{ fontSize: 12, color: "#94a3b8" }}>Up to 3 users · unlimited events</p>
+                <p style={{ fontSize: 14, color: "#94a3b8" }}>Up to 3 users · unlimited events</p>
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
@@ -228,7 +228,7 @@ export default function Pricing() {
             }}>
               <div style={{ position: "absolute", top: -13, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
                 <span style={{
-                  fontSize: 11, fontWeight: 700,
+                  fontSize: 16, fontWeight: 700,
                   background: "#34D399", color: "#064e3b",
                   borderRadius: 999, padding: "4px 14px",
                 }}>
@@ -236,7 +236,7 @@ export default function Pricing() {
                 </span>
               </div>
               {/* Label */}
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
+              <p style={{ fontSize: 16, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,1)", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Professional
               </p>
               {/* Price */}
@@ -253,7 +253,7 @@ export default function Pricing() {
               </div>
               {/* Subtitle */}
               <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
-                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)" }}>Up to 10 users · unlimited events</p>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.45)" }}>Up to 10 users · unlimited events</p>
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
@@ -291,7 +291,7 @@ export default function Pricing() {
               border: "1px solid rgba(34,58,94,0.12)", background: "#fff",
             }}>
               {/* Label */}
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
+              <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 14 }}>
                 Enterprise
               </p>
               {/* Price */}
@@ -303,7 +303,7 @@ export default function Pricing() {
               {/* Subtitle — 2 lines to match Enterprise's pricing note */}
               <div style={{ minHeight: 52, paddingTop: 10, marginBottom: 16 }}>
                 <p style={{ fontSize: 12, color: "#94a3b8" }}>contact us for pricing</p>
-                <p style={{ fontSize: 12, color: "#94a3b8", marginTop: 4 }}>25+ users · unlimited everything</p>
+                <p style={{ fontSize: 14, color: "#94a3b8", marginTop: 4 }}>25+ users · unlimited everything</p>
               </div>
               {/* Description */}
               <div style={{ minHeight: 88, marginBottom: 20 }}>
