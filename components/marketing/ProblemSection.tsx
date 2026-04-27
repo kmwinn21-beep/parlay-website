@@ -3,7 +3,7 @@ const PROBLEMS = [
   "Notes are scattered across memory, phones, and spreadsheets that no one checks",
   "Follow-ups fall through the cracks",
   "Multiple reps chase the same company",
-  "Sales leaders a left to make uncomfortable account ownership decisions",
+  "Sales leaders are left to make uncomfortable account ownership decisions",
 ];
 
 export default function ProblemSection() {
