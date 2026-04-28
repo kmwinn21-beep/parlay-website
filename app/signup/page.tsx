@@ -507,7 +507,7 @@ function SignupInner() {
           <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#94a3b8", marginBottom: 10 }}>
             Select a plan
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 10, marginBottom: 32 }}>
             {VALID_PLANS.map((plan) => {
               const meta = PLAN_META[plan];
               const isSel = selectedPlan === plan;
