@@ -467,13 +467,13 @@ export default function Pricing() {
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontSize: 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>
-                  Upload up to 3 past conference lists to hit the ground running
+                  Upload an attendee list for your upcoming conference and up to 3 past conference lists to hit the ground running
                 </p>
                 <p style={{ fontSize: 14.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: 14 }}>
-                  See multi-conference relationship tracking work immediately — not after months of use. Upload CSV attendee lists from previous events and Parlay builds your relationship history on day one: health scores, prior touchpoint mapping, ICP scoring, and overlap analysis before you even attend your next event.
+                  See multi-conference relationship tracking work immediately, not after months of use. Upload CSV attendee lists from an upcoming event and previous events. Then Parlay starts building your timeline on day one: ICP scoring, overlap analysis, and pre-conference review before you attend your next event.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {["CSV upload", "Instant relationship history", "ICP matching", "Prior overlap detection"].map((tag) => (
+                  {["CSV upload", "Pre-Conference Review", "ICP matching", "Prior overlap detection"].map((tag) => (
                     <span
                       key={tag}
                       style={{
