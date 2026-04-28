@@ -459,7 +459,7 @@ function SignupInner() {
         </Link>
         <span className="nav-signin" style={{ marginLeft: "auto", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
           Already have an account?{" "}
-          <a href="https://app.useparlay.app" style={{ color: "#34D399", textDecoration: "none", fontWeight: 500 }}>Sign in</a>
+          <a href="https://work.useparlay.app" style={{ color: "#34D399", textDecoration: "none", fontWeight: 500 }}>Sign in</a>
         </span>
       </nav>
 

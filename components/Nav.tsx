@@ -74,7 +74,7 @@ export default function Nav() {
               </Link>
             ))}
             <a
-              href="https://app.useparlay.app"
+              href="https://work.useparlay.app"
               className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
             >
               Sign In
@@ -161,7 +161,7 @@ export default function Nav() {
             </Link>
           ))}
           <a
-            href="https://app.useparlay.app"
+            href="https://work.useparlay.app"
             className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
           >
             Sign In
