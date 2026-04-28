@@ -542,7 +542,7 @@ function SignupInner() {
           <div style={{ display: "flex", flexDirection: "row", gap: 40, alignItems: "flex-start", paddingBottom: 48 }}>
 
             {/* Form fields column */}
-            <div style={{ flex: "0 0 380px", display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
                   <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>First name</label>
