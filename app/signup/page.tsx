@@ -386,6 +386,13 @@ function SignupInner() {
   const initialPlan: Plan = rawPlan && VALID_PLANS.includes(rawPlan) ? rawPlan : "professional";
   const [selectedPlan, setSelectedPlan] = useState<Plan>(initialPlan);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const selected = Array.from(e.target.files ?? []).slice(0, 3);
+    setUploadedFiles(selected);
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -598,7 +605,19 @@ function SignupInner() {
                   <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Password</label>
                   <input required name="password" type="password" placeholder="Min. 8 characters" minLength={8} style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
                 </div>
-                <div style={{ border: "1.5px dashed rgba(34,58,94,0.2)", borderRadius: 10, padding: "18px 20px", textAlign: "center", background: "#f8fafc" }}>
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{ border: `1.5px dashed ${uploadedFiles.length > 0 ? "#34D399" : "rgba(34,58,94,0.2)"}`, borderRadius: 10, padding: "18px 20px", textAlign: "center", background: uploadedFiles.length > 0 ? "rgba(52,211,153,0.04)" : "#f8fafc", cursor: "pointer", transition: "border-color 150ms, background 150ms" }}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    name="conference_lists"
+                    accept=".csv"
+                    multiple
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
                   <div style={{ marginBottom: 8, display: "flex", justifyContent: "center" }}>
                     <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -607,8 +626,22 @@ function SignupInner() {
                       </svg>
                     </div>
                   </div>
-                  <p style={{ fontSize: 13, fontWeight: 500, color: "#334155", marginBottom: 4 }}>Upload past conference lists (optional)</p>
-                  <p style={{ fontSize: 12, color: "#94a3b8" }}>CSV files · Up to 3 events · Build your relationship history instantly</p>
+                  {uploadedFiles.length > 0 ? (
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 500, color: "#059669", marginBottom: 6 }}>
+                        {uploadedFiles.length} file{uploadedFiles.length > 1 ? "s" : ""} selected
+                      </p>
+                      {uploadedFiles.map((f) => (
+                        <p key={f.name} style={{ fontSize: 12, color: "#475569", marginBottom: 2 }}>{f.name}</p>
+                      ))}
+                      <p style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>Click to change</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 500, color: "#334155", marginBottom: 4 }}>Upload past conference lists (optional)</p>
+                      <p style={{ fontSize: 12, color: "#94a3b8" }}>CSV files · Up to 3 events · Build your relationship history instantly</p>
+                    </div>
+                  )}
                 </div>
                 {status === "error" && (
                   <p style={{ fontSize: 13, color: "#ef4444", textAlign: "center" }}>
