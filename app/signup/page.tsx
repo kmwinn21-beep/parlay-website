@@ -385,6 +385,24 @@ function SignupInner() {
   const rawPlan = searchParams.get("plan") as Plan | null;
   const initialPlan: Plan = rawPlan && VALID_PLANS.includes(rawPlan) ? rawPlan : "professional";
   const [selectedPlan, setSelectedPlan] = useState<Plan>(initialPlan);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    const data = new FormData(e.currentTarget);
+    data.set("plan", selectedPlan);
+    try {
+      const res = await fetch("https://formspree.io/f/maqlwynq", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <div style={{ height: "100vh", overflow: "hidden", background: "#f8fafc" }}>
@@ -542,51 +560,76 @@ function SignupInner() {
           <div style={{ display: "flex", flexDirection: "row", gap: 40, alignItems: "flex-start", paddingBottom: 48 }}>
 
             {/* Form fields column */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                <div>
-                  <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>First name</label>
-                  <input type="text" placeholder="Jane" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
+            {status === "success" ? (
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, padding: "40px 0" }}>
+                <div style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(52,211,153,0.15)", border: "2px solid #34D399", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 13l4 4L19 7" stroke="#34D399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-                <div>
-                  <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Last name</label>
-                  <input type="text" placeholder="Smith" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
-                </div>
+                <p style={{ fontSize: 18, fontWeight: 700, color: "#223A5E" }}>You&apos;re on the list!</p>
+                <p style={{ fontSize: 14, color: "#64748b", textAlign: "center", maxWidth: 300 }}>
+                  We received your signup for the <strong>{PLAN_META[selectedPlan].label}</strong> plan. We&apos;ll be in touch shortly.
+                </p>
               </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Work email</label>
-                <input type="email" placeholder="jane@company.com" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Company name</label>
-                <input type="text" placeholder="Acme Corp" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Password</label>
-                <input type="password" placeholder="Min. 8 characters" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
-              </div>
-              <div style={{ border: "1.5px dashed rgba(34,58,94,0.2)", borderRadius: 10, padding: "18px 20px", textAlign: "center", background: "#f8fafc" }}>
-                <div style={{ marginBottom: 8, display: "flex", justifyContent: "center" }}>
-                  <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <path d="M10 13V7m0 0L7.5 9.5M10 7l2.5 2.5" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M4 14v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
+                <input type="hidden" name="plan" value={selectedPlan} />
+                <input type="hidden" name="_subject" value={`New free trial signup — ${PLAN_META[selectedPlan].label}`} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div>
+                    <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>First name</label>
+                    <input required name="first_name" type="text" placeholder="Jane" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Last name</label>
+                    <input required name="last_name" type="text" placeholder="Smith" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
                   </div>
                 </div>
-                <p style={{ fontSize: 13, fontWeight: 500, color: "#334155", marginBottom: 4 }}>Upload past conference lists (optional)</p>
-                <p style={{ fontSize: 12, color: "#94a3b8" }}>CSV files · Up to 3 events · Build your relationship history instantly</p>
-              </div>
-              <button type="submit" style={{ width: "100%", padding: "12px 24px", borderRadius: 9, background: "#223A5E", color: "#fff", fontSize: 15, fontWeight: 600, border: "none", cursor: "pointer", marginTop: 4 }}>
-                Create account &amp; start trial →
-              </button>
-              <p style={{ fontSize: 12, color: "#94a3b8", textAlign: "center" }}>
-                By continuing, you agree to our{" "}
-                <Link href="/terms" style={{ color: "#223A5E", textDecoration: "none" }}>Terms</Link>
-                {" "}and{" "}
-                <Link href="/privacy" style={{ color: "#223A5E", textDecoration: "none" }}>Privacy Policy</Link>.
-              </p>
-            </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Work email</label>
+                  <input required name="email" type="email" placeholder="jane@company.com" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Company name</label>
+                  <input required name="company" type="text" placeholder="Acme Corp" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>Password</label>
+                  <input required name="password" type="password" placeholder="Min. 8 characters" minLength={8} style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
+                </div>
+                <div style={{ border: "1.5px dashed rgba(34,58,94,0.2)", borderRadius: 10, padding: "18px 20px", textAlign: "center", background: "#f8fafc" }}>
+                  <div style={{ marginBottom: 8, display: "flex", justifyContent: "center" }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M10 13V7m0 0L7.5 9.5M10 7l2.5 2.5" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M4 14v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: "#334155", marginBottom: 4 }}>Upload past conference lists (optional)</p>
+                  <p style={{ fontSize: 12, color: "#94a3b8" }}>CSV files · Up to 3 events · Build your relationship history instantly</p>
+                </div>
+                {status === "error" && (
+                  <p style={{ fontSize: 13, color: "#ef4444", textAlign: "center" }}>
+                    Something went wrong — please try again or email us directly.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  style={{ width: "100%", padding: "12px 24px", borderRadius: 9, background: "#223A5E", color: "#fff", fontSize: 15, fontWeight: 600, border: "none", cursor: status === "submitting" ? "not-allowed" : "pointer", opacity: status === "submitting" ? 0.7 : 1, marginTop: 4 }}
+                >
+                  {status === "submitting" ? "Submitting…" : "Create account & start trial →"}
+                </button>
+                <p style={{ fontSize: 12, color: "#94a3b8", textAlign: "center" }}>
+                  By continuing, you agree to our{" "}
+                  <Link href="/terms" style={{ color: "#223A5E", textDecoration: "none" }}>Terms</Link>
+                  {" "}and{" "}
+                  <Link href="/privacy" style={{ color: "#223A5E", textDecoration: "none" }}>Privacy Policy</Link>.
+                </p>
+              </form>
+            )}
 
             {/* Carousel column — sticky so it stays visible while form scrolls */}
             <div style={{ flex: 1, minWidth: 260, position: "sticky", top: 0, alignSelf: "flex-start" }}>
