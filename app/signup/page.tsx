@@ -468,87 +468,81 @@ function SignupInner() {
           </p>
         </div>
 
-        {/* Right panel — form-panel: row layout so form + carousel sit side by side */}
+        {/* Right panel — form-panel */}
         <div className="form-panel" style={{
           flex: 1,
           overflow: "hidden",
           overflowY: "auto",
           display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
+          flexDirection: "column",
+          justifyContent: "flex-start",
           background: "#fff",
+          paddingTop: 40,
+          paddingLeft: 48,
+          paddingRight: 48,
         }}>
-          {/* Form column */}
-          <div style={{
-            flex: "0 0 auto",
-            width: 480,
-            display: "flex",
-            flexDirection: "column",
-            paddingTop: 40,
-            paddingLeft: 48,
-            paddingRight: 32,
-            paddingBottom: 48,
-          }}>
-            {/* Step indicator — aligned with eyebrow via matching paddingTop: 40 */}
-            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 36, flexWrap: "wrap" }}>
-              {[
-                { label: "Your account", active: true },
-                { label: "Your conference", active: false },
-                { label: "Import history", active: false },
-              ].map((s, i) => (
-                <span key={s.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  {i > 0 && <span style={{ width: 16, height: 1, background: "rgba(34,58,94,0.2)", display: "inline-block" }} />}
-                  <span style={{ fontSize: 12, fontWeight: s.active ? 600 : 400, color: s.active ? "#223A5E" : "rgba(34,58,94,0.4)" }}>
-                    {s.label}
-                  </span>
+          {/* ── Full-width top: step indicator, heading, plan selector ── */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 36, flexWrap: "wrap" }}>
+            {[
+              { label: "Your account", active: true },
+              { label: "Your conference", active: false },
+              { label: "Import history", active: false },
+            ].map((s, i) => (
+              <span key={s.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                {i > 0 && <span style={{ width: 16, height: 1, background: "rgba(34,58,94,0.2)", display: "inline-block" }} />}
+                <span style={{ fontSize: 12, fontWeight: s.active ? 600 : 400, color: s.active ? "#223A5E" : "rgba(34,58,94,0.4)" }}>
+                  {s.label}
                 </span>
-              ))}
-            </div>
+              </span>
+            ))}
+          </div>
 
-            <h1 className="font-playfair" style={{ fontSize: 24, fontWeight: 700, color: "#223A5E", marginBottom: 6 }}>
-              Create your account
-            </h1>
-            <p style={{ fontSize: 14, color: "#64748b", marginBottom: 28 }}>
-              Choose a plan, then set up your account. Change plans anytime.
-            </p>
+          <h1 className="font-playfair" style={{ fontSize: 24, fontWeight: 700, color: "#223A5E", marginBottom: 6 }}>
+            Create your account
+          </h1>
+          <p style={{ fontSize: 14, color: "#64748b", marginBottom: 28 }}>
+            Choose a plan, then set up your account. Change plans anytime.
+          </p>
 
-            {/* Plan selector */}
-            <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#94a3b8", marginBottom: 10 }}>
-              Select a plan
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28 }}>
-              {VALID_PLANS.map((plan) => {
-                const meta = PLAN_META[plan];
-                const isSel = selectedPlan === plan;
-                return (
-                  <div
-                    key={plan}
-                    className={`plan-card${isSel ? " sel" : ""}`}
-                    onClick={() => setSelectedPlan(plan)}
-                    style={{
-                      border: isSel ? "2px solid #223A5E" : "1.5px solid rgba(34,58,94,0.15)",
-                      background: isSel ? "rgba(34,58,94,0.06)" : "#fff",
-                      borderRadius: 10, padding: "14px 16px",
-                      cursor: "pointer", position: "relative",
-                      transition: "border-color 120ms, background 120ms",
-                      userSelect: "none",
-                    }}
-                  >
-                    {meta.popular && (
-                      <span style={{ position: "absolute", top: -10, right: 10, fontSize: 10, fontWeight: 700, background: "#34D399", color: "#064e3b", borderRadius: 999, padding: "2px 8px" }}>
-                        Popular
-                      </span>
-                    )}
-                    <p style={{ fontSize: 13, fontWeight: 600, color: isSel ? "#223A5E" : "#475569", marginBottom: 2 }}>{meta.label}</p>
-                    <p style={{ fontSize: 15, fontWeight: 700, color: isSel ? "#223A5E" : "#334155", marginBottom: 2 }}>{meta.price}</p>
-                    <p style={{ fontSize: 11, color: "#94a3b8" }}>{meta.seats}</p>
-                  </div>
-                );
-              })}
-            </div>
+          <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#94a3b8", marginBottom: 10 }}>
+            Select a plan
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 32 }}>
+            {VALID_PLANS.map((plan) => {
+              const meta = PLAN_META[plan];
+              const isSel = selectedPlan === plan;
+              return (
+                <div
+                  key={plan}
+                  className={`plan-card${isSel ? " sel" : ""}`}
+                  onClick={() => setSelectedPlan(plan)}
+                  style={{
+                    border: isSel ? "2px solid #223A5E" : "1.5px solid rgba(34,58,94,0.15)",
+                    background: isSel ? "rgba(34,58,94,0.06)" : "#fff",
+                    borderRadius: 10, padding: "14px 16px",
+                    cursor: "pointer", position: "relative",
+                    transition: "border-color 120ms, background 120ms",
+                    userSelect: "none",
+                  }}
+                >
+                  {meta.popular && (
+                    <span style={{ position: "absolute", top: -10, right: 10, fontSize: 10, fontWeight: 700, background: "#34D399", color: "#064e3b", borderRadius: 999, padding: "2px 8px" }}>
+                      Popular
+                    </span>
+                  )}
+                  <p style={{ fontSize: 13, fontWeight: 600, color: isSel ? "#223A5E" : "#475569", marginBottom: 2 }}>{meta.label}</p>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: isSel ? "#223A5E" : "#334155", marginBottom: 2 }}>{meta.price}</p>
+                  <p style={{ fontSize: 11, color: "#94a3b8" }}>{meta.seats}</p>
+                </div>
+              );
+            })}
+          </div>
 
-            {/* Account form fields */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {/* ── Bottom row: form fields (left) + carousel (right) ── */}
+          <div style={{ display: "flex", flexDirection: "row", gap: 40, alignItems: "flex-start", paddingBottom: 48 }}>
+
+            {/* Form fields column */}
+            <div style={{ flex: "0 0 380px", display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
                   <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>First name</label>
@@ -593,21 +587,11 @@ function SignupInner() {
                 <Link href="/privacy" style={{ color: "#223A5E", textDecoration: "none" }}>Privacy Policy</Link>.
               </p>
             </div>
-          </div>
 
-          {/* Carousel column — sticky so it stays visible while form scrolls */}
-          <div style={{
-            flex: 1,
-            minWidth: 260,
-            paddingTop: 40,
-            paddingLeft: 24,
-            paddingRight: 40,
-            paddingBottom: 40,
-            position: "sticky",
-            top: 0,
-            alignSelf: "flex-start",
-          }}>
-            <CarouselWidget />
+            {/* Carousel column — sticky so it stays visible while form scrolls */}
+            <div style={{ flex: 1, minWidth: 260, position: "sticky", top: 0, alignSelf: "flex-start" }}>
+              <CarouselWidget />
+            </div>
           </div>
         </div>
       </div>
