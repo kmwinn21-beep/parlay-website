@@ -412,15 +412,37 @@ function SignupInner() {
   }
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden", background: "#f8fafc" }}>
+    <div className="signup-root" style={{ height: "100vh", overflow: "hidden", background: "#f8fafc" }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .signup-root { height: auto !important; overflow: visible !important; }
+          .signup-main { position: static !important; height: auto !important; overflow: visible !important; flex-direction: column !important; }
+          .ctx-panel    { width: 100% !important; padding: 28px 20px !important; }
+          .form-panel   { overflow: visible !important; overflow-y: visible !important; padding: 24px 20px 40px !important; }
+          .plan-grid    { grid-template-columns: 1fr 1fr !important; }
+          .signup-bottom-row { flex-direction: column !important; gap: 24px !important; }
+          .carousel-col { display: none !important; }
+          .name-grid    { grid-template-columns: 1fr !important; }
+          .nav-signin   { display: none !important; }
+          .banner-full  { display: none !important; }
+          .banner-short { display: flex !important; }
+        }
+        @media (min-width: 768px) {
+          .banner-short { display: none !important; }
+        }
+      `}</style>
       {/* Fixed green trial banner */}
       <div style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 60,
         height: BANNER_H, background: "#34D399",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <span style={{ fontSize: 13, fontWeight: 600, color: "#064e3b" }}>
+        {/* Full text on desktop, shortened on mobile */}
+        <span className="banner-full" style={{ fontSize: 13, fontWeight: 600, color: "#064e3b" }}>
           14-day free trial · No credit card required · Full access from day one
+        </span>
+        <span className="banner-short" style={{ fontSize: 13, fontWeight: 600, color: "#064e3b", alignItems: "center", justifyContent: "center" }}>
+          14-day free trial · No credit card required
         </span>
       </div>
 
@@ -435,14 +457,14 @@ function SignupInner() {
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
           <Image src="/ParlayLogoWhite_Green.png" alt="Parlay" width={100} height={32} priority />
         </Link>
-        <span style={{ marginLeft: "auto", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
+        <span className="nav-signin" style={{ marginLeft: "auto", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
           Already have an account?{" "}
           <a href="https://app.useparlay.app" style={{ color: "#34D399", textDecoration: "none", fontWeight: 500 }}>Sign in</a>
         </span>
       </nav>
 
       {/* Fixed main area */}
-      <div style={{
+      <div className="signup-main" style={{
         position: "fixed",
         top: BANNER_H + NAV_H, left: 0, right: 0, bottom: 0,
         display: "flex",
@@ -532,7 +554,7 @@ function SignupInner() {
           <p style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#94a3b8", marginBottom: 10 }}>
             Select a plan
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 10, marginBottom: 32 }}>
+          <div className="plan-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 10, marginBottom: 32 }}>
             {VALID_PLANS.map((plan) => {
               const meta = PLAN_META[plan];
               const isSel = selectedPlan === plan;
@@ -564,7 +586,7 @@ function SignupInner() {
           </div>
 
           {/* ── Bottom row: form fields (left) + carousel (right) ── */}
-          <div style={{ display: "flex", flexDirection: "row", gap: 40, alignItems: "flex-start", paddingBottom: 48 }}>
+          <div className="signup-bottom-row" style={{ display: "flex", flexDirection: "row", gap: 40, alignItems: "flex-start", paddingBottom: 48 }}>
 
             {/* Form fields column */}
             {status === "success" ? (
@@ -583,7 +605,7 @@ function SignupInner() {
               <form onSubmit={handleSubmit} style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
                 <input type="hidden" name="plan" value={selectedPlan} />
                 <input type="hidden" name="_subject" value={`New free trial signup — ${PLAN_META[selectedPlan].label}`} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="name-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
                     <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 6 }}>First name</label>
                     <input required name="first_name" type="text" placeholder="Jane" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "9px 12px", fontSize: 14, color: "#111827", outline: "none" }} />
@@ -665,7 +687,7 @@ function SignupInner() {
             )}
 
             {/* Carousel column — sticky so it stays visible while form scrolls */}
-            <div style={{ flex: 1, minWidth: 260, position: "sticky", top: 0, alignSelf: "flex-start" }}>
+            <div className="carousel-col" style={{ flex: 1, minWidth: 260, position: "sticky", top: 0, alignSelf: "flex-start" }}>
               <CarouselWidget />
             </div>
           </div>
