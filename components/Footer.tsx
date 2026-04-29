@@ -95,10 +95,10 @@ export default function Footer() {
           <p className="font-inter text-sm text-white/30">
             Made for the conference floor.{" "}
             <a
-              href="https://app.useparlay.app"
+              href="https://work.useparlay.app"
               className="text-brand-teal hover:text-brand-glow transition-colors"
             >
-              app.useparlay.app
+              work.useparlay.app
             </a>
           </p>
         </div>
