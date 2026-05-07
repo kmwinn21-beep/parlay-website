@@ -205,9 +205,13 @@ export default function EffectivenessSummaryMock() {
             padding: 16,
           }}>
             <p style={{ ...SEC, marginBottom: 12 }}>PIPELINE INFLUENCE SUMMARY</p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+            <div style={{ display: "grid", gap: 8 }} className="grid-cols-2 sm:grid-cols-4">
               {PIPELINE_ITEMS.map((item, i) => (
-                <div key={i} style={i > 0 ? { borderLeft: "1px solid #e2e8f0", paddingLeft: 8 } : {}}>
+                <div
+                  key={i}
+                  className={i >= 2 ? "hidden sm:block" : ""}
+                  style={i > 0 ? { borderLeft: "1px solid #e2e8f0", paddingLeft: 8 } : {}}
+                >
                   <p style={{ fontSize: 16, fontWeight: 700, color: item.color, letterSpacing: "-0.02em", lineHeight: 1 }}>
                     {item.value}
                   </p>
