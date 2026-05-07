@@ -169,7 +169,7 @@ export default function PreConferenceHeroMock() {
             {/* Col 2 — Recommended Strategy */}
             <div className="hidden md:block" style={CARD}>
               <p style={{ ...SEC, color: "rgba(52,211,153,0.7)" }}>RECOMMENDED STRATEGY</p>
-              <p style={{ fontSize: 16, fontWeight: 700, color: "white", marginBottom: 14, letterSpacing: "-0.01em" }}>
+              <p style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14, letterSpacing: "-0.01em" }}>
                 Pipeline Generation
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -189,7 +189,7 @@ export default function PreConferenceHeroMock() {
             {/* Col 3 — Secondary Strategy */}
             <div className="hidden md:block" style={CARD}>
               <p style={{ ...SEC }}>SECONDARY STRATEGY</p>
-              <p style={{ fontSize: 16, fontWeight: 700, color: "white", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+              <p style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
                 Strategic Account Relationship Building
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
