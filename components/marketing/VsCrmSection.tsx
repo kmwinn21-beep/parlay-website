@@ -3,7 +3,6 @@ import EffectivenessSummaryMock from "./EffectivenessSummaryMock";
 const PARLAY_ANSWERS = [
   "Did our team prioritize the right companies at this conference — or did they burn floor time on low-value accounts?",
   "Which ICP companies attended and walked away without a single interaction from our team?",
-  "Is the relationship with our key accounts actually stronger than it was six months ago?",
   "Which rep is converting conference conversations into pipeline — and which one is just collecting business cards?",
   "Which conferences should we invest more in next year, and which should we cut?",
 ];

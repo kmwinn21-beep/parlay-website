@@ -149,7 +149,7 @@ export default function EffectivenessSummaryMock() {
           marginTop: 10,
           borderBottom: "1px solid rgba(255,255,255,0.15)",
           padding: "0 2px",
-          overflowX: "auto",
+          overflow: "hidden",
         }}>
           {["Summary", "Sales Execution", "Audience & Messaging", "Cost Efficiency", "Definitions"].map((tab) => {
             const active = tab === "Summary";
