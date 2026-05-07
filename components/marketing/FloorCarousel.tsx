@@ -34,28 +34,90 @@ function StatusIcons() {
   );
 }
 
+/* ── SVG icon components ────────────────────────────────────────────────── */
+function IcBell() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#223A5E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 01-3.46 0" />
+    </svg>
+  );
+}
+function IcWarning() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#f59e0b" strokeWidth="2" strokeLinejoin="round" />
+      <line x1="12" y1="9" x2="12" y2="13" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" />
+      <line x1="12" y1="17" x2="12.01" y2="17" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+function IcCalendar() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#223A5E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+function IcCamera({ size = 16, color = "#64748b" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+      <circle cx="12" cy="13" r="4" />
+    </svg>
+  );
+}
+function IcPencil({ size = 18, color = "#92400e" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+}
+function IcTarget({ color = "#059669" }: { color?: string }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  );
+}
+function IcTrash({ color = "#94a3b8" }: { color?: string }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+    </svg>
+  );
+}
+
 /* ── Dashboard header right icons ───────────────────────────────────────── */
 function DashboardHeaderRight() {
   return (
     <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
       <span style={{ fontSize: 18, color: "#223A5E", lineHeight: 1 }}>≡</span>
-      <span style={{ fontSize: 14, lineHeight: 1 }}>🔔</span>
-      <span style={{ fontSize: 13, color: "#f59e0b", position: "relative" as const, lineHeight: 1 }}>
-        ⚠
+      <IcBell />
+      <div style={{ position: "relative", display: "inline-flex" }}>
+        <IcWarning />
         <span style={{
-          position: "absolute" as const, top: -3, right: -6,
+          position: "absolute" as const, top: -3, right: -5,
           minWidth: 12, height: 12, borderRadius: 6,
           background: "#ef4444",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           fontSize: 7, fontWeight: 800, color: "white", lineHeight: 1,
         }}>3</span>
-      </span>
+      </div>
       <div style={{ display: "flex", alignItems: "center", gap: 1 }}>
         <span style={{ fontSize: 17, fontWeight: 700, color: "#223A5E", lineHeight: 1 }}>+</span>
         <span style={{ fontSize: 8, color: "#94a3b8" }}>▾</span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 1, background: "#f1f5f9", border: "1px solid #e2e8f0", borderRadius: 6, padding: "2px 5px" }}>
-        <span style={{ fontSize: 11 }}>📅</span>
+        <IcCalendar />
         <span style={{ fontSize: 8, color: "#94a3b8" }}>▾</span>
       </div>
     </div>
@@ -120,7 +182,7 @@ function ConferenceBanner({ dimmed = false }: { dimmed?: boolean }) {
         fontSize: 20, fontWeight: 700, color: "white",
         fontFamily: "'Playfair Display', Georgia, serif",
       }}>Conference Tracking</p>
-      <span style={{ position: "absolute" as const, top: 10, right: 12, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>✎</span>
+      <span style={{ position: "absolute" as const, top: 10, right: 12 }}><IcPencil size={13} color="rgba(255,255,255,0.4)" /></span>
     </div>
   );
 }
@@ -128,16 +190,16 @@ function ConferenceBanner({ dimmed = false }: { dimmed?: boolean }) {
 /* ── Action row (slides 2 & 3) ──────────────────────────────────────────── */
 function FloorActionRow() {
   const ACTIONS = [
-    { emoji: "📷", label: "Scan",        bg: "rgba(148,163,184,0.15)" },
-    { emoji: "✏️", label: "Floor Note",  bg: "rgba(245,158,11,0.12)"  },
-    { emoji: "🎯", label: "Touchpoints", bg: "rgba(52,211,153,0.12)"  },
+    { icon: <IcCamera size={20} color="#64748b" />, label: "Scan",        bg: "rgba(148,163,184,0.15)" },
+    { icon: <IcPencil size={20} color="#92400e" />, label: "Floor Note",  bg: "rgba(245,158,11,0.12)"  },
+    { icon: <IcTarget color="#047857" />,           label: "Touchpoints", bg: "rgba(52,211,153,0.12)"  },
   ];
   return (
     <div style={{ display: "flex", justifyContent: "space-around", background: "white", borderRadius: 14, padding: "10px 8px", marginBottom: 10 }}>
       {ACTIONS.map((a) => (
         <div key={a.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5 }}>
-          <div style={{ width: 44, height: 44, borderRadius: "50%", background: a.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
-            {a.emoji}
+          <div style={{ width: 44, height: 44, borderRadius: "50%", background: a.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {a.icon}
           </div>
           <span style={{ fontSize: 11, color: "#64748b" }}>{a.label}</span>
         </div>
@@ -260,9 +322,9 @@ function Slide2() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
           <span style={{ fontSize: 10, color: "#94a3b8" }}>Apr 28, 2026 at 11:...</span>
           <div style={{ display: "flex", gap: 7, alignItems: "center" }}>
-            <span style={{ fontSize: 13, color: "#94a3b8" }}>✎</span>
+            <IcPencil size={13} color="#94a3b8" />
             <AssignBtn />
-            <span style={{ fontSize: 13, color: "#94a3b8" }}>🗑</span>
+            <IcTrash />
           </div>
         </div>
         <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>Wayne came by the booth. Strong interest in the reporting features...</p>
@@ -295,7 +357,7 @@ function Slide3() {
           </div>
           <div style={{ display: "flex", gap: 6 }}>
             <div style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid #e2e8f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontSize: 14 }}>📷</span>
+              <IcCamera size={15} color="#64748b" />
             </div>
             <div style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid #e2e8f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontSize: 16, fontWeight: 700, color: "#475569" }}>+</span>
@@ -308,12 +370,12 @@ function Slide3() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span style={{ fontSize: 10, color: "#94a3b8" }}>May 7, ...</span>
-              <span style={{ fontSize: 10, fontWeight: 600, color: "#3b82f6", background: "rgba(59,130,246,0.1)", borderRadius: 20, padding: "2px 8px" }}>📷 Badge</span>
+              <span style={{ fontSize: 10, fontWeight: 600, color: "#3b82f6", background: "rgba(59,130,246,0.1)", borderRadius: 20, padding: "2px 8px", display: "inline-flex", alignItems: "center", gap: 3 }}><IcCamera size={10} color="#3b82f6" /> Badge</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>✎</span>
+              <IcPencil size={13} color="#94a3b8" />
               <AssignBtn />
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>🗑</span>
+              <IcTrash />
             </div>
           </div>
           <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>
@@ -326,9 +388,9 @@ function Slide3() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
             <span style={{ fontSize: 10, color: "#94a3b8" }}>May 7, 2026 at 10:...</span>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>✎</span>
+              <IcPencil size={13} color="#94a3b8" />
               <AssignBtn />
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>🗑</span>
+              <IcTrash />
             </div>
           </div>
           <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>
