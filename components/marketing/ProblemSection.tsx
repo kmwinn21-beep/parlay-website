@@ -4,7 +4,7 @@ const PROBLEMS = [
   "The conference floor has no operating system. Reps improvise. Contacts get lost. Overlap happens. Nobody knows until a week later.",
   "A conference can create pipeline, strengthen relationships, surface market signals, and support customers; sometimes all in the same conversation. Spreadsheets and business cards were never built to capture any of it.",
   "Sales wants pipeline. Marketing wants brand. Customer success wants face time. Everyone attends the same conference and measures a completely different thing.",
-  "The most expensive part of a conference isn&lsquo;t the sponsorship fee. It&lsquo;s the pipeline that was almost created.",
+  "The most expensive part of a conference isn&#39;t the sponsorship fee. It&#39;s the pipeline that was almost created.",
 ];
 
 export default function ProblemSection() {
