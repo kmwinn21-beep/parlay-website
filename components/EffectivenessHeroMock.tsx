@@ -46,11 +46,11 @@ const COMPONENT_ROWS = [
 
 const REP_TABLE = [
   { name: "Lloyd Christmas", mtg: 100, fu: 100, pi: 100, tgt: 5,  score: 77, tier: "Strong",  color: "#60A5FA" },
-  { name: "Wayne Campbell",  mtg: 71,  fu: 100, pi: 80,  tgt: 10, score: 74, tier: "Accept.", color: "#FCD34D" },
-  { name: "Ron Burgundy",    mtg: 75,  fu: 94,  pi: 58,  tgt: 29, score: 71, tier: "Accept.", color: "#FCD34D" },
-  { name: "Happy Gilmore",   mtg: 67,  fu: 100, pi: 92,  tgt: 0,  score: 71, tier: "Accept.", color: "#FCD34D" },
-  { name: "Fletcher Reede",  mtg: 50,  fu: 100, pi: 100, tgt: 0,  score: 63, tier: "Accept.", color: "#FCD34D" },
-  { name: "Billy Madison",   mtg: 50,  fu: 100, pi: 55,  tgt: 5,  score: 62, tier: "Accept.", color: "#FCD34D" },
+  { name: "Wayne Campbell",  mtg: 71,  fu: 100, pi: 80,  tgt: 10, score: 74, tier: "Acceptable", color: "#FCD34D" },
+  { name: "Ron Burgundy",    mtg: 75,  fu: 94,  pi: 58,  tgt: 29, score: 71, tier: "Acceptable", color: "#FCD34D" },
+  { name: "Happy Gilmore",   mtg: 67,  fu: 100, pi: 92,  tgt: 0,  score: 71, tier: "Acceptable", color: "#FCD34D" },
+  { name: "Fletcher Reede",  mtg: 50,  fu: 100, pi: 100, tgt: 0,  score: 63, tier: "Acceptable", color: "#FCD34D" },
+  { name: "Billy Madison",   mtg: 50,  fu: 100, pi: 55,  tgt: 5,  score: 62, tier: "Acceptable", color: "#FCD34D" },
 ];
 
 const PIPELINE_BARS = [
