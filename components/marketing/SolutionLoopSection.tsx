@@ -7,17 +7,17 @@ const STEPS = [
   {
     num: "02",
     title: "Execute",
-    body: "AI card and badge scanning. Touchpoint logging. Meeting notes. Real-time rep visibility. Simple enough to use on the floor, structured enough to feed the analytics. The data enters the system without anyone thinking about it.",
+    body: "AI card/badge scanning and automatic attendee matching. Touchpoint logging. Meeting notes. Real-time rep visibility. Simple enough to use on the floor, structured enough to feed the analytics.",
   },
   {
     num: "03",
     title: "Score",
-    body: "Four scoring engines evaluate what happened. Relationship health scores update. The Conference Effectiveness Score calculates across Sales Execution, Audience Quality, and Cost Efficiency. Leadership has the full picture within hours of the last session.",
+    body: "Parlay\u2019s scoring engines evaluate what happened. Relationship health scores update. Conference Effectiveness Score calculates across Sales Execution, Audience Quality, and Cost Efficiency. Leadership has the full picture within hours of the last session.",
   },
   {
     num: "04",
     title: "Improve",
-    body: "Relationship trajectories build. Efficiency rankings accumulate. Your conference calendar starts to optimize itself — based on data from every event you've ever attended, not instinct about which ones felt good.",
+    body: "Relationship trajectories build. Efficiency rankings accumulate. Your conference strategy starts to optimize itself based on data from every event you\u2019ve ever attended; not instinct about which ones felt productive.",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function SolutionLoopSection() {
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-10 max-w-3xl">
-          Parlay runs four scoring engines across the full conference lifecycle. The intelligence is what leaders buy. The ease of use is what makes the data real.
+          Parlay runs multiple scoring engines across the full conference lifecycle. The intelligence is what leaders buy. The ease of use is what makes the data real.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">

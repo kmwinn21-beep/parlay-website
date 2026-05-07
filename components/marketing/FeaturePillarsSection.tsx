@@ -2,7 +2,7 @@ const PILLARS = [
   {
     num: "01",
     title: "The data leaders need starts on the conference floor",
-    body: "AI card and badge scanning extracts names, titles, companies, emails, and phones instantly. Every scan feeds directly into relationship health scores, rep performance analytics, and conference effectiveness calculations. Leaders see the intelligence. Reps just do their job.",
+    body: "AI card/badge scanning extracts names, titles, companies, emails, and phone numbers instantly. Every scan creates an automatic follow-up task, feeds directly into relationship health scores, rep performance analytics, and conference effectiveness calculations. Leaders see the intelligence. Reps just do their job.",
   },
   {
     num: "02",
@@ -12,22 +12,22 @@ const PILLARS = [
   {
     num: "03",
     title: "Follow-through built in",
-    body: "Notes become follow-ups. Touchpoints auto-create tasks. Forms capture leads and assign ownership. Your team leaves every conference with clear next steps — and leaders can see exactly who is following through and who isn't.",
+    body: "Notes become follow-ups. Touchpoints auto-create tasks. Forms capture leads and assign ownership. Your team leaves every conference with clear next steps, and leaders can see exactly who is following through and who isn't.",
   },
   {
     num: "04",
-    title: "Conference Effectiveness — four scores, one verdict",
-    body: "After every conference, Parlay scores Sales Execution, Audience & Messaging, Cost Efficiency, and overall Conference Effectiveness — each 0–100, each calibrated to your conference strategy type. Every conference is ranked against all others your team has attended. For the first time, your event coordinator, VP of Sales, and CMO share one performance verdict.",
+    title: "Conference Effectiveness. Four scores, one verdict",
+    body: "After every conference, Parlay scores Sales Execution, Audience & Messaging, Cost Efficiency, and overall Conference Effectiveness. Each 0–100. Each calibrated by the conference strategy type and ranked against the others. For the first time, your event coordinator, VP of Sales, and CMO share one performance verdict.",
   },
   {
     num: "05",
-    title: "Relationship health scoring",
-    body: "Health scores built from meetings held, notes logged, touchpoints made, and follow-ups completed — not what reps say happened, but what the system knows happened. Ghost penalties apply when your team was in the room and didn't engage. Conference-by-conference trajectories show whether relationships are building, stalling, or fading.",
+    title: "Multi-conference relationship memory",
+    body: "Relationship trajectories build across every conference your team attends. Your team walks into next year's events knowing the full history of who engaged, what happened, and where momentum stalled. The competitive advantage compounds instead of resetting.",
   },
   {
     num: "06",
-    title: "Multi-conference relationship memory",
-    body: "Relationship trajectories build across every conference your team attends. Your team walks into next year's events knowing the full history — who engaged, what happened, and where momentum stalled. The competitive advantage compounds instead of resetting.",
+    title: "Know what the conference can realistically deliver,before you go",
+    body: "Parlay scores each conference before you attend, evaluating whether the attendee list supports your strategy, whether your pipeline goal is achievable given who\u2019s in the room, and whether the right buyers are actually there. If the strategy doesn't match the opportunity, Parlay flags it before anyone books a flight.",
   },
 ];
 
