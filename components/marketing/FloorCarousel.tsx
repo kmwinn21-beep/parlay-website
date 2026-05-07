@@ -127,35 +127,69 @@ function Slide1() {
   );
 }
 
+/* ── Shared — action row used by slides 2 and 3 ─────────────────────────── */
+function FloorActionRow() {
+  const ACTIONS = [
+    { emoji: "📷", label: "Scan",       bg: "rgba(148,163,184,0.15)" },
+    { emoji: "✏️", label: "Floor Note", bg: "rgba(245,158,11,0.12)"  },
+    { emoji: "🎯", label: "Touchpoints",bg: "rgba(52,211,153,0.12)"  },
+  ];
+  return (
+    <div style={{ display: "flex", justifyContent: "space-around", background: "white", borderRadius: 14, padding: "10px 8px", marginBottom: 10 }}>
+      {ACTIONS.map((a) => (
+        <div key={a.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <div style={{ width: 44, height: 44, borderRadius: "50%", background: a.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+            {a.emoji}
+          </div>
+          <span style={{ fontSize: 11, color: "#64748b" }}>{a.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ── Slide 2 — Floor Note being entered ────────────────────────────────── */
 function Slide2() {
   return (
-    <div style={{ background: "white", borderRadius: 14, padding: 16 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-        <span style={{ fontSize: 16, fontWeight: 700, color: "#223A5E" }}>New Floor Note</span>
-        <span style={{ fontSize: 18, color: "#64748b" }}>✕</span>
-      </div>
-      <p style={{ fontSize: 11, color: "#94a3b8", marginBottom: 14 }}>Not yet assigned to a record</p>
-
-      <div style={{ background: "#f8fafc", border: "1.5px solid #223A5E", borderRadius: 10, padding: 12, marginBottom: 14, minHeight: 130 }}>
-        <p style={{ fontSize: 13, color: "#1e293b", lineHeight: 1.6, marginBottom: 4 }}>
-          Ran into Ron at the hotel bar last night. He mentioned they&apos;re evaluating new platforms in Q3. Said their current tool &quot;gets the job done but barely.&quot; Worth a follow-up before we leave.
-        </p>
-        <span style={{ display: "inline-block", width: 2, height: 16, background: "#223A5E", verticalAlign: "middle", animation: "none" }} />
+    <>
+      {/* Conference banner */}
+      <div style={{ background: "#223A5E", borderRadius: 12, padding: "10px 14px", marginBottom: 10 }}>
+        <p style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.08em", color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>Current Conference</p>
+        <p style={{ fontSize: 15, fontWeight: 700, color: "white" }}>Conference Expo 2026</p>
+        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Mar 30 – Apr 1 · Nashville, TN</p>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-        <span style={{ fontSize: 11, color: "#64748b" }}>Conference:</span>
-        <span style={{ fontSize: 11, fontWeight: 600, color: "#223A5E", background: "rgba(34,58,94,0.08)", border: "1px solid rgba(34,58,94,0.15)", borderRadius: 20, padding: "3px 10px" }}>
-          Conference Expo 2026
-        </span>
-      </div>
+      {/* Action row */}
+      <FloorActionRow />
 
-      <button style={{ width: "100%", background: "#34D399", color: "#111827", borderRadius: 8, padding: "12px", fontSize: 14, fontWeight: 700, border: "none", cursor: "default", marginBottom: 8 }}>
-        Save Note
-      </button>
-      <p style={{ textAlign: "center", fontSize: 11, color: "#94a3b8" }}>Assign to a record later</p>
-    </div>
+      {/* New Floor Note form */}
+      <div style={{ background: "white", borderRadius: 14, padding: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+          <span style={{ fontSize: 15, fontWeight: 700, color: "#223A5E" }}>New Floor Note</span>
+          <span style={{ fontSize: 18, color: "#64748b" }}>✕</span>
+        </div>
+        <p style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>Not yet assigned to a record</p>
+
+        <div style={{ background: "#f8fafc", border: "1.5px solid #223A5E", borderRadius: 10, padding: 10, marginBottom: 10, minHeight: 100 }}>
+          <p style={{ fontSize: 12, color: "#1e293b", lineHeight: 1.6, marginBottom: 4 }}>
+            Ran into Ron at the hotel bar last night. He mentioned they&apos;re evaluating new platforms in Q3. Said their current tool &quot;gets the job done but barely.&quot; Worth a follow-up before we leave.
+          </p>
+          <span style={{ display: "inline-block", width: 2, height: 14, background: "#223A5E", verticalAlign: "middle" }} />
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+          <span style={{ fontSize: 11, color: "#64748b" }}>Conference:</span>
+          <span style={{ fontSize: 11, fontWeight: 600, color: "#223A5E", background: "rgba(34,58,94,0.08)", border: "1px solid rgba(34,58,94,0.15)", borderRadius: 20, padding: "3px 10px" }}>
+            Conference Expo 2026
+          </span>
+        </div>
+
+        <button style={{ width: "100%", background: "#34D399", color: "#111827", borderRadius: 8, padding: "10px", fontSize: 13, fontWeight: 700, border: "none", cursor: "default", marginBottom: 6 }}>
+          Save Note
+        </button>
+        <p style={{ textAlign: "center", fontSize: 11, color: "#94a3b8" }}>Assign to a record later</p>
+      </div>
+    </>
   );
 }
 
@@ -163,44 +197,62 @@ function Slide2() {
 function Slide3() {
   return (
     <>
-      <div style={{ background: "#223A5E", borderRadius: 12, padding: "12px 14px", marginBottom: 10 }}>
+      {/* Conference banner */}
+      <div style={{ background: "#223A5E", borderRadius: 12, padding: "10px 14px", marginBottom: 10 }}>
         <p style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.08em", color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>Current Conference</p>
         <p style={{ fontSize: 15, fontWeight: 700, color: "white" }}>Conference Expo 2026</p>
         <p style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Mar 30 – Apr 1 · Nashville, TN</p>
       </div>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
-        <button style={{ flex: 1, background: "#34D399", borderRadius: 8, padding: "10px 0", border: "none", cursor: "default", fontSize: 12, fontWeight: 700, color: "#111827" }}>
-          + Floor Note
-        </button>
-        <button style={{ flex: 1, background: "white", border: "1px solid #e2e8f0", borderRadius: 8, padding: "10px 0", cursor: "default", fontSize: 12, fontWeight: 600, color: "#475569" }}>
-          Scan Card
-        </button>
-        <button style={{ flex: 1, background: "white", border: "1px solid #e2e8f0", borderRadius: 8, padding: "10px 0", cursor: "default", fontSize: 12, fontWeight: 600, color: "#475569" }}>
-          Log Touch
-        </button>
-      </div>
+      {/* Action row */}
+      <FloorActionRow />
 
+      {/* Floor Notes card */}
       <div style={{ background: "white", borderRadius: 14, padding: 14 }}>
+        {/* Card header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <span style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Floor Notes (2 unassigned)</span>
-          <span style={{ fontSize: 11, color: "#3b82f6" }}>View all</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ fontSize: 15 }}>✏️</span>
+            <span style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Floor Notes</span>
+            <div style={{ width: 20, height: 20, borderRadius: "50%", background: "#223A5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <span style={{ fontSize: 10, fontWeight: 700, color: "white" }}>2</span>
+            </div>
+            <span style={{ fontSize: 14, color: "#94a3b8", marginLeft: 2 }}>∧</span>
+          </div>
+          <div style={{ width: 28, height: 28, borderRadius: 6, background: "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center", cursor: "default" }}>
+            <span style={{ fontSize: 14 }}>📷</span>
+          </div>
         </div>
 
+        {/* Note 1 — has Badge pill */}
         <div style={{ background: "#f8fafc", border: "1px solid rgba(245,158,11,0.3)", borderLeft: "3px solid #f59e0b", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-            <span style={{ fontSize: 10, fontWeight: 600, color: "#b45309", background: "rgba(245,158,11,0.1)", borderRadius: 20, padding: "2px 8px" }}>Unassigned</span>
-            <span style={{ fontSize: 10, color: "#94a3b8" }}>3:12 PM</span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+            <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 10, fontWeight: 600, color: "#b45309", background: "rgba(245,158,11,0.1)", borderRadius: 20, padding: "2px 8px" }}>Unassigned</span>
+              <span style={{ fontSize: 10, fontWeight: 600, color: "#475569", background: "#e2e8f0", borderRadius: 20, padding: "2px 8px" }}>📷 Badge</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0, marginLeft: 6 }}>
+              <span style={{ fontSize: 13, color: "#94a3b8" }}>✏</span>
+              <button style={{ fontSize: 11, fontWeight: 600, color: "#223A5E", background: "rgba(34,58,94,0.07)", border: "1px solid rgba(34,58,94,0.15)", borderRadius: 6, padding: "2px 8px", cursor: "default" }}>🏷️ Assign</button>
+              <span style={{ fontSize: 13, color: "#94a3b8" }}>🗑</span>
+            </div>
           </div>
-          <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>Ran into Ron at the hotel bar last night. He mentioned they&apos;re evaluating new platforms in Q3...</p>
+          <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, marginBottom: 4 }}>Ran into Ron at the hotel bar last night. He mentioned they&apos;re evaluating new platforms in Q3...</p>
+          <span style={{ fontSize: 10, color: "#94a3b8" }}>3:12 PM</span>
         </div>
 
+        {/* Note 2 */}
         <div style={{ background: "#f8fafc", border: "1px solid rgba(245,158,11,0.3)", borderLeft: "3px solid #f59e0b", borderRadius: 8, padding: "10px 12px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
             <span style={{ fontSize: 10, fontWeight: 600, color: "#b45309", background: "rgba(245,158,11,0.1)", borderRadius: 20, padding: "2px 8px" }}>Unassigned</span>
-            <span style={{ fontSize: 10, color: "#94a3b8" }}>1:47 PM</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0, marginLeft: 6 }}>
+              <span style={{ fontSize: 13, color: "#94a3b8" }}>✏</span>
+              <button style={{ fontSize: 11, fontWeight: 600, color: "#223A5E", background: "rgba(34,58,94,0.07)", border: "1px solid rgba(34,58,94,0.15)", borderRadius: 6, padding: "2px 8px", cursor: "default" }}>🏷️ Assign</button>
+              <span style={{ fontSize: 13, color: "#94a3b8" }}>🗑</span>
+            </div>
           </div>
-          <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>Booth conversation with Wayne — strong interest in the reporting features. Budget confirmed for next year...</p>
+          <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, marginBottom: 4 }}>Booth conversation with Wayne — strong interest in the reporting features. Budget confirmed for next year...</p>
+          <span style={{ fontSize: 10, color: "#94a3b8" }}>1:47 PM</span>
         </div>
       </div>
     </>
