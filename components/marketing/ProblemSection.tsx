@@ -4,7 +4,7 @@ const PROBLEMS = [
   "The conference floor has no operating system. Reps improvise. Contacts get lost. Overlap happens. Nobody knows until a week later.",
   "A conference can create pipeline, strengthen relationships, surface market signals, and support customers; sometimes all in the same conversation. Spreadsheets and business cards were never built to capture any of it.",
   "Sales wants pipeline. Marketing wants brand. Customer success wants face time. Everyone attends the same conference and measures a completely different thing.",
-  "The most expensive part of a conference isn&apos;t the sponsorship fee. It&apos;s the pipeline that was almost created.",
+  "The most expensive part of a conference isn't the sponsorship fee. It's the pipeline that was almost created.",
 ];
 
 export default function ProblemSection() {
@@ -42,7 +42,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            Momentum fades when the conference ends and then cylce restarts with the next one 
+            It's not a people problem. There&apos;s just never been a system built to catch any of it. 
           </p>
         </div>
       </div>
