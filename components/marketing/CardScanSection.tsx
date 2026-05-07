@@ -1,10 +1,10 @@
 import PreConferenceHeroMock from "./PreConferenceHeroMock";
 
 const BULLETS = [
-  "Scan a business card or badge. Parlay extracts name, title, company, email, and phone instantly — no typing, no lost cards",
-  "Smart matching finds existing records or creates new ones in one click. No duplicates, no manual cleanup",
-  "The contact is immediately tied to the conference, the rep, and the right company record",
-  "Every scan feeds directly into relationship health scores, rep performance analytics, and the conference effectiveness calculation",
+  "Parlay scores the conference itself, evaluating whether the attendee list supports the stated strategy, and flagging misalignment before it costs resources",
+  "Your pipeline goal gets stress-tested against reality. Parlay compares what you need to generate against who is actually attending and the value of the oppportunity, so expectations are calibrated before the event, not after",
+  "Every target company is ranked by priority score, with a recommended action per company and a breakdown of which buyers from that account are in the room; decision makers, influencers, and their seniority level",
+  "Required pipeline is modeled by tier: Must Target, High Priority, Worth Engaging, and Monitor, with adjustable conversion rates so your team is working toward a number that reflects reality, not optimism",
 ];
 
 export default function CardScanSection() {
@@ -14,13 +14,13 @@ export default function CardScanSection() {
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 lg:gap-16 items-start">
           <div>
             <p className="font-inter text-sm font-semibold tracking-widest uppercase text-brand-teal mb-4">
-              Field capture
+              Pre-Conference Intelligence
             </p>
             <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6">
-              The data leaders need starts with the rep on the floor
+              Know what the conference can deliver, before anyone boards a plane
             </h2>
             <p className="font-inter text-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Conference floors move fast. Parlay&apos;s AI scanning and matching engine turns chaotic badge and card capture into structured data instantly — and every scan feeds the scoring engines that leaders rely on after the conference.
+              Most teams arrive at conferences with a hotel confirmation and a hope. Parlay&apos;s pre-conference review gives revenue leaders and reps a complete intelligence picture before the first session starts.
             </p>
             <ul className="space-y-4">
               {BULLETS.map((item) => (
