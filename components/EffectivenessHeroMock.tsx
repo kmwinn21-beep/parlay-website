@@ -209,7 +209,7 @@ export default function EffectivenessHeroMock() {
 
       {/* Main body grid */}
       <div
-        className="grid grid-cols-1 md:grid-cols-[220px_140px_1fr]"
+        className="grid grid-cols-1 md:grid-cols-[220px_1fr]"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
       >
         {/* Col 1 — Sales Effectiveness Score */}
@@ -235,19 +235,7 @@ export default function EffectivenessHeroMock() {
           ))}
         </div>
 
-        {/* Col 2 — Rank Card */}
-        <div style={{
-          padding: "16px 14px",
-          borderRight: "1px solid rgba(255,255,255,0.06)",
-          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center",
-        }}>
-          <p style={{ ...LABEL, marginBottom: 8 }}>SALES EXECUTION RANK</p>
-          <p style={{ fontSize: 40, fontWeight: 700, color: "white", letterSpacing: "-0.04em", lineHeight: 1 }}>#3</p>
-          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", marginTop: 5 }}>of 12 conferences attended</p>
-          <p style={{ fontSize: 10, color: "rgba(52,211,153,0.7)", fontWeight: 500, marginTop: 10 }}>View all →</p>
-        </div>
-
-        {/* Col 3 — Rep Table */}
+        {/* Col 2 — Rep Table */}
         <div style={{ padding: 0 }}>
           <div style={{ padding: "12px 16px 6px" }}>
             <p style={{ ...LABEL, marginBottom: 2 }}>SALES EXECUTION SCORE BY REP</p>
