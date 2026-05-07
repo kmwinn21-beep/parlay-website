@@ -1,10 +1,10 @@
 import PreConferenceHeroMock from "./PreConferenceHeroMock";
 
 const BULLETS = [
-  "Parlay scores the conference itself, evaluating whether the attendee list supports the stated strategy, and flagging misalignment before it costs resources",
-  "Your pipeline goal gets stress-tested against reality. Parlay compares what you need to generate against who is actually attending and the value of the oppportunity, so expectations are calibrated before the event, not after",
-  "Every target company is ranked by priority score, with a recommended action per company and a breakdown of which buyers from that account are in the room; decision makers, influencers, and their seniority level",
-  "Required pipeline is modeled by tier: Must Target, High Priority, Worth Engaging, and Monitor, with adjustable conversion rates so your team is working toward a number that reflects reality, not optimism",
+  "Parlay scores the conference itself, evaluating whether the attendee list supports the stated strategy, and flagging misalignment before it costs resources.",
+  "Your pipeline goal gets stress-tested against reality. Parlay compares what you need to generate against who is actually attending so expectations are calibrated before the event, not after.",
+  "Every target is ranked, with a recommended action and a breakdown of which buyers are in the room.",
+  "Required pipeline is modeled by tier with adjustable conversion rates so your team is working toward a number that reflects reality, not optimism.",
 ];
 
 export default function CardScanSection() {
@@ -20,7 +20,7 @@ export default function CardScanSection() {
               Know what the conference can deliver, before anyone boards a plane
             </h2>
             <p className="font-inter text-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Most teams arrive at conferences with a hotel confirmation and a hope. Parlay&apos;s pre-conference review gives revenue leaders and reps a complete intelligence picture before the first session starts.
+              Parlay&apos;s pre-conference review gives revenue leaders and reps a complete intelligence picture before the first session starts.
             </p>
             <ul className="space-y-4">
               {BULLETS.map((item) => (
