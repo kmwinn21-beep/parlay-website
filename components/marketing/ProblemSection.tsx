@@ -19,7 +19,7 @@ export default function ProblemSection() {
         </div>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6 max-w-3xl">
-          Conferences - the only major revenue investment without a dedicated measurement system.
+          The only major revenue investment without a dedicated measurement system.
         </h2>
 
         <p className="font-inter text-lg text-white/50 mb-12 max-w-2xl">
