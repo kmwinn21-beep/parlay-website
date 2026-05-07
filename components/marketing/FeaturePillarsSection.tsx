@@ -26,7 +26,7 @@ const PILLARS = [
   },
   {
     num: "06",
-    title: "Know what the conference can realistically deliver,before you go",
+    title: "Know what the conference can realistically deliver, before you board",
     body: "Parlay scores each conference before you attend, evaluating whether the attendee list supports your strategy, whether your pipeline goal is achievable given who\u2019s in the room, and whether the right buyers are actually there. If the strategy doesn't match the opportunity, Parlay flags it before anyone books a flight.",
   },
 ];
