@@ -19,11 +19,11 @@ export default function ProblemSection() {
         </div>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6 max-w-3xl">
-          Leaders are flying blind on conferences. And everyone knows it.
+          Conferences - the only major revenue investment without a dedicated measurement system.
         </h2>
 
         <p className="font-inter text-lg text-white/50 mb-12 max-w-2xl">
-          Conference programs are one of the largest line items in a revenue budget. And almost no one can tell you whether they&apos;re working.
+          Revenue leaders track every click, every deal stage, and every rep activity down to the minute. But a $60,000 conference gets measured by how reps felt the dinners went.
         </p>
 
         <div className="space-y-3 mb-12">

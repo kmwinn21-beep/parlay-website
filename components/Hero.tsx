@@ -2,10 +2,6 @@ import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 import EffectivenessHeroMock from "./EffectivenessHeroMock";
 
-// Fallback Link component if next/link is not available
-const LinkComponent = Link || (({ href, children, ...props }: any) => (
-  <a href={href} {...props}>{children}</a>
-));
 
 export default function Hero() {
   return (
@@ -78,7 +74,7 @@ export default function Hero() {
 
           {/* Subhead */}
           <p className="font-inter text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-           The conference execution and intelligence platform built for revenue teams, by revenue teams. Real scoring. Real accountability. Real visibility into what's working...and what's not.
+           The conference execution and intelligence platform built for revenue teams, by revenue teams. Real scoring. Real accountability. Real visibility into what&aposs working...and what&aposs not.
           </p>
 
           {/* CTAs */}
