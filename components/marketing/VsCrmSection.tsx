@@ -1,10 +1,10 @@
 import EffectivenessSummaryMock from "./EffectivenessSummaryMock";
 
 const PARLAY_ANSWERS = [
-  "Did our team prioritize the right companies at this conference — or did they burn floor time on low-value accounts?",
+  "Did our team prioritize the right companies at this conference, or did they burn floor time on low-value accounts?",
   "Which ICP companies attended and walked away without a single interaction from our team?",
-  "Which rep is converting conference conversations into pipeline — and which one is just collecting business cards?",
-  "Which conferences should we invest more in next year, and which should we cut?",
+  "Which rep is converting conference conversations into pipeline, and which one is just collecting business cards?",
+  "Which conferences should we invest more in next year, and which ones should we cut?",
 ];
 
 export default function VsCrmSection() {
@@ -20,7 +20,7 @@ export default function VsCrmSection() {
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-10 max-w-3xl">
-          A CRM records activity. It doesn&apos;t evaluate it. It can&apos;t tell you whether your team engaged the right companies, whether the relationships are actually deepening, or whether the $60,000 you spent on that conference generated enough pipeline to justify going back. Parlay was built to answer the questions your CRM never will.
+          A CRM records activity. It doesn&apos;t evaluate it. It can&apos;t tell whether your team engaged the right companies, whether the relationships are actually productive, or whether the $60,000 spent on that conference influenced enough pipeline to justify going back. Parlay doesn&apos;t compete with your CRM. It fills the gap your CRM was never designed to fill.
         </p>
 
         {/* Parlay Answers — 4-column card grid */}
