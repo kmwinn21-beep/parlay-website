@@ -42,7 +42,7 @@ export default function ProblemSection() {
 
         <div className="border-t border-white/10 pt-8">
           <p className="font-inter text-white/40 italic">
-            It's not a people problem. There&apos;s just never been a system built to catch any of it. 
+            It&#39;s not a people problem. There&apos;s just never been a system built to catch any of it. 
           </p>
         </div>
       </div>
