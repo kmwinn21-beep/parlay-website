@@ -1,10 +1,10 @@
 const PROBLEMS = [
-  "Your team attends 12 conferences a year. You can't rank them by ROI. You're making next year's calendar decisions on instinct.",
-  "You know your team had \"a lot of good conversations\" at the last event. You have no idea if relationship depth actually improved.",
-  "2,300 attendees were at the last conference. Your team engaged 54. You don't know if those were the right 54.",
-  "Three reps touched the same company at the same event. No one knew. No one does.",
-  "Your event coordinator is asking which conferences to book for next year. You're going to base that decision on vibes.",
-  "Your CRM has \"source: conference\" on 80 contacts from Q1. That's the full extent of your conference attribution.",
+  "Marketing has attribution models. Sales has pipeline reporting. Conferences have a debrief meeting where everyone agrees it went well.",
+  "Travel, sponsorships, booth fees, dinners, hotels. The invoice is precise to the dollar. The results? Depends on who you ask.",
+  "The conference floor has no operating system. Reps improvise. Contacts get lost. Overlap happens. Nobody knows until a week later.",
+  "A conference can create pipeline, strengthen relationships, surface market signals, and support customers; sometimes all in the same conversation. Spreadsheets and business cards were never built to capture any of it.",
+  "Sales wants pipeline. Marketing wants brand. Customer success wants face time. Everyone attends the same conference and measures a completely different thing.",
+  "The most expensive part of a conference isn&apos;t the sponsorship fee. It&apos;s the pipeline that was almost created.",
 ];
 
 export default function ProblemSection() {
