@@ -98,7 +98,7 @@ export default function Hero() {
           </p>
 
           {/* Dashboard teaser */}
-          <div className="relative mx-auto" style={{ maxWidth: "900px" }}>
+          <div className="relative mx-auto" style={{ maxWidth: "1100px" }}>
             {/* Fade overlay — crops bottom of card */}
             <div
               aria-hidden="true"
