@@ -1,10 +1,11 @@
 type PillType = "icp" | "neutral" | "scheduled";
 
 const PARLAY_ANSWERS = [
-  "Which reps should prioritize which companies—and why?",
-  "Did relationship depth actually improve at this conference?",
-  "Which reps converted conversations into follow-through?",
-  "Where are the ghosted accounts and coverage gaps?",
+  "Did our team prioritize the right companies at this conference — or did they burn floor time on low-value accounts?",
+  "Which ICP companies attended and walked away without a single interaction from our team?",
+  "Is the relationship with our key accounts actually stronger than it was six months ago?",
+  "Which rep is converting conference conversations into pipeline — and which one is just collecting business cards?",
+  "Which conferences should we invest more in next year, and which should we cut?",
 ];
 
 const PILL_STYLES: Record<PillType, object> = {
@@ -184,19 +185,18 @@ export default function VsCrmSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6 max-w-4xl">
-          CRMs show pipeline state. Parlay enables conference execution.
+          Your CRM tells you what happened. Parlay tells you what it meant.
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-12 max-w-3xl">
-          A CRM shows you who owns the account, deal stage, & last activity. Parlay shows what your team should do
-          before, during, and after every conference, and whether it actually worked.
+          A CRM records activity. It doesn&apos;t evaluate it. It can&apos;t tell you whether your team engaged the right companies, whether the relationships are actually deepening, or whether the $60,000 you spent on that conference generated enough pipeline to justify going back. Parlay was built to answer the questions your CRM never will.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6">
           {/* Left — Parlay Answers */}
           <div className="bg-brand-primary rounded-xl p-8">
             <p className="font-inter text-xs font-semibold tracking-widest uppercase text-brand-teal mb-6">
-              Parlay answers
+              Parlay answers these questions
             </p>
             <div className="space-y-3">
               {PARLAY_ANSWERS.map((q) => (

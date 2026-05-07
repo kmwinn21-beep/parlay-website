@@ -11,10 +11,10 @@ export default function CtaBanner() {
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6">
-          Turn your next conference into pipeline
+          Your competitors are at the same conferences you are.
         </h2>
         <p className="font-inter text-lg text-white/70 mb-10 leading-relaxed">
-          Join hundreds of sales professionals and founders who use Parlay to make every conversation count. Start free, no credit card required.
+          The question isn&apos;t whether to attend. It&apos;s whether your team arrives with a targeting strategy, executes with accountability, and leaves knowing what worked — and what didn&apos;t. Most teams don&apos;t. Start your free trial and find out what your conference program is actually worth.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

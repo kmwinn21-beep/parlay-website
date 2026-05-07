@@ -40,7 +40,7 @@ export default function Footer() {
               />
             </Link>
             <p className="font-inter text-sm text-white/50 leading-relaxed mb-6 max-w-xs">
-              The conference relationship platform that turns every conversation into business results.
+              The conference intelligence platform for revenue teams.
             </p>
             {/* Social links */}
             <div className="flex items-center gap-4">

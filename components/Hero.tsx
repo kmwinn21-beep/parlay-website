@@ -72,8 +72,7 @@ export default function Hero() {
 
           {/* Subhead */}
           <p className="font-inter text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Capture conversations in the moment, know exactly who talked to who, and
-            turn conference interactions into real follow-through—without CRM drag.
+            Four scoring engines that give events, sales, and marketing leaders something they&apos;ve never had before: real visibility into whether your conference program is working — and exactly what to do about it. The intelligence is what leaders buy. The ease of use is what makes it real.
           </p>
 
           {/* CTAs */}

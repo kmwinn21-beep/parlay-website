@@ -1,19 +1,19 @@
 const BULLETS = [
   {
-    title: "Conference-by-conference relationship trajectory",
-    sub: "Not 'last activity'—a full history of how the relationship has moved",
+    title: "Conference-by-conference trajectory, not last activity",
+    sub: "A full history of how the relationship has moved across every event — building, plateauing, or fading",
   },
   {
-    title: "Health scores built from real behavioral signals",
-    sub: "Meetings, outcomes, notes, social attendance, follow-up completion, touchpoints",
+    title: "Health scores built from behavioral signals, not self-reporting",
+    sub: "Meetings held, notes written, follow-ups completed. Not what reps say happened. What the system knows happened.",
   },
   {
-    title: "Ghost penalties for attendance without engagement",
-    sub: "If your team was in the room and didn't engage, the score reflects it",
+    title: "Ghost penalties that reflect reality",
+    sub: "If your team was in the room and didn't engage, the score drops. No false positives in the relationship data.",
   },
   {
-    title: "Compounding relationship memory across event cycles",
-    sub: "Your team builds momentum instead of starting from scratch every conference",
+    title: "Cross-conference attribution that compounds",
+    sub: "Understand which conferences are actually deepening key relationships — and which ones are just maintaining presence.",
   },
 ];
 
@@ -147,11 +147,10 @@ export default function RelationshipIntelSection() {
               Relationship intelligence
             </p>
             <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6">
-              Relationships don&apos;t reset after the conference
+              Relationship depth, measured. Not assumed.
             </h2>
             <p className="font-inter text-lg text-brand-steel mb-10 leading-relaxed">
-              Every interaction rolls into company-level context that builds across every
-              conference your team attends—not just the last touch.
+              Most sales leaders assume relationships are building at conferences. Parlay measures it — and surfaces where they&apos;re actually stalling.
             </p>
             <ul className="space-y-6">
               {BULLETS.map((b) => (
