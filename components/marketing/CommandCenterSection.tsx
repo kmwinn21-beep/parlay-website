@@ -3,7 +3,7 @@
 import { useState, useRef, type ReactNode } from "react";
 
 const CHECKLIST = [
-  "Scan a single card or a stack of ten. Parlay parses every contact in one shot. Matching existing attendees, flagging new ones, and automaticallycreating records with the right company and conference association.",
+  "Scan a single card or a stack of ten. Parlay parses every contact in one shot. Matching existing attendees, flagging new ones, and automatically creating records with the right company and conference association.",
   "Floor Notes let reps jot down notes in the moment, without stopping to find a record. The note is saved, timestamped, and ready to assign to the right record when there's a break in the action",
   "Assigning a Floor Note automatically creates a follow-up task and the system handles the accountability structure in the background",
   "Badge and card scans work the same way. Scan now, assign later. When the rep is ready, the same matching workflow activates",
