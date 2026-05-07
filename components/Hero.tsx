@@ -2,6 +2,11 @@ import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 import EffectivenessHeroMock from "./EffectivenessHeroMock";
 
+// Fallback Link component if next/link is not available
+const LinkComponent = Link || (({ href, children, ...props }: any) => (
+  <a href={href} {...props}>{children}</a>
+));
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-brand-primary flex items-center overflow-hidden">
@@ -73,7 +78,7 @@ export default function Hero() {
 
           {/* Subhead */}
           <p className="font-inter text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Four scoring engines that give events, sales, and marketing leaders something they&apos;ve never had before: real visibility into whether your conference program is working — and exactly what to do about it. The intelligence is what leaders buy. The ease of use is what makes it real.
+           The conference execution and intelligence platform built for revenue teams, by revenue teams. Real scoring. Real accountability. Real visibility into what's working...and what's not.
           </p>
 
           {/* CTAs */}
