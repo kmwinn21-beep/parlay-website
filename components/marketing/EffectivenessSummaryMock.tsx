@@ -41,10 +41,10 @@ const BREAKDOWN_ROWS = [
 const REP_TABLE = [
   { name: "Ron Burgundy",   icp: 18, mtg: 71, pi: 100, brd: 1, cost: 79, fu: 94,  nn: 13, score: 66, tier: "Acceptable",  scoreColor: "#D97706" },
   { name: "Wayne Campbell", icp: 5,  mtg: 66, pi: 86,  brd: 1, cost: 78, fu: 100, nn: 0,  score: 58, tier: "Weak",        scoreColor: "#D97706" },
-  { name: "Lloyd Christmas",icp: 1,  mtg: 25, pi: 76,  brd: 1, cost: 71, fu: 100, nn: 0,  score: 45, tier: "Inefficient", scoreColor: "#ef4444" },
-  { name: "Happy Gilmore",  icp: 6,  mtg: 33, pi: 67,  brd: 1, cost: 78, fu: 100, nn: 11, score: 46, tier: "Inefficient", scoreColor: "#ef4444" },
-  { name: "Fletcher Reede", icp: 15, mtg: 35, pi: 50,  brd: 1, cost: 80, fu: 100, nn: 18, score: 44, tier: "Inefficient", scoreColor: "#ef4444" },
-  { name: "Billy Madison",  icp: 1,  mtg: 50, pi: 38,  brd: 0, cost: 68, fu: 100, nn: 50, score: 41, tier: "Inefficient", scoreColor: "#ef4444" },
+  { name: "Lloyd Christmas",icp: 1,  mtg: 25, pi: 76,  brd: 1, cost: 71, fu: 100, nn: 0,  score: 45, tier: "Ineff.", scoreColor: "#ef4444" },
+  { name: "Happy Gilmore",  icp: 6,  mtg: 33, pi: 67,  brd: 1, cost: 78, fu: 100, nn: 11, score: 46, tier: "Ineff.", scoreColor: "#ef4444" },
+  { name: "Fletcher Reede", icp: 15, mtg: 35, pi: 50,  brd: 1, cost: 80, fu: 100, nn: 18, score: 44, tier: "Ineff.", scoreColor: "#ef4444" },
+  { name: "Billy Madison",  icp: 1,  mtg: 50, pi: 38,  brd: 0, cost: 68, fu: 100, nn: 50, score: 41, tier: "Ineff.", scoreColor: "#ef4444" },
 ];
 
 const PIPELINE_ITEMS = [
@@ -256,7 +256,7 @@ export default function EffectivenessSummaryMock() {
                 <thead>
                   <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>
                     {["Rep", "ICP", "Mtg", "PI", "Brd", "Cost", "FU", "NN", "Score"].map((h, i) => (
-                      <th key={h} style={{
+                      <th key={h} className={["Brd", "FU", "NN"].includes(h) ? "hidden sm:table-cell" : undefined} style={{
                         textAlign: i === 0 ? "left" : "right",
                         fontSize: 9, fontWeight: 600, textTransform: "uppercase",
                         letterSpacing: "0.07em", color: "#94a3b8",
@@ -272,7 +272,7 @@ export default function EffectivenessSummaryMock() {
                         {rep.name}
                       </td>
                       {[rep.icp, rep.mtg, rep.pi, rep.brd, rep.cost, rep.fu, rep.nn].map((v, j) => (
-                        <td key={j} style={{ textAlign: "right", color: "#64748b", fontSize: 11, padding: "7px 6px" }}>{v}</td>
+                        <td key={j} className={[3, 5, 6].includes(j) ? "hidden sm:table-cell" : undefined} style={{ textAlign: "right", color: "#64748b", fontSize: 11, padding: "7px 6px" }}>{v}</td>
                       ))}
                       <td style={{ textAlign: "right", padding: "7px 10px", whiteSpace: "nowrap" }}>
                         <span style={{ fontSize: 13, fontWeight: 700, color: rep.scoreColor }}>{rep.score}</span>
