@@ -3,11 +3,11 @@
 import { useState, useRef, type ReactNode } from "react";
 
 const CHECKLIST = [
-  "Pre-conference planning cockpit — ICP targets ranked, coverage gaps identified, rep assignments set",
-  "Attendees, companies, meetings, social events, and touchpoints — all in one place",
-  "Notes, follow-ups, and rep ownership tracked in real time across your whole team",
-  "Post-conference debrief with relationship shifts, rep performance, and action items",
-  "Real-time visibility that turns conference floor activity into leadership intelligence",
+  "Scan a single card or a stack of ten. Parlay parses every contact in one shot. Matching existing attendees, flagging new ones, and automaticallycreating records with the right company and conference association.",
+  "Floor Notes let reps jot down notes in the moment, without stopping to find a record. The note is saved, timestamped, and ready to assign to the right record when there's a break in the action",
+  "Assigning a Floor Note automatically creates a follow-up task and the system handles the accountability structure in the background",
+  "Badge and card scans work the same way. Scan now, assign later. When the rep is ready, the same matching workflow activates",
+  "Every touchpoint, note, and scan, feeds directly into the conference effectiveness metrics that leaders see after the event",
 ];
 
 const SLIDE_LABELS = [
@@ -418,13 +418,13 @@ export default function CommandCenterSection() {
           {/* Left column — unchanged */}
           <div>
             <p className="font-inter text-sm font-semibold tracking-widest uppercase text-brand-teal mb-4">
-              Conference command center
+              BUILT FOR THE FLOOR
             </p>
             <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6">
-              One command center. Every rep. Every conference. Real time.
+              Capture everything. Assign it when you have a minute.
             </h2>
             <p className="font-inter text-lg text-brand-steel mb-8 leading-relaxed">
-              One view for leaders. One tool for reps. Every interaction logged, every relationship tracked, every follow-up assigned — without anyone managing a spreadsheet.
+              Most tools assume reps have time to stop and log between conversations. Parlay is built around how conferences actually work; fast, overlapping, and unstructured. Capture first. Assign later. Nothing gets lost.
             </p>
             <ul className="space-y-4 mb-8">
               {CHECKLIST.map((item) => (
@@ -439,7 +439,7 @@ export default function CommandCenterSection() {
               ))}
             </ul>
             <p className="font-inter text-brand-steel italic">
-              No spreadsheets. No scattered notes. No guessing about what your team is doing on the floor.
+              Parlay fits the rep&apos;s reality on the floor making the data actionable, not questionable.
             </p>
           </div>
 
