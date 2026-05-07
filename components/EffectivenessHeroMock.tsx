@@ -209,7 +209,7 @@ export default function EffectivenessHeroMock() {
 
       {/* Main body grid */}
       <div
-        className="grid grid-cols-1 md:grid-cols-[220px_1fr]"
+        className="grid grid-cols-1 md:grid-cols-[1fr_2fr]"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
       >
         {/* Col 1 — Sales Effectiveness Score */}
