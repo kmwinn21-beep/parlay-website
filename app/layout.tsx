@@ -15,17 +15,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Parlay — From Conversations to Follow-Through",
+  title: "Parlay — The Conference Intelligence Platform for Revenue Leaders",
   description:
-    "The conference relationship platform that turns every card scan, conversation, and follow-up into business results.",
+    "Four scoring engines that give revenue leaders real visibility into whether their conference program is working — and exactly what to do about it. Built for events, sales, and marketing leadership.",
   metadataBase: new URL("https://useparlay.app"),
   openGraph: {
-    title: "Parlay — From Conversations to Follow-Through",
+    title: "Parlay — Know Which Conferences Are Worth It. Before and After.",
     description:
-      "The conference relationship platform that turns every card scan, conversation, and follow-up into business results.",
+      "Four scoring engines that give revenue leaders real visibility into whether their conference program is working — and exactly what to do about it. Built for events, sales, and marketing leadership.",
     url: "https://useparlay.app",
     siteName: "Parlay",
     type: "website",
+  },
+  twitter: {
+    title: "Parlay — Know Which Conferences Are Worth It. Before and After.",
+    description:
+      "Four scoring engines that give revenue leaders real visibility into whether their conference program is working — and exactly what to do about it. Built for events, sales, and marketing leadership.",
   },
 };
 

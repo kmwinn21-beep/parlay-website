@@ -1,33 +1,33 @@
 const PILLARS = [
   {
     num: "01",
-    title: "Instant card and note capture",
-    body: "Point your phone at any business card, badge, or handwritten notes. Parlay extracts the details and assigns automatically. No typing, no lost cards.",
+    title: "The data leaders need starts on the conference floor",
+    body: "AI card and badge scanning extracts names, titles, companies, emails, and phones instantly. Every scan feeds directly into relationship health scores, rep performance analytics, and conference effectiveness calculations. Leaders see the intelligence. Reps just do their job.",
   },
   {
     num: "02",
-    title: "Ownership, not chaos",
-    body: "Every interaction is tied to the right rep, company, and conference. No duplication. No overlap. No one claiming a relationship they didn't build.",
+    title: "Ownership and accountability, not chaos",
+    body: "Every interaction is tied to the right rep, company, and conference. Rep overlap is visible. Ghost penalties apply when someone was in the room and didn't engage. The accountability is automatic.",
   },
   {
     num: "03",
     title: "Follow-through built in",
-    body: "Notes become follow-ups. Forms create records and assign tasks. Your team leaves with clear next steps, not a cleanup project.",
+    body: "Notes become follow-ups. Touchpoints auto-create tasks. Forms capture leads and assign ownership. Your team leaves every conference with clear next steps — and leaders can see exactly who is following through and who isn't.",
   },
   {
     num: "04",
-    title: "Pre and post-conference intelligence",
-    body: "A planning cockpit and debriefing room; not just reporting. ICP coverage, relationship gaps, meeting assignments, rep performance all surfaced before and after the conference.",
+    title: "Conference Effectiveness — four scores, one verdict",
+    body: "After every conference, Parlay scores Sales Execution, Audience & Messaging, Cost Efficiency, and overall Conference Effectiveness — each 0–100, each calibrated to your conference strategy type. Every conference is ranked against all others your team has attended. For the first time, your event coordinator, VP of Sales, and CMO share one performance verdict.",
   },
   {
     num: "05",
     title: "Relationship health scoring",
-    body: "Depth scores built from meetings, outcomes, notes, touchpoints, and follow-up completion. Ghost penalties applied when reps don't engage.",
+    body: "Health scores built from meetings held, notes logged, touchpoints made, and follow-ups completed — not what reps say happened, but what the system knows happened. Ghost penalties apply when your team was in the room and didn't engage. Conference-by-conference trajectories show whether relationships are building, stalling, or fading.",
   },
   {
     num: "06",
-    title: "Multi-conference continuity",
-    body: "Relationship trajectory builds across every conference, not just the last touch. Momentum compounds and starting from scratch stops.",
+    title: "Multi-conference relationship memory",
+    body: "Relationship trajectories build across every conference your team attends. Your team walks into next year's events knowing the full history — who engaged, what happened, and where momentum stalled. The competitive advantage compounds instead of resetting.",
   },
 ];
 
@@ -40,11 +40,11 @@ export default function FeaturePillarsSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6">
-          Not an add-on. Not a workaround.
+          Built for the leaders who own conference strategy. Powered by the reps who execute it.
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-12 max-w-2xl">
-          Built for natural pre, live, and post-conference motions
+          The scoring engines give revenue leaders unprecedented visibility. The rep tools are what make the data trustworthy.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,9 +1,10 @@
 const PROBLEMS = [
-  "The team travels to different conferences, not knowing who talked to who",
-  "Notes are scattered across memory, phones, and spreadsheets that no one checks",
-  "Follow-ups fall through the cracks",
-  "Multiple reps chase the same company",
-  "Sales leaders are left to make uncomfortable account ownership decisions",
+  "Your team attends 12 conferences a year. You can't rank them by ROI. You're making next year's calendar decisions on instinct.",
+  "You know your team had \"a lot of good conversations\" at the last event. You have no idea if relationship depth actually improved.",
+  "2,300 attendees were at the last conference. Your team engaged 54. You don't know if those were the right 54.",
+  "Three reps touched the same company at the same event. No one knew. No one does.",
+  "Your event coordinator is asking which conferences to book for next year. You're going to base that decision on vibes.",
+  "Your CRM has \"source: conference\" on 80 contacts from Q1. That's the full extent of your conference attribution.",
 ];
 
 export default function ProblemSection() {
@@ -18,11 +19,11 @@ export default function ProblemSection() {
         </div>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6 max-w-3xl">
-          Conferences create more problems than pipeline.
+          Leaders are flying blind on conferences. And everyone knows it.
         </h2>
 
         <p className="font-inter text-lg text-white/50 mb-12 max-w-2xl">
-          You spend thousands to show up. Your team has great conversations. And then...
+          Conference programs are one of the largest line items in a revenue budget. And almost no one can tell you whether they&apos;re working.
         </p>
 
         <div className="space-y-3 mb-12">

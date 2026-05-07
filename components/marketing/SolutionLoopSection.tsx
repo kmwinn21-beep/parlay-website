@@ -2,22 +2,22 @@ const STEPS = [
   {
     num: "01",
     title: "Plan",
-    body: "Know who to prioritize before you board the plane. ICP coverage, relationship gaps, meeting assignments, rep workload.",
+    body: "Before the conference, Parlay's scoring engine has already ranked every attendee 0–100 and identified your ICP targets. Every rep walks in knowing exactly who to engage and why — not a gut feeling. A score.",
   },
   {
     num: "02",
     title: "Execute",
-    body: "Capture contacts, log conversations, scan cards, assign ownership. One command center for your whole team.",
+    body: "AI card and badge scanning. Touchpoint logging. Meeting notes. Real-time rep visibility. Simple enough to use on the floor, structured enough to feed the analytics. The data enters the system without anyone thinking about it.",
   },
   {
     num: "03",
     title: "Score",
-    body: "Relationship health scores and rep performance metrics tell you what actually moved and what didn't.",
+    body: "Four scoring engines evaluate what happened. Relationship health scores update. The Conference Effectiveness Score calculates across Sales Execution, Audience Quality, and Cost Efficiency. Leadership has the full picture within hours of the last session.",
   },
   {
     num: "04",
     title: "Improve",
-    body: "Every conference adds to long-term relationship trajectories. Your team compounds the advantage across every event cycle.",
+    body: "Relationship trajectories build. Efficiency rankings accumulate. Your conference calendar starts to optimize itself — based on data from every event you've ever attended, not instinct about which ones felt good.",
   },
 ];
 
@@ -30,12 +30,11 @@ export default function SolutionLoopSection() {
         </p>
 
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6 max-w-4xl">
-          A system built for the conference floor
+          A closed-loop intelligence system for conference revenue
         </h2>
 
         <p className="font-inter text-lg text-brand-steel mb-10 max-w-3xl">
-          Parlay treats conferences as a repeatable revenue operating loop. Not one-off
-          activities attached to a CRM record.
+          Parlay runs four scoring engines across the full conference lifecycle. The intelligence is what leaders buy. The ease of use is what makes the data real.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">

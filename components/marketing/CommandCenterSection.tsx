@@ -3,11 +3,11 @@
 import { useState, useRef, type ReactNode } from "react";
 
 const CHECKLIST = [
-  "Pre-conference planning cockpit with ICP targeting and coverage gaps",
-  "Attendees, companies, meetings, and social events",
-  "Notes, follow-ups, and rep ownership",
-  "Post-conference review with relationship shifts and action items",
-  "Real-time visibility across your full team",
+  "Pre-conference planning cockpit — ICP targets ranked, coverage gaps identified, rep assignments set",
+  "Attendees, companies, meetings, social events, and touchpoints — all in one place",
+  "Notes, follow-ups, and rep ownership tracked in real time across your whole team",
+  "Post-conference debrief with relationship shifts, rep performance, and action items",
+  "Real-time visibility that turns conference floor activity into leadership intelligence",
 ];
 
 const SLIDE_LABELS = [
@@ -421,11 +421,10 @@ export default function CommandCenterSection() {
               Conference command center
             </p>
             <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-brand-primary mb-6">
-              Everything your team does at a conference, in one place
+              One command center. Every rep. Every conference. Real time.
             </h2>
             <p className="font-inter text-lg text-brand-steel mb-8 leading-relaxed">
-              One view. Every person, every meeting, every note. Your whole team on the
-              same page in real time, across every conference you run.
+              One view for leaders. One tool for reps. Every interaction logged, every relationship tracked, every follow-up assigned — without anyone managing a spreadsheet.
             </p>
             <ul className="space-y-4 mb-8">
               {CHECKLIST.map((item) => (
@@ -440,7 +439,7 @@ export default function CommandCenterSection() {
               ))}
             </ul>
             <p className="font-inter text-brand-steel italic">
-              No spreadsheets. No scattered notes. No guessing.
+              No spreadsheets. No scattered notes. No guessing about what your team is doing on the floor.
             </p>
           </div>
 

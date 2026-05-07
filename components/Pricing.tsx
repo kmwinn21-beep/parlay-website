@@ -431,16 +431,14 @@ export default function Pricing() {
             className="font-playfair"
             style={{ fontSize: 36, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.28, marginBottom: 16 }}
           >
-            Your next conference is in{" "}
-            {/* TODO: wire to dynamic conference countdown */}
-            <span style={{ color: "#34D399" }}>X days.</span>
+            Your next conference is coming.{" "}
             <br />
-            Don&apos;t walk in blind again.
+            Don&apos;t walk in without a plan.
           </h2>
 
           {/* Body */}
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.58)", maxWidth: 560, margin: "0 auto 32px", lineHeight: 1.7 }}>
-            Start a free 14-day trial built around your next upcoming event. Upload your attendee list, assign your reps, build your target list, and walk in with a plan. Your trial stays active 7 days after your conference ends!
+            Start a free 14-day trial anchored to your next conference. Upload your attendee list, get your ICP targets scored and ranked, assign your reps, and walk in with a plan that reflects what&apos;s actually happening on the floor.
           </p>
 
           {/* Upload highlight box */}
@@ -467,10 +465,10 @@ export default function Pricing() {
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontSize: 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>
-                  Upload an attendee list for your upcoming conference and up to 3 past conference lists to hit the ground running
+                  Upload your upcoming conference list and up to 3 past lists — Parlay starts scoring on day one
                 </p>
                 <p style={{ fontSize: 14.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: 14 }}>
-                  See multi-conference relationship tracking work immediately, not after months of use. Upload CSV attendee lists from an upcoming event and previous events. Then Parlay starts building your timeline on day one: ICP scoring, overlap analysis, and pre-conference review before you attend your next event.
+                  See multi-conference relationship intelligence work immediately — not after months of use. Upload attendee lists from your upcoming event and up to 3 past conferences. Parlay scores every company and contact against your ICP, maps buyer personas, identifies prior overlap, and surfaces your top targets before you set foot on the conference floor.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {["CSV upload", "Pre-Conference Review", "ICP matching", "Prior overlap detection"].map((tag) => (

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const WORDS = ["Conversations", "Context", "Relationships", "Connections"];
+const WORDS = ["Strategy", "Accountability", "Results", "Intelligence"];
 
 export default function AnimatedWord() {
   const spanRef = useRef<HTMLSpanElement>(null);
