@@ -172,9 +172,9 @@ export default function EffectivenessSummaryMock() {
       {/* Modal body */}
       <div style={{ background: "white", padding: 20 }}>
 
-        {/* Top 3-column grid */}
+        {/* Top 2-column grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-[1fr_200px_1fr]"
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: 14, marginBottom: 20 }}
         >
           {/* CES Score card */}
@@ -197,22 +197,8 @@ export default function EffectivenessSummaryMock() {
             </p>
           </div>
 
-          {/* Efficiency Rank card */}
+          {/* Pipeline Influence Summary */}
           <div style={{
-            background: "#f8fafc",
-            border: "1px solid #e2e8f0",
-            borderRadius: 10,
-            padding: 16,
-            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center",
-          }}>
-            <p style={{ ...SEC, marginBottom: 6 }}>EFFICIENCY RANK</p>
-            <p style={{ fontSize: 48, fontWeight: 800, color: "#223A5E", letterSpacing: "-0.04em", lineHeight: 1 }}>#1</p>
-            <p style={{ fontSize: 10, color: "#94a3b8", marginTop: 4 }}>of 6 conferences</p>
-            <p style={{ fontSize: 10, color: "#34D399", fontWeight: 500, marginTop: 8 }}>View all →</p>
-          </div>
-
-          {/* Pipeline Influence Summary — hidden below md */}
-          <div className="hidden md:block" style={{
             background: "#f8fafc",
             border: "1px solid #e2e8f0",
             borderRadius: 10,
