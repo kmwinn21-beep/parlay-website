@@ -387,7 +387,7 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
               }}
             >✕</button>
             <p style={{ fontSize: 13, fontWeight: 600, color: "#34D399", marginBottom: 10 }}>
-              Explore Parlay at your own pace
+              EXPLORE PARLAY AT YOUR OWN PACE
             </p>
             <h2 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
