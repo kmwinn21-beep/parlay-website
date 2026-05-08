@@ -110,7 +110,7 @@ function Field({
 }: { label: string; required?: boolean; error?: string; children: ReactNode }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <label style={{ fontSize: 12, fontWeight: 600, color: "#223A5E", letterSpacing: "0.02em" }}>
+      <label style={{ fontSize: 14, fontWeight: 600, color: "#223A5E", letterSpacing: "0.02em" }}>
         {label}{required && <span style={{ color: "#ef4444", marginLeft: 2 }}>*</span>}
       </label>
       {children}
@@ -328,6 +328,15 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
 
   return (
     <>
+      <style>{`
+        .parlay-demo-modal option { color: #223A5E; }
+        @media (max-width: 767px) {
+          .parlay-demo-modal input,
+          .parlay-demo-modal select {
+            font-size: 16px !important;
+          }
+        }
+      `}</style>
       {/* Backdrop */}
       <div
         onClick={handleBackdropClick}
@@ -345,6 +354,7 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
         <div
           role="dialog"
           aria-modal="true"
+          className="parlay-demo-modal"
           style={{
             background: "white",
             borderRadius: 16,
@@ -377,8 +387,8 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
                 color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1,
               }}
             >✕</button>
-            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#34D399", marginBottom: 10 }}>
-              LIVE DEMO ACCESS
+            <p style={{ fontSize: 13, fontWeight: 600, color: "#34D399", marginBottom: 10 }}>
+              Explore Parlay at your own pace
             </p>
             <h2 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
@@ -450,16 +460,13 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
 
             {/* Divider */}
             <div style={{ borderTop: "1px solid #f1f5f9", margin: "18px 0 16px" }} />
-            <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 14 }}>
-              Optional — helps us improve Parlay
-            </p>
 
             {/* Team size / Conf count */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
               <Field label="Size of Revenue Team">
                 <SelectInput value={form.teamSize} onChange={set("teamSize")} options={TEAM_SIZES} placeholder="Select" />
               </Field>
-              <Field label="Annual Conferences Attended">
+              <Field label="Conferences Attended / yr">
                 <SelectInput value={form.confCount} onChange={set("confCount")} options={CONF_COUNTS} placeholder="Select" />
               </Field>
             </div>
