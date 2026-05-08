@@ -1,10 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 import EffectivenessHeroMock from "./EffectivenessHeroMock";
-
+import DemoModal from "./DemoModal";
 
 export default function Hero() {
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
   return (
+    <>
     <section className="relative min-h-screen bg-brand-primary flex items-center overflow-hidden">
       {/* Network graph background */}
       <svg
@@ -85,12 +91,13 @@ export default function Hero() {
             >
               Start Free Trial →
             </Link>
-            <a
-              href="#how-it-works"
+            <button
+              type="button"
+              onClick={() => setShowDemoModal(true)}
               className="w-full sm:w-auto font-inter font-medium text-lg px-8 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"
             >
               Explore a Live Demo
-            </a>
+            </button>
           </div>
 
           {/* Tagline */}
@@ -120,5 +127,8 @@ export default function Hero() {
         </div>
       </div>
     </section>
+
+    {showDemoModal && <DemoModal onClose={() => setShowDemoModal(false)} />}
+    </>
   );
 }
