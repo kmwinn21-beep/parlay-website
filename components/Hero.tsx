@@ -89,7 +89,7 @@ export default function Hero() {
               href="#how-it-works"
               className="w-full sm:w-auto font-inter font-medium text-lg px-8 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"
             >
-              See How It Works
+              Explore a Live Demo
             </a>
           </div>
 
