@@ -362,7 +362,6 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
             width: "100%",
             maxWidth: 600,
             maxHeight: "90vh",
-            overflowY: "auto",
             position: "relative",
             flexShrink: 0,
           }}
