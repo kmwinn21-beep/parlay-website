@@ -330,27 +330,35 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
     <>
       <style>{`
         .parlay-demo-modal option { color: #223A5E; }
+        .parlay-demo-backdrop {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .parlay-demo-backdrop::-webkit-scrollbar { display: none; }
         @media (max-width: 767px) {
           .parlay-demo-modal input,
           .parlay-demo-modal select {
             font-size: 16px !important;
           }
+          .parlay-demo-grid-2 {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
-      {/* Backdrop */}
+      {/* Backdrop — scrollable container, scrollbar hidden */}
       <div
         onClick={handleBackdropClick}
+        className="parlay-demo-backdrop"
         style={{
           position: "fixed", inset: 0, zIndex: 1000,
           background: "rgba(17,28,46,0.7)",
           backdropFilter: "blur(4px)",
           WebkitBackdropFilter: "blur(4px)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          padding: "24px 16px",
           overflowY: "auto",
+          padding: "24px 16px",
         }}
       >
-        {/* Modal card */}
+        {/* Modal card — natural height, centered via margin */}
         <div
           role="dialog"
           aria-modal="true"
@@ -361,9 +369,8 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
             boxShadow: "0 24px 80px rgba(0,0,0,0.3)",
             width: "100%",
             maxWidth: 600,
-            maxHeight: "90vh",
+            margin: "0 auto",
             position: "relative",
-            flexShrink: 0,
           }}
         >
           {/* Header */}
@@ -405,7 +412,7 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
           {/* Form body */}
           <form onSubmit={handleSubmit} noValidate style={{ padding: "24px 28px 28px" }}>
             {/* Name row */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+            <div className="parlay-demo-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
               <Field label="First Name" required error={errors.firstName}>
                 <TextInput value={form.firstName} onChange={set("firstName")} error={!!errors.firstName} />
               </Field>
@@ -415,7 +422,7 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
             </div>
 
             {/* Title / Company row */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+            <div className="parlay-demo-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
               <Field label="Title" required error={errors.title}>
                 <TextInput value={form.title} onChange={set("title")} error={!!errors.title} />
               </Field>
@@ -461,7 +468,7 @@ export default function DemoModal({ onClose }: { onClose: () => void }) {
             <div style={{ borderTop: "1px solid #f1f5f9", margin: "18px 0 16px" }} />
 
             {/* Team size / Conf count */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+            <div className="parlay-demo-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
               <Field label="Size of Revenue Team">
                 <SelectInput value={form.teamSize} onChange={set("teamSize")} options={TEAM_SIZES} placeholder="Select" />
               </Field>
