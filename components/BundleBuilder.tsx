@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const ESSENTIALS_PRICE = { annual: 239, monthly: 299 };
@@ -133,6 +133,12 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
         marginBottom: 14,
       }}
     >
+      <style>{`
+        @media (max-width: 400px) {
+          .mode-toggle-inner { flex-direction: column !important; }
+        }
+      `}</style>
+      <div className="mode-toggle-inner" style={{ display: "flex", flex: 1, gap: 2 }}>
       {(["build", "modify"] as Mode[]).map((m) => {
         const active = mode === m;
         return (
@@ -149,17 +155,20 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
               background: active ? "white" : "transparent",
               border: "none",
               borderRadius: 7,
-              padding: "8px 16px",
+              padding: "8px 10px",
               cursor: "pointer",
               boxShadow: active ? "0 1px 3px rgba(34,58,94,0.12)" : "none",
               transition: "all 150ms",
-              whiteSpace: "nowrap",
+              whiteSpace: "normal",
+              textAlign: "center",
+              lineHeight: 1.3,
             }}
           >
             {m === "build" ? "Build from Essentials" : "Modify from Enterprise"}
           </button>
         );
       })}
+      </div>
     </div>
   );
 }
@@ -479,6 +488,9 @@ export default function BundleBuilder({ billing, onOpenTrial }: { billing: "mont
   const [mode, setMode] = useState<Mode>("build");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+  const touchStartX = useRef<number>(0);
 
   function toggle(id: string) {
     setSelected((prev: Set<string>) => {
@@ -592,7 +604,8 @@ export default function BundleBuilder({ billing, onOpenTrial }: { billing: "mont
             {mode === "build" ? "Add Feature Bundles" : "Remove Feature Bundles"}
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          {/* ── Desktop grid (lg+): independent expand per card, no height stretch ── */}
+          <div className="hidden lg:grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 10, alignItems: "start" }}>
             {BUNDLES.map((bundle) => {
               const active = isInPlan(bundle.id as BundleId, mode, selected);
               let disabled = false;
@@ -614,6 +627,69 @@ export default function BundleBuilder({ billing, onOpenTrial }: { billing: "mont
                 />
               );
             })}
+          </div>
+
+          {/* ── Mobile carousel (< lg): one card at a time, shared expand state ── */}
+          <div className="lg:hidden">
+            <div
+              style={{ overflow: "hidden" }}
+              onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                const delta = touchStartX.current - e.changedTouches[0].clientX;
+                if (delta > 40 && carouselIndex < BUNDLES.length - 1) setCarouselIndex(i => i + 1);
+                if (delta < -40 && carouselIndex > 0) setCarouselIndex(i => i - 1);
+              }}
+            >
+              <div style={{
+                display: "flex",
+                transform: `translateX(-${carouselIndex * 100}%)`,
+                transition: "transform 220ms ease",
+              }}>
+                {BUNDLES.map((bundle) => {
+                  const active = isInPlan(bundle.id as BundleId, mode, selected);
+                  let disabled = false;
+                  if (bundle.id === "program") {
+                    if (mode === "build"   && !selected.has("revenue")) disabled = true;
+                    if (mode === "modify"  &&  selected.has("revenue")) disabled = true;
+                  }
+                  return (
+                    <div key={bundle.id} style={{ flexShrink: 0, width: "100%" }}>
+                      <BundleCard
+                        bundle={bundle}
+                        active={active}
+                        mode={mode}
+                        billing={billing}
+                        onToggle={() => toggle(bundle.id)}
+                        disabled={disabled}
+                        expanded={mobileExpanded}
+                        onToggleExpand={() => setMobileExpanded((v) => !v)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Dot indicators */}
+            <div style={{ display: "flex", justifyContent: "center", gap: 6, marginTop: 12 }}>
+              {BUNDLES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCarouselIndex(i)}
+                  aria-label={`Go to bundle ${i + 1}`}
+                  style={{
+                    width: i === carouselIndex ? 18 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: i === carouselIndex ? "#34D399" : "rgba(34,58,94,0.2)",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    transition: "width 200ms, background 200ms",
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
           <p style={{ fontSize: 11, color: "#94a3b8", marginTop: 14, lineHeight: 1.5 }}>
