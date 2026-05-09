@@ -300,15 +300,15 @@ function CheckIcon({ onDark = false }: { onDark?: boolean }) {
 function BillingToggle({ billing, setBilling }: { billing: "monthly" | "annual"; setBilling: (v: "monthly" | "annual") => void }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", marginBottom: 40 }}>
-      <div style={{ display: "inline-flex", background: "#f1f5f9", borderRadius: 999, padding: 4, gap: 2 }}>
+      <div style={{ display: "inline-flex", background: "rgba(255,255,255,0.1)", borderRadius: 999, padding: 4, gap: 2 }}>
         <button
           onClick={() => setBilling("monthly")}
           style={{
             borderRadius: 999, padding: "8px 20px", fontSize: 14, fontWeight: 500,
-            background: billing === "monthly" ? "#fff" : "transparent",
-            color: billing === "monthly" ? "#223A5E" : "#64748b",
+            background: billing === "monthly" ? "rgba(255,255,255,0.15)" : "transparent",
+            color: billing === "monthly" ? "white" : "rgba(255,255,255,0.45)",
             border: "none", cursor: "pointer",
-            boxShadow: billing === "monthly" ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
+            boxShadow: billing === "monthly" ? "0 1px 4px rgba(0,0,0,0.2)" : "none",
             transition: "all 150ms",
           }}
         >
@@ -318,18 +318,18 @@ function BillingToggle({ billing, setBilling }: { billing: "monthly" | "annual";
           onClick={() => setBilling("annual")}
           style={{
             borderRadius: 999, padding: "8px 20px", fontSize: 14, fontWeight: 500,
-            background: billing === "annual" ? "#fff" : "transparent",
-            color: billing === "annual" ? "#223A5E" : "#64748b",
+            background: billing === "annual" ? "rgba(255,255,255,0.15)" : "transparent",
+            color: billing === "annual" ? "white" : "rgba(255,255,255,0.45)",
             border: "none", cursor: "pointer",
             display: "flex", alignItems: "center", gap: 6,
-            boxShadow: billing === "annual" ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
+            boxShadow: billing === "annual" ? "0 1px 4px rgba(0,0,0,0.2)" : "none",
             transition: "all 150ms",
           }}
         >
           Annual
           <span style={{
             fontSize: 11, fontWeight: 600,
-            background: "rgba(52,211,153,0.15)", color: "#059669",
+            background: "rgba(52,211,153,0.2)", color: "#34D399",
             borderRadius: 999, padding: "1px 7px",
           }}>
             Save 20%
@@ -343,7 +343,7 @@ function BillingToggle({ billing, setBilling }: { billing: "monthly" | "annual";
 // ── Section 1: Header ────────────────────────────────────────────────────────
 function PageHeader({ billing, setBilling }: { billing: "monthly" | "annual"; setBilling: (v: "monthly" | "annual") => void }) {
   return (
-    <section className="bg-white pt-32 pb-10">
+    <section className="pt-32 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 14 }}>
@@ -353,10 +353,10 @@ function PageHeader({ billing, setBilling }: { billing: "monthly" | "annual"; se
             </span>
             <div style={{ width: 32, height: 1, background: "#34D399" }} />
           </div>
-          <h1 className="font-playfair" style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 700, color: "#223A5E", letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 16, maxWidth: 680, margin: "0 auto 16px" }}>
+          <h1 className="font-playfair" style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 700, color: "white", letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 16, maxWidth: 680, margin: "0 auto 16px" }}>
             Find the right plan for your conference program
           </h1>
-          <p className="font-inter" style={{ fontSize: 17, color: "#475569", maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.7 }}>
+          <p className="font-inter" style={{ fontSize: 17, color: "rgba(255,255,255,0.7)", maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.7 }}>
             Every plan includes unlimited users, unlimited conferences, and unlimited attendees. The difference is the depth of intelligence your program needs.
           </p>
         </div>
@@ -369,14 +369,14 @@ function PageHeader({ billing, setBilling }: { billing: "monthly" | "annual"; se
 // ── Section 2: Plan cards ────────────────────────────────────────────────────
 function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
   return (
-    <section className="bg-white pb-24">
+    <section className="pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div style={{ paddingTop: 20 }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 20, alignItems: "stretch" }}>
             {PLANS_DATA.map((plan) => {
               const price = plan.id === "custom" ? null : PLAN_PRICES[plan.id as keyof typeof PLAN_PRICES];
               const displayPrice = price ? (billing === "annual" ? price.annual : price.monthly) : null;
-              const onDark = plan.featured;
+              const onDark = true; // all cards on dark page bg
 
               return (
                 <div
@@ -384,9 +384,13 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
                   style={{
                     display: "flex", flexDirection: "column",
                     borderRadius: 14, padding: 28, position: "relative",
-                    background: onDark ? "#223A5E" : "#fff",
-                    border: onDark ? "none" : "1px solid rgba(34,58,94,0.12)",
-                    boxShadow: onDark ? "0 8px 32px rgba(34,58,94,0.2)" : "none",
+                    background: plan.featured ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.06)",
+                    border: plan.featured
+                      ? "1px solid rgba(52,211,153,0.45)"
+                      : "1px solid rgba(255,255,255,0.1)",
+                    boxShadow: plan.featured
+                      ? "0 0 0 1px rgba(52,211,153,0.15), 0 8px 40px rgba(0,0,0,0.25), 0 0 60px rgba(255,255,255,0.04)"
+                      : "none",
                   }}
                 >
                   {plan.featured && (
@@ -452,7 +456,7 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
                         display: "block", textAlign: "center", fontSize: 14, fontWeight: 600,
                         padding: "11px 0", borderRadius: 9, textDecoration: "none",
                         ...(plan.custom
-                          ? { background: "transparent", color: onDark ? "#fff" : "#223A5E", border: `1.5px solid ${onDark ? "rgba(255,255,255,0.3)" : "#223A5E"}` }
+                          ? { background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)" }
                           : plan.featured
                             ? { background: "#34D399", color: "#064e3b", border: "none" }
                             : { background: "#34D399", color: "#064e3b", border: "none" }
@@ -477,9 +481,9 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
         </div>
 
         {/* Footer note */}
-        <div style={{ marginTop: 24, background: "#f8fafc", border: "1px solid rgba(34,58,94,0.08)", borderRadius: 10, padding: "14px 20px", textAlign: "center" }}>
-          <p className="font-inter" style={{ fontSize: 13, color: "#64748b" }}>
-            All self-serve plans include a <strong>14-day free trial</strong>. No credit card required to start.
+        <div style={{ marginTop: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "14px 20px", textAlign: "center" }}>
+          <p className="font-inter" style={{ fontSize: 13, color: "rgba(255,255,255,0.55)" }}>
+            All self-serve plans include a <strong style={{ color: "rgba(255,255,255,0.8)" }}>14-day free trial</strong>. No credit card required to start.
           </p>
         </div>
       </div>
@@ -490,7 +494,7 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 // ── Section 3: Bundle pricing ─────────────────────────────────────────────────
 function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
   return (
-    <section className="bg-brand-light py-24">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <BundleBuilder billing={billing} />
@@ -507,14 +511,14 @@ function ComparisonTable() {
   const COL_LABELS = ["Essentials", "Professional", "Enterprise", "Custom"];
 
   return (
-    <section className="bg-white py-24">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h2 className="font-playfair" style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700, color: "#223A5E", marginBottom: 10 }}>
+          <h2 className="font-playfair" style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700, color: "white", marginBottom: 10 }}>
             Full feature comparison
           </h2>
-          <p className="font-inter" style={{ fontSize: 14, color: "#94a3b8" }}>
+          <p className="font-inter" style={{ fontSize: 14, color: "rgba(255,255,255,0.5)" }}>
             All plans include unlimited users, conferences, and attendees.
           </p>
         </div>
@@ -525,7 +529,7 @@ function ComparisonTable() {
             className="font-inter"
             style={{
               background: "none", border: "none", cursor: "pointer",
-              fontSize: 15, fontWeight: 500, color: "#223A5E",
+              fontSize: 15, fontWeight: 500, color: "rgba(255,255,255,0.75)",
               display: "flex", alignItems: "center", gap: 6,
               padding: "8px 0",
               textDecoration: "underline", textUnderlineOffset: 3,
@@ -536,15 +540,15 @@ function ComparisonTable() {
         </div>
 
         {open && (
-          <div style={{ overflowX: "auto" }}>
+          <div style={{ overflowX: "auto", borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640, fontSize: 13 }}>
               <thead>
-                <tr style={{ borderBottom: "2px solid rgba(34,58,94,0.12)" }}>
-                  <th style={{ textAlign: "left", padding: "12px 16px", fontSize: 12, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", position: "sticky", left: 0, background: "white", minWidth: 220 }}>
+                <tr style={{ borderBottom: "2px solid rgba(255,255,255,0.1)" }}>
+                  <th style={{ textAlign: "left", padding: "12px 16px", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.06em", position: "sticky", left: 0, background: "#223A5E", minWidth: 220 }}>
                     Feature
                   </th>
                   {COL_LABELS.map((label) => (
-                    <th key={label} style={{ textAlign: "center", padding: "12px 16px", fontSize: 13, fontWeight: 700, color: "#223A5E", minWidth: 120 }}>
+                    <th key={label} style={{ textAlign: "center", padding: "12px 16px", fontSize: 13, fontWeight: 700, color: "white", minWidth: 120 }}>
                       {label}
                     </th>
                   ))}
@@ -560,33 +564,36 @@ function ComparisonTable() {
                           padding: "14px 16px 8px",
                           fontSize: 11, fontWeight: 700, textTransform: "uppercase",
                           letterSpacing: "0.08em", color: "#34D399",
-                          background: "#f8fafc",
-                          borderTop: "1px solid rgba(34,58,94,0.08)",
+                          background: "rgba(255,255,255,0.05)",
+                          borderTop: "1px solid rgba(255,255,255,0.07)",
                           position: "sticky", left: 0,
                         }}
                       >
                         {group.group}
                       </td>
                     </tr>
-                    {group.rows.map((row, ri) => (
-                      <tr key={row.feature} style={{ borderBottom: "1px solid rgba(34,58,94,0.06)", background: ri % 2 === 0 ? "white" : "#fafbfc" }}>
-                        <td style={{ padding: "10px 16px", color: "#475569", fontWeight: 400, position: "sticky", left: 0, background: ri % 2 === 0 ? "white" : "#fafbfc" }}>
-                          {row.feature}
-                        </td>
-                        {COLS.map((col) => (
-                          <td key={col} style={{ textAlign: "center", padding: "10px 16px" }}>
-                            {row[col] ? (
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ display: "inline-block" }} aria-label="Included">
-                                <circle cx="9" cy="9" r="8" fill="rgba(52,211,153,0.15)" />
-                                <path d="M5.5 9l2.5 2.5 4.5-5" stroke="#34D399" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            ) : (
-                              <span style={{ color: "#cbd5e1", fontSize: 16 }}>—</span>
-                            )}
+                    {group.rows.map((row, ri) => {
+                      const rowBg = ri % 2 === 0 ? "transparent" : "rgba(255,255,255,0.03)";
+                      return (
+                        <tr key={row.feature} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", background: rowBg }}>
+                          <td style={{ padding: "10px 16px", color: "rgba(255,255,255,0.7)", fontWeight: 400, position: "sticky", left: 0, background: "#223A5E" }}>
+                            {row.feature}
                           </td>
-                        ))}
-                      </tr>
-                    ))}
+                          {COLS.map((col) => (
+                            <td key={col} style={{ textAlign: "center", padding: "10px 16px" }}>
+                              {row[col] ? (
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ display: "inline-block" }} aria-label="Included">
+                                  <circle cx="9" cy="9" r="8" fill="rgba(52,211,153,0.2)" />
+                                  <path d="M5.5 9l2.5 2.5 4.5-5" stroke="#34D399" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              ) : (
+                                <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 16 }}>—</span>
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      );
+                    })}
                   </Fragment>
                 ))}
               </tbody>
@@ -611,7 +618,7 @@ function FAQ() {
   }
 
   return (
-    <section className="bg-brand-light py-24">
+    <section className="py-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 14 }}>
@@ -619,7 +626,7 @@ function FAQ() {
             <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#34D399" }}>FAQ</span>
             <div style={{ width: 32, height: 1, background: "#34D399" }} />
           </div>
-          <h2 className="font-playfair" style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700, color: "#223A5E" }}>
+          <h2 className="font-playfair" style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700, color: "white" }}>
             Common questions
           </h2>
         </div>
@@ -628,7 +635,7 @@ function FAQ() {
           {FAQ_ITEMS.map((item, i) => {
             const isOpen = openItems.has(i);
             return (
-              <div key={i} style={{ borderBottom: "1px solid rgba(34,58,94,0.1)" }}>
+              <div key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
                 <button
                   onClick={() => toggleItem(i)}
                   className="font-inter"
@@ -638,11 +645,11 @@ function FAQ() {
                     textAlign: "left", gap: 16,
                   }}
                 >
-                  <span style={{ fontSize: 16, fontWeight: 600, color: "#223A5E", lineHeight: 1.4 }}>{item.q}</span>
+                  <span style={{ fontSize: 16, fontWeight: 600, color: "white", lineHeight: 1.4 }}>{item.q}</span>
                   <span style={{ fontSize: 18, color: "#34D399", flexShrink: 0, fontWeight: 300, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 200ms" }}>+</span>
                 </button>
                 {isOpen && (
-                  <p className="font-inter" style={{ fontSize: 15, color: "#475569", lineHeight: 1.75, paddingBottom: 20 }}>
+                  <p className="font-inter" style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, paddingBottom: 20 }}>
                     {item.a}
                   </p>
                 )}
