@@ -108,11 +108,12 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
       role="radiogroup"
       aria-label="Calculator mode"
       style={{
-        display: "inline-flex",
+        display: "flex",
         background: "#f1f5f9",
         borderRadius: 10,
         padding: 3,
         gap: 2,
+        marginBottom: 14,
       }}
     >
       {(["build", "modify"] as Mode[]).map((m) => {
@@ -124,6 +125,7 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
             aria-checked={active}
             onClick={() => onSwitch(m)}
             style={{
+              flex: 1,
               fontSize: 12,
               fontWeight: active ? 600 : 400,
               color: active ? "#223A5E" : "#94a3b8",
@@ -503,36 +505,42 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
       borderRadius: 16,
       overflow: "hidden",
     }}>
-      {/* ── Section header ────────────────────────────────────────────────── */}
-      <div style={{ padding: "32px 36px 28px" }}>
-        <p style={{
-          fontSize: 12, fontWeight: 700, letterSpacing: "0.1em",
-          textTransform: "uppercase", color: "#34D399", marginBottom: 10,
-        }}>
-          Custom Tier
-        </p>
-        <h2 className="font-playfair" style={{
-          fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700,
-          color: "#223A5E", letterSpacing: "-0.02em", marginBottom: 10,
-        }}>
-          Or build your own
-        </h2>
-        <p className="font-inter" style={{ fontSize: 15, color: "#475569", maxWidth: 580, lineHeight: 1.7, marginBottom: 24 }}>
-          Not every conference program needs everything. Start with the feature bundles your team actually uses. When your selection reaches the Enterprise threshold, we&apos;ll tell you.
-        </p>
+      {/* ── Section header: 2-col grid matching body columns ─────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-4">
 
-        {/* Mode toggle + running total above the divider */}
-        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <ModeToggle mode={mode} onSwitch={(m: Mode) => setMode(m)} />
-          <div style={{ flex: 1, minWidth: 260 }}>
-            <RunningTotal
-              mode={mode}
-              planTotal={planTotal}
-              enterpriseTotal={enterpriseTotal}
-              billing={billing}
-            />
-          </div>
+        {/* Left: text */}
+        <div className="lg:col-span-2" style={{ padding: "32px 32px 28px" }}>
+          <p style={{
+            fontSize: 12, fontWeight: 700, letterSpacing: "0.1em",
+            textTransform: "uppercase", color: "#34D399", marginBottom: 10,
+          }}>
+            Custom Tier
+          </p>
+          <h2 className="font-playfair" style={{
+            fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 700,
+            color: "#223A5E", letterSpacing: "-0.02em", marginBottom: 10,
+          }}>
+            Or build your own
+          </h2>
+          <p className="font-inter" style={{ fontSize: 15, color: "#475569", lineHeight: 1.7 }}>
+            Not every conference program needs everything. Start with the feature bundles your team actually uses. When your selection reaches the Enterprise threshold, we&apos;ll tell you.
+          </p>
         </div>
+
+        {/* Right: mode toggle + running total */}
+        <div
+          className="lg:col-span-2 bundle-builder-right"
+          style={{ padding: "32px 32px 28px", display: "flex", flexDirection: "column", justifyContent: "center" }}
+        >
+          <ModeToggle mode={mode} onSwitch={(m: Mode) => setMode(m)} />
+          <RunningTotal
+            mode={mode}
+            planTotal={planTotal}
+            enterpriseTotal={enterpriseTotal}
+            billing={billing}
+          />
+        </div>
+
       </div>
 
       {/* ── Divider ────────────────────────────────────────────────────────── */}
