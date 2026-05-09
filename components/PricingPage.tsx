@@ -493,17 +493,6 @@ function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
     <section className="bg-brand-light py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section header */}
-        <p className="font-inter" style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#34D399", marginBottom: 12 }}>
-          CUSTOM TIER
-        </p>
-        <h2 className="font-playfair" style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, color: "#223A5E", letterSpacing: "-0.02em", marginBottom: 12 }}>
-          Or build your own
-        </h2>
-        <p className="font-inter" style={{ fontSize: 16, color: "#475569", maxWidth: 640, lineHeight: 1.7, marginBottom: 48 }}>
-          Not every conference program needs everything. Start with the feature bundles your team actually uses. When your selection reaches the Enterprise threshold, we&apos;ll tell you.
-        </p>
-
         <BundleBuilder billing={billing} />
 
       </div>
