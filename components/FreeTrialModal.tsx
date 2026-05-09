@@ -564,12 +564,25 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
               {/* CASE 2: No plan yet → 3-card picker */}
               {!activePlan && (
                 <div>
-                  <p style={{
-                    fontSize: 11, fontWeight: 600, color: "#94a3b8",
-                    textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10,
-                  }}>
-                    Select a plan to get started
-                  </p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                    <p style={{
+                      fontSize: 11, fontWeight: 600, color: "#94a3b8",
+                      textTransform: "uppercase", letterSpacing: "0.08em", margin: 0,
+                    }}>
+                      Select a plan to get started
+                    </p>
+                    <button
+                      onClick={handleBuildOwn}
+                      style={{
+                        fontSize: 12, fontWeight: 500,
+                        color: "rgb(34,58,94)",
+                        background: "none", border: "none",
+                        padding: "0", cursor: "pointer",
+                      }}
+                    >
+                      Build Your Own →
+                    </button>
+                  </div>
                   <div
                     className="parlay-trial-plan-row"
                     style={{ display: "flex", gap: 10 }}
@@ -586,19 +599,6 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                         onClick={() => setPickedPlan(p.id)}
                       />
                     ))}
-                  </div>
-                  <div style={{ textAlign: "center", marginTop: 12 }}>
-                    <button
-                      onClick={handleBuildOwn}
-                      style={{
-                        fontSize: 12, fontWeight: 500, color: "#64748b",
-                        background: "none", border: "1px solid #e2e8f0",
-                        borderRadius: 8, padding: "7px 16px", cursor: "pointer",
-                        transition: "border-color 150ms, color 150ms",
-                      }}
-                    >
-                      Build Your Own →
-                    </button>
                   </div>
                 </div>
               )}
