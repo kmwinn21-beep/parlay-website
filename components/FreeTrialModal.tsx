@@ -379,7 +379,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
       return;
     }
 
-    fetch("https://formspree.io/f/meenlpyl", {
+    fetch("https://formspree.io/f/xdabwpwl", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
