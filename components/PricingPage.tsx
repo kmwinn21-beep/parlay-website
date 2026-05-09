@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import BundleBuilder from "./BundleBuilder";
 import FreeTrialModal from "./FreeTrialModal";
 
