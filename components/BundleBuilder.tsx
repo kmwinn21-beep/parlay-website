@@ -108,12 +108,11 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
       role="radiogroup"
       aria-label="Calculator mode"
       style={{
-        display: "flex",
+        display: "inline-flex",
         background: "#f1f5f9",
         borderRadius: 10,
         padding: 3,
         gap: 2,
-        marginBottom: 14,
       }}
     >
       {(["build", "modify"] as Mode[]).map((m) => {
@@ -125,14 +124,13 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
             aria-checked={active}
             onClick={() => onSwitch(m)}
             style={{
-              flex: 1,
               fontSize: 12,
               fontWeight: active ? 600 : 400,
               color: active ? "#223A5E" : "#94a3b8",
               background: active ? "white" : "transparent",
               border: "none",
               borderRadius: 7,
-              padding: "8px 10px",
+              padding: "8px 16px",
               cursor: "pointer",
               boxShadow: active ? "0 1px 3px rgba(34,58,94,0.12)" : "none",
               transition: "all 150ms",
@@ -172,7 +170,7 @@ function RunningTotal({
   const showExceeded    = mode === "build" && diff <= 0;
 
   return (
-    <div style={{ marginBottom: 14 }}>
+    <div>
       <div
         style={{
           display: "grid",
@@ -519,9 +517,22 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
         }}>
           Or build your own
         </h2>
-        <p className="font-inter" style={{ fontSize: 15, color: "#475569", maxWidth: 580, lineHeight: 1.7 }}>
+        <p className="font-inter" style={{ fontSize: 15, color: "#475569", maxWidth: 580, lineHeight: 1.7, marginBottom: 24 }}>
           Not every conference program needs everything. Start with the feature bundles your team actually uses. When your selection reaches the Enterprise threshold, we&apos;ll tell you.
         </p>
+
+        {/* Mode toggle + running total above the divider */}
+        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+          <ModeToggle mode={mode} onSwitch={(m: Mode) => setMode(m)} />
+          <div style={{ flex: 1, minWidth: 260 }}>
+            <RunningTotal
+              mode={mode}
+              planTotal={planTotal}
+              enterpriseTotal={enterpriseTotal}
+              billing={billing}
+            />
+          </div>
+        </div>
       </div>
 
       {/* ── Divider ────────────────────────────────────────────────────────── */}
@@ -581,15 +592,6 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
             }}>
               Your Plan
             </p>
-
-            <ModeToggle mode={mode} onSwitch={(m: Mode) => setMode(m)} />
-
-            <RunningTotal
-              mode={mode}
-              planTotal={planTotal}
-              enterpriseTotal={enterpriseTotal}
-              billing={billing}
-            />
 
             {/* Plan container: gray bg, fixed-position white card slots */}
             <div style={{

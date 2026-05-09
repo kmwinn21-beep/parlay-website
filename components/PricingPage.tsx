@@ -361,6 +361,24 @@ function PageHeader({ billing, setBilling }: { billing: "monthly" | "annual"; se
           </p>
         </div>
         <BillingToggle billing={billing} setBilling={setBilling} />
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <a
+            href="#bundle-builder"
+            style={{
+              display: "inline-block",
+              fontSize: 14, fontWeight: 500,
+              color: "rgba(255,255,255,0.8)",
+              background: "rgba(255,255,255,0.1)",
+              borderRadius: 999,
+              padding: "10px 24px",
+              textDecoration: "none",
+              transition: "background 150ms",
+            }}
+          >
+            Build Your Own Plan →
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -384,12 +402,12 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
                   style={{
                     display: "flex", flexDirection: "column",
                     borderRadius: 14, padding: 28, position: "relative",
-                    background: plan.featured ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.06)",
+                    background: "rgba(255,255,255,0.06)",
                     border: plan.featured
-                      ? "1px solid rgba(52,211,153,0.45)"
+                      ? "3px solid #34D399"
                       : "1px solid rgba(255,255,255,0.1)",
                     boxShadow: plan.featured
-                      ? "0 0 0 1px rgba(52,211,153,0.15), 0 8px 40px rgba(0,0,0,0.25), 0 0 60px rgba(255,255,255,0.04)"
+                      ? "0 8px 40px rgba(0,0,0,0.25)"
                       : "none",
                   }}
                 >
@@ -494,7 +512,7 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 // ── Section 3: Bundle pricing ─────────────────────────────────────────────────
 function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
   return (
-    <section className="py-24">
+    <section id="bundle-builder" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <BundleBuilder billing={billing} />
