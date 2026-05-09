@@ -670,6 +670,42 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
                 );
               })}
             </div>
+
+            {/* CTA: appears once any bundle has been toggled */}
+            {selected.size > 0 && (
+              <div style={{ marginTop: 12 }}>
+                <a
+                  href="/signup"
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    textAlign: "center",
+                    background: "#34D399",
+                    color: "#0f2d1f",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    borderRadius: 10,
+                    padding: "13px 20px",
+                    textDecoration: "none",
+                    boxShadow: "0 4px 16px rgba(52,211,153,0.35)",
+                    transition: "background 150ms, box-shadow 150ms",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = "#2ec48a";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 20px rgba(52,211,153,0.45)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = "#34D399";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 16px rgba(52,211,153,0.35)";
+                  }}
+                >
+                  Save &amp; Start Free Trial →
+                </a>
+                <p style={{ fontSize: 11, color: "#94a3b8", textAlign: "center", marginTop: 8 }}>
+                  No credit card required · 14-day free trial
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
