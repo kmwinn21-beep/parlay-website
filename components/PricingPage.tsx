@@ -1,8 +1,11 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import Link from "next/link";
 import BundleBuilder from "./BundleBuilder";
+import FreeTrialModal from "./FreeTrialModal";
+
+type TrialPlanId = "essentials" | "professional" | "enterprise" | "custom";
+interface TrialModalState { plan: TrialPlanId | null; customPrice?: number; }
 
 // ── Price constants — update here to change everywhere ───────────────────────
 const PLAN_PRICES = {
@@ -385,7 +388,7 @@ function PageHeader({ billing, setBilling }: { billing: "monthly" | "annual"; se
 }
 
 // ── Section 2: Plan cards ────────────────────────────────────────────────────
-function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
+function PlanCards({ billing, onOpenTrial }: { billing: "monthly" | "annual"; onOpenTrial: (plan: TrialPlanId) => void }) {
   return (
     <section className="pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -394,7 +397,7 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
             {PLANS_DATA.map((plan) => {
               const price = plan.id === "custom" ? null : PLAN_PRICES[plan.id as keyof typeof PLAN_PRICES];
               const displayPrice = price ? (billing === "annual" ? price.annual : price.monthly) : null;
-              const onDark = true; // all cards on dark page bg
+              const onDark = true;
 
               return (
                 <div
@@ -468,28 +471,38 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 
                   {/* CTA */}
                   <div style={{ marginTop: "auto" }}>
-                    <Link
-                      href={plan.ctaHref}
-                      style={{
-                        display: "block", textAlign: "center", fontSize: 14, fontWeight: 600,
-                        padding: "11px 0", borderRadius: 9, textDecoration: "none",
-                        ...(plan.custom
-                          ? { background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)" }
-                          : plan.featured
-                            ? { background: "#34D399", color: "#064e3b", border: "none" }
-                            : { background: "#34D399", color: "#064e3b", border: "none" }
-                        ),
-                      }}
-                    >
-                      {plan.cta}
-                    </Link>
+                    {plan.custom ? (
+                      <a
+                        href="/contact-sales"
+                        style={{
+                          display: "block", textAlign: "center", fontSize: 14, fontWeight: 600,
+                          padding: "11px 0", borderRadius: 9, textDecoration: "none",
+                          background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)",
+                        }}
+                      >
+                        {plan.cta}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => onOpenTrial(plan.id as TrialPlanId)}
+                        style={{
+                          display: "block", width: "100%", textAlign: "center",
+                          fontSize: 14, fontWeight: 600,
+                          padding: "11px 0", borderRadius: 9,
+                          background: "#34D399", color: "#064e3b", border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {plan.cta}
+                      </button>
+                    )}
                     {"secondaryCta" in plan && (
-                      <Link
+                      <a
                         href={(plan as { secondaryHref: string }).secondaryHref}
-                        style={{ display: "block", textAlign: "center", fontSize: 13, color: onDark ? "rgba(255,255,255,0.45)" : "#64748b", textDecoration: "none", marginTop: 12, fontWeight: 500 }}
+                        style={{ display: "block", textAlign: "center", fontSize: 13, color: "rgba(255,255,255,0.45)", textDecoration: "none", marginTop: 12, fontWeight: 500 }}
                       >
                         {(plan as { secondaryCta: string }).secondaryCta}
-                      </Link>
+                      </a>
                     )}
                   </div>
                 </div>
@@ -510,12 +523,12 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 }
 
 // ── Section 3: Bundle pricing ─────────────────────────────────────────────────
-function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
+function BundleSection({ billing, onOpenTrial }: { billing: "monthly" | "annual"; onOpenTrial: (price: number) => void }) {
   return (
     <section id="bundle-builder" className="pt-8 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <BundleBuilder billing={billing} />
+        <BundleBuilder billing={billing} onOpenTrial={onOpenTrial} />
 
       </div>
     </section>
@@ -683,14 +696,32 @@ function FAQ() {
 // ── Main export ───────────────────────────────────────────────────────────────
 export default function PricingPage() {
   const [billing, setBilling] = useState<"monthly" | "annual">("annual");
+  const [trialModal, setTrialModal] = useState<TrialModalState | null>(null);
+
+  function openPlanTrial(plan: TrialPlanId) {
+    setTrialModal({ plan });
+  }
+
+  function openCustomTrial(price: number) {
+    setTrialModal({ plan: "custom", customPrice: price });
+  }
 
   return (
     <>
       <PageHeader billing={billing} setBilling={setBilling} />
-      <PlanCards billing={billing} />
-      <BundleSection billing={billing} />
+      <PlanCards billing={billing} onOpenTrial={openPlanTrial} />
+      <BundleSection billing={billing} onOpenTrial={openCustomTrial} />
       <ComparisonTable />
       <FAQ />
+
+      {trialModal && (
+        <FreeTrialModal
+          initialPlan={trialModal.plan}
+          customPrice={trialModal.customPrice}
+          billing={billing}
+          onClose={() => setTrialModal(null)}
+        />
+      )}
     </>
   );
 }

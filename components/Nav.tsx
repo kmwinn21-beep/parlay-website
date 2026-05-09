@@ -79,12 +79,12 @@ export default function Nav() {
             >
               Sign In
             </a>
-            <Link
-              href="/signup?plan=professional"
+            <button
+              onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
               className="font-inter text-sm font-semibold px-4 py-2 rounded-lg bg-brand-teal text-brand-charcoal hover:bg-brand-glow transition-colors duration-200"
             >
               Start Free Trial
-            </Link>
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -167,12 +167,12 @@ export default function Nav() {
             Sign In
           </a>
           <div className="pt-2">
-            <Link
-              href="/signup?plan=professional"
+            <button
+              onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("parlay:open-trial")); }}
               className="block w-full text-center bg-brand-teal text-brand-charcoal font-inter font-semibold px-4 py-3 rounded-lg hover:bg-brand-glow transition-colors"
             >
               Start Free Trial
-            </Link>
+            </button>
           </div>
         </div>
       </div>

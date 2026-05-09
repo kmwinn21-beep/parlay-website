@@ -475,7 +475,7 @@ function BundleCard({
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
-export default function BundleBuilder({ billing }: { billing: "monthly" | "annual" }) {
+export default function BundleBuilder({ billing, onOpenTrial }: { billing: "monthly" | "annual"; onOpenTrial?: (price: number) => void }) {
   const [mode, setMode] = useState<Mode>("build");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
@@ -674,8 +674,8 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
             {/* CTA: appears once any bundle has been toggled */}
             {selected.size > 0 && (
               <div style={{ marginTop: 12 }}>
-                <a
-                  href="/signup"
+                <button
+                  onClick={() => onOpenTrial?.(planTotal)}
                   style={{
                     display: "block",
                     width: "100%",
@@ -686,21 +686,22 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
                     fontSize: 14,
                     borderRadius: 10,
                     padding: "13px 20px",
-                    textDecoration: "none",
+                    border: "none",
+                    cursor: "pointer",
                     boxShadow: "0 4px 16px rgba(52,211,153,0.35)",
                     transition: "background 150ms, box-shadow 150ms",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "#2ec48a";
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 20px rgba(52,211,153,0.45)";
+                    (e.currentTarget as HTMLButtonElement).style.background = "#2ec48a";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px rgba(52,211,153,0.45)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "#34D399";
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 16px rgba(52,211,153,0.35)";
+                    (e.currentTarget as HTMLButtonElement).style.background = "#34D399";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(52,211,153,0.35)";
                   }}
                 >
                   Save &amp; Start Free Trial →
-                </a>
+                </button>
                 <p style={{ fontSize: 11, color: "#94a3b8", textAlign: "center", marginTop: 8 }}>
                   No credit card required · 14-day free trial
                 </p>
