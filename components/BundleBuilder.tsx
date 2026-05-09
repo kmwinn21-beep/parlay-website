@@ -133,6 +133,12 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
         marginBottom: 14,
       }}
     >
+      <style>{`
+        @media (max-width: 400px) {
+          .mode-toggle-inner { flex-direction: column !important; }
+        }
+      `}</style>
+      <div className="mode-toggle-inner" style={{ display: "flex", flex: 1, gap: 2 }}>
       {(["build", "modify"] as Mode[]).map((m) => {
         const active = mode === m;
         return (
@@ -149,17 +155,20 @@ function ModeToggle({ mode, onSwitch }: { mode: Mode; onSwitch: (m: Mode) => voi
               background: active ? "white" : "transparent",
               border: "none",
               borderRadius: 7,
-              padding: "8px 16px",
+              padding: "8px 10px",
               cursor: "pointer",
               boxShadow: active ? "0 1px 3px rgba(34,58,94,0.12)" : "none",
               transition: "all 150ms",
-              whiteSpace: "nowrap",
+              whiteSpace: "normal",
+              textAlign: "center",
+              lineHeight: 1.3,
             }}
           >
             {m === "build" ? "Build from Essentials" : "Modify from Enterprise"}
           </button>
         );
       })}
+      </div>
     </div>
   );
 }
