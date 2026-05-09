@@ -19,6 +19,7 @@ const BUNDLES = [
       "AI-powered prospect recommendations",
       "Internal relationship mapping (20% of scoring weight)",
     ],
+    shortBullets: ["ICP Rules Engine", "Target Priority Scoring", "Prospect Recommendations", "Internal Relationship Mapping"],
   },
   {
     id: "floor",
@@ -29,6 +30,7 @@ const BUNDLES = [
       "Floor Notes — capture now, assign later",
       "Auto follow-up triggers on touchpoint creation",
     ],
+    shortBullets: ["AI Card & Badge Scanning", "Floor Notes", "Auto Follow-up Triggers"],
   },
   {
     id: "collab",
@@ -38,6 +40,7 @@ const BUNDLES = [
       "Direct and group messaging",
       "Rich notes with @mentions, comments, and emoji reactions",
     ],
+    shortBullets: ["Direct & group messaging", "Rich notes"],
   },
   {
     id: "revenue",
@@ -48,6 +51,7 @@ const BUNDLES = [
       "Budget tracking and ROI modeling",
       "Configurable effectiveness benchmarks",
     ],
+    shortBullets: ["Effectiveness Analytics", "Budget Tracking & ROI", "Configurable Benchmarks"],
   },
   {
     id: "program",
@@ -59,6 +63,7 @@ const BUNDLES = [
       "Rep performance across all conferences",
       "Pipeline attribution by conference",
     ],
+    shortBullets: ["Global Reporting", "Rep Performance", "Pipeline Attribution"],
   },
   {
     id: "org",
@@ -69,6 +74,7 @@ const BUNDLES = [
       "Form builder and lead capture",
       "Role scope configuration matrix",
     ],
+    shortBullets: ["Brand Customization", "Form Builder & Lead Capture", "Role Scope Matrix"],
   },
   {
     id: "crm",
@@ -79,6 +85,7 @@ const BUNDLES = [
       "Campaign attribution mapping",
       "Company type filtering on export",
     ],
+    shortBullets: ["HubSpot & Salesforce CSV", "Campaign Attribution"],
   },
 ] as const;
 
@@ -97,6 +104,16 @@ function CheckIcon() {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true">
       <circle cx="8" cy="8" r="7" fill="rgba(52,211,153,0.15)" />
       <path d="M5 8l2 2 4-4" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ── Mini check icon (used inside plan slot feature lists) ─────────────────────
+function MiniCheckIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true">
+      <circle cx="6" cy="6" r="5.5" fill="rgba(52,211,153,0.15)" />
+      <path d="M3.5 6l1.5 1.5 3-3" stroke="#34D399" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -246,6 +263,7 @@ function PlanSlot({
   billingLabel,
   mode,
   isBase = false,
+  shortBullets,
 }: {
   filled: boolean;
   label: string;
@@ -253,6 +271,7 @@ function PlanSlot({
   billingLabel: string;
   mode: Mode;
   isBase?: boolean;
+  shortBullets?: readonly string[];
 }) {
   const borderColor = mode === "build"
     ? "rgba(52,211,153,0.5)"
@@ -276,32 +295,47 @@ function PlanSlot({
     );
   }
 
+  const visibleBullets = shortBullets ? shortBullets.slice(0, 4) : [];
+
   return (
     <div style={{
-      height: BLOCK_HEIGHT,
       flexShrink: 0,
       background: "white",
       border: `1.5px solid ${isBase ? baseBorderColor : borderColor}`,
       borderRadius: 8,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "0 14px",
+      padding: "10px 14px",
       boxShadow: "0 1px 3px rgba(34,58,94,0.07)",
     }}>
-      <div>
+      {/* Header row: name + price */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: visibleBullets.length > 0 ? 8 : 0 }}>
         <p style={{
           fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-          letterSpacing: "0.07em", color: "#94a3b8", lineHeight: 1, marginBottom: 4,
+          letterSpacing: "0.07em", color: "#94a3b8", lineHeight: 1,
         }}>
           {label}
         </p>
         {price !== undefined && (
-          <p style={{ fontSize: 15, fontWeight: 700, color: "#223A5E", lineHeight: 1, letterSpacing: "-0.01em" }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: "#223A5E", lineHeight: 1, letterSpacing: "-0.01em" }}>
             ${price}<span style={{ fontSize: 10, fontWeight: 400, color: "#94a3b8", marginLeft: 2 }}>{billingLabel}</span>
           </p>
         )}
       </div>
+
+      {/* Feature grid: 2 columns, up to 2 rows each */}
+      {visibleBullets.length > 0 && (
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "4px 8px",
+        }}>
+          {visibleBullets.map((bullet) => (
+            <div key={bullet} style={{ display: "flex", alignItems: "flex-start", gap: 4 }}>
+              <MiniCheckIcon />
+              <span style={{ fontSize: 10, color: "#475569", lineHeight: 1.4 }}>{bullet}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -631,6 +665,7 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
                     price={active ? bundle[billing] : undefined}
                     billingLabel={billingLabel}
                     mode={mode}
+                    shortBullets={bundle.shortBullets}
                   />
                 );
               })}
