@@ -531,7 +531,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 14 days. Full access. No credit card.
               </h2>
               <p style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.55, margin: 0, maxWidth: 500 }}>
-                Got a conference coming up? Upload your attendee list and arrive with a targeting strategy. <em style={{ color: "rgba(255,255,255,0.5)" }}>Planning next year&apos;s calendar? Upload past conference lists and let the scoring engines tell you which events are worth going back to.</em>
+                Got a conference coming up? Upload your attendee list and arrive with a targeting strategy.
               </p>
             </div>
 
