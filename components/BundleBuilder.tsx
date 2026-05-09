@@ -539,7 +539,7 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
             {mode === "build" ? "Add Feature Bundles" : "Remove Feature Bundles"}
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             {BUNDLES.map((bundle) => {
               const active = isInPlan(bundle.id as BundleId, mode, selected);
               let disabled = false;
