@@ -581,7 +581,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                         padding: "0", cursor: "pointer",
                       }}
                     >
-                      Build Your Own →
+                      Customize
                     </button>
                   </div>
                   <div
@@ -744,7 +744,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     transition: "background 150ms",
                   }}
                 >
-                  Create Parlay Account &amp; Begin Free Trial →
+                  Create Parlay Account &amp; Start Trial →
                 </button>
               </div>
             </form>
