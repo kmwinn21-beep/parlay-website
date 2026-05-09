@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
@@ -13,6 +14,11 @@ const NAV_LINKS = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  function featuresHref() {
+    return pathname === "/pricing" ? "#feature-comparison" : "#features";
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -64,15 +70,28 @@ export default function Nav() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              if (link.label === "Features" && pathname === "/pricing") {
+                return (
+                  <button
+                    key="features-pricing"
+                    onClick={() => window.dispatchEvent(new CustomEvent("parlay:show-comparison"))}
+                    className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.label === "Features" ? featuresHref() : link.href}
+                  className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <a
               href="https://work.useparlay.app"
               className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
@@ -150,16 +169,29 @@ export default function Nav() {
         } bg-white border-t border-gray-100 shadow-lg`}
       >
         <div className="px-4 py-4 space-y-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            if (link.label === "Features" && pathname === "/pricing") {
+              return (
+                <button
+                  key="features-pricing-mobile"
+                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent("parlay:show-comparison")); }}
+                  className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
+                >
+                  {link.label}
+                </button>
+              );
+            }
+            return (
+              <Link
+                key={link.label}
+                href={link.label === "Features" ? featuresHref() : link.href}
+                onClick={() => setMobileOpen(false)}
+                className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <a
             href="https://work.useparlay.app"
             className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"

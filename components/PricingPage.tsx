@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import BundleBuilder from "./BundleBuilder";
 import FreeTrialModal from "./FreeTrialModal";
 
@@ -541,8 +541,23 @@ function ComparisonTable() {
   const COLS: Array<keyof FeatureRow> = ["essentials", "professional", "enterprise", "custom"];
   const COL_LABELS = ["Essentials", "Professional", "Enterprise", "Custom"];
 
+  // Auto-expand when triggered by Nav or direct hash link
+  useEffect(() => {
+    function expand() {
+      setOpen(true);
+      setTimeout(() => {
+        document.getElementById("feature-comparison")?.scrollIntoView({ behavior: "smooth" });
+      }, 50);
+    }
+    // Direct hash navigation (e.g. /pricing#feature-comparison)
+    if (window.location.hash === "#feature-comparison") expand();
+    // Nav button fires this custom event when already on /pricing
+    window.addEventListener("parlay:show-comparison", expand);
+    return () => window.removeEventListener("parlay:show-comparison", expand);
+  }, []);
+
   return (
-    <section className="py-24">
+    <section id="feature-comparison" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div style={{ textAlign: "center", marginBottom: 24 }}>

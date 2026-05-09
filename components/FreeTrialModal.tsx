@@ -344,6 +344,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   const [errors, setErrors] = useState<Errors>({});
   const [emailTouched, setEmailTouched] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // The active plan — either passed in or picked interactively
   const activePlan: TrialPlanId | null = initialPlan ?? pickedPlan;
@@ -452,6 +453,13 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
           .parlay-trial-plan-row {
             flex-direction: column !important;
           }
+          .parlay-trial-action-row {
+            flex-direction: column-reverse !important;
+            align-items: stretch !important;
+          }
+          .parlay-trial-action-row .parlay-trial-cancel {
+            text-align: center;
+          }
         }
       `}</style>
 
@@ -538,27 +546,66 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
             {/* Package card area */}
             <div style={{ padding: "18px 28px 0", background: "white" }}>
 
-              {/* CASE 1: Active plan is known → show single card */}
+              {/* CASE 1: Active plan is known → collapsing card */}
               {activePlan && (
                 <div>
-                  <p style={{
-                    fontSize: 11, fontWeight: 600, color: "#94a3b8",
-                    textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10,
+                  {/* Label — hides when collapsed */}
+                  <div style={{
+                    overflow: "hidden",
+                    maxHeight: isScrolled ? 0 : 28,
+                    opacity: isScrolled ? 0 : 1,
+                    transition: "max-height 220ms ease, opacity 180ms ease",
+                    marginBottom: isScrolled ? 0 : 10,
                   }}>
-                    Your selected plan
-                  </p>
-                  <PlanCard
-                    eyebrow={isCustom ? "Custom Bundle" : (activePlanInfo?.name ?? activePlan)}
-                    price={activePrice}
-                    billing={billing}
-                    desc={
-                      isCustom
-                        ? "Your selected feature add-ons"
-                        : (activePlanInfo?.desc ?? "")
-                    }
-                    featured={!isCustom && (activePlanInfo?.featured ?? false)}
-                    selectable={false}
-                  />
+                    <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                      Your selected plan
+                    </p>
+                  </div>
+
+                  {/* Full card — collapses away */}
+                  <div style={{
+                    overflow: "hidden",
+                    maxHeight: isScrolled ? 0 : 300,
+                    opacity: isScrolled ? 0 : 1,
+                    transition: "max-height 240ms ease, opacity 180ms ease",
+                  }}>
+                    <PlanCard
+                      eyebrow={isCustom ? "Custom Bundle" : (activePlanInfo?.name ?? activePlan)}
+                      price={activePrice}
+                      billing={billing}
+                      desc={isCustom ? "Your selected feature add-ons" : (activePlanInfo?.desc ?? "")}
+                      featured={!isCustom && (activePlanInfo?.featured ?? false)}
+                      selectable={false}
+                    />
+                  </div>
+
+                  {/* Compact strip — appears when scrolled */}
+                  <div style={{
+                    overflow: "hidden",
+                    maxHeight: isScrolled ? 52 : 0,
+                    opacity: isScrolled ? 1 : 0,
+                    transition: "max-height 240ms ease, opacity 200ms ease",
+                  }}>
+                    <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "9px 14px",
+                      borderRadius: 8,
+                      border: `1.5px solid ${!isCustom && activePlanInfo?.featured ? "#34D399" : "rgba(34,58,94,0.15)"}`,
+                      background: !isCustom && activePlanInfo?.featured ? "rgba(52,211,153,0.04)" : "white",
+                    }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#94a3b8" }}>
+                        {isCustom ? "Custom Bundle" : (activePlanInfo?.name ?? activePlan)}
+                      </span>
+                      <span style={{ fontSize: 15, fontWeight: 700, color: "#223A5E", letterSpacing: "-0.01em" }}>
+                        ${activePrice}
+                        <span style={{ fontSize: 11, fontWeight: 400, color: "#94a3b8", marginLeft: 2 }}>
+                          /mo{billing === "annual" ? " annual" : ""}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -613,6 +660,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
           <div
             className="parlay-trial-scroll"
             style={{ flex: 1, overflowY: "auto", padding: "20px 28px 28px" }}
+            onScroll={(e) => setIsScrolled((e.currentTarget as HTMLDivElement).scrollTop > 8)}
           >
             <form onSubmit={handleSubmit} noValidate>
               {/* Name row */}
@@ -712,23 +760,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
-              {/* Action buttons */}
-              <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  style={{
-                    padding: "11px 20px",
-                    fontSize: 14, fontWeight: 500,
-                    fontFamily: "Inter, sans-serif",
-                    border: "1px solid #e2e8f0",
-                    borderRadius: 8, background: "white",
-                    color: "#64748b", cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Cancel
-                </button>
+              {/* Action buttons — stacked on mobile, row on desktop */}
+              <div className="parlay-trial-action-row" style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
                 <button
                   type="submit"
                   disabled={needsPlanPick}
@@ -740,11 +773,25 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     background: needsPlanPick ? "#94a3b8" : "#34D399",
                     color: needsPlanPick ? "white" : "#0f2d1f",
                     cursor: needsPlanPick ? "default" : "pointer",
-                    whiteSpace: "nowrap",
                     transition: "background 150ms",
                   }}
                 >
                   Create Parlay Account &amp; Start Trial →
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="parlay-trial-cancel"
+                  style={{
+                    padding: "11px 20px",
+                    fontSize: 14, fontWeight: 500,
+                    fontFamily: "Inter, sans-serif",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 8, background: "white",
+                    color: "#64748b", cursor: "pointer",
+                  }}
+                >
+                  Cancel
                 </button>
               </div>
             </form>
