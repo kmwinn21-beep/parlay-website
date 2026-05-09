@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
@@ -13,6 +14,11 @@ const NAV_LINKS = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  function featuresHref() {
+    return pathname === "/pricing" ? "#feature-comparison" : "#features";
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -66,8 +72,8 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.label}
+                href={link.label === "Features" ? featuresHref() : link.href}
                 className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
               >
                 {link.label}
@@ -152,8 +158,8 @@ export default function Nav() {
         <div className="px-4 py-4 space-y-1">
           {NAV_LINKS.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.label}
+              href={link.label === "Features" ? featuresHref() : link.href}
               onClick={() => setMobileOpen(false)}
               className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
             >

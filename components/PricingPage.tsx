@@ -541,8 +541,23 @@ function ComparisonTable() {
   const COLS: Array<keyof FeatureRow> = ["essentials", "professional", "enterprise", "custom"];
   const COL_LABELS = ["Essentials", "Professional", "Enterprise", "Custom"];
 
+  // Auto-expand when navigated to via #feature-comparison hash
+  useEffect(() => {
+    function handleHash() {
+      if (window.location.hash === "#feature-comparison") {
+        setOpen(true);
+        setTimeout(() => {
+          document.getElementById("feature-comparison")?.scrollIntoView({ behavior: "smooth" });
+        }, 50);
+      }
+    }
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
   return (
-    <section className="py-24">
+    <section id="feature-comparison" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div style={{ textAlign: "center", marginBottom: 24 }}>
