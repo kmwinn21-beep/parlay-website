@@ -411,10 +411,14 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
 
   function handleBuildOwn() {
     onClose();
-    setTimeout(() => {
-      const el = document.getElementById("bundle-builder");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 50);
+    if (window.location.pathname === "/pricing") {
+      setTimeout(() => {
+        const el = document.getElementById("bundle-builder");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 50);
+    } else {
+      window.location.href = "/pricing#bundle-builder";
+    }
   }
 
   useEffect(() => {
