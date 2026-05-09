@@ -541,19 +541,19 @@ function ComparisonTable() {
   const COLS: Array<keyof FeatureRow> = ["essentials", "professional", "enterprise", "custom"];
   const COL_LABELS = ["Essentials", "Professional", "Enterprise", "Custom"];
 
-  // Auto-expand when navigated to via #feature-comparison hash
+  // Auto-expand when triggered by Nav or direct hash link
   useEffect(() => {
-    function handleHash() {
-      if (window.location.hash === "#feature-comparison") {
-        setOpen(true);
-        setTimeout(() => {
-          document.getElementById("feature-comparison")?.scrollIntoView({ behavior: "smooth" });
-        }, 50);
-      }
+    function expand() {
+      setOpen(true);
+      setTimeout(() => {
+        document.getElementById("feature-comparison")?.scrollIntoView({ behavior: "smooth" });
+      }, 50);
     }
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    // Direct hash navigation (e.g. /pricing#feature-comparison)
+    if (window.location.hash === "#feature-comparison") expand();
+    // Nav button fires this custom event when already on /pricing
+    window.addEventListener("parlay:show-comparison", expand);
+    return () => window.removeEventListener("parlay:show-comparison", expand);
   }, []);
 
   return (
