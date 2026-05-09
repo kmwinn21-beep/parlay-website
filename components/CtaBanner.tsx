@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 
 export default function CtaBanner() {
   return (
@@ -18,12 +18,13 @@ export default function CtaBanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/signup?plan=professional"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
             className="w-full sm:w-auto font-inter font-semibold text-lg px-10 py-4 rounded-lg bg-brand-teal text-brand-charcoal hover:bg-brand-glow transition-colors duration-200"
           >
             Start Free Trial →
-          </Link>
+          </button>
           <a
             href="https://app.useparlay.app/demo"
             className="w-full sm:w-auto font-inter font-medium text-lg px-10 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"

@@ -30,6 +30,28 @@ const ROLES = [
   "Other",
 ];
 
+const INDUSTRIES = [
+  "Senior Housing & Care",
+  "Healthcare & Life Sciences",
+  "Financial Services & Banking",
+  "Real Estate & Property Management",
+  "Technology & SaaS",
+  "Professional Services & Consulting",
+  "Insurance",
+  "Private Equity & Investment",
+  "Manufacturing & Industrial",
+  "Construction & Engineering",
+  "Hospitality & Travel",
+  "Education & EdTech",
+  "Nonprofit & Association",
+  "Media & Events",
+  "Retail & Consumer Goods",
+  "Government & Public Sector",
+  "Other",
+];
+
+const TEAM_SIZES = ["Just me", "2 - 5", "6 - 10", "11 - 25", "26 - 50", "51 - 100", "100+"];
+
 const CONF_COUNTS = ["1 - 2", "3 - 5", "6 - 10", "11 - 20", "20+"];
 
 const TRIAL_PLANS = [
@@ -69,6 +91,8 @@ interface FormState {
   company: string;
   email: string;
   role: string;
+  industry: string;
+  teamSize: string;
   confCount: string;
 }
 
@@ -79,11 +103,12 @@ interface Errors {
   company?: string;
   email?: string;
   role?: string;
+  industry?: string;
 }
 
 const EMPTY: FormState = {
   firstName: "", lastName: "", title: "", company: "",
-  email: "", role: "", confCount: "",
+  email: "", role: "", industry: "", teamSize: "", confCount: "",
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -104,6 +129,7 @@ function validate(form: FormState): Errors {
   const emailErr = getEmailError(form.email);
   if (emailErr) e.email = emailErr;
   if (!form.role) e.role = "Please select your role.";
+  if (!form.industry) e.industry = "Please select your industry.";
   return e;
 }
 
@@ -367,6 +393,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
         company: form.company,
         email: form.email,
         role: form.role,
+        industry: form.industry,
+        teamSize: form.teamSize || undefined,
         conferencesPerYear: form.confCount || undefined,
       }),
     }).catch((err) => console.error("FormSpree error:", err));
@@ -612,11 +640,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
-              {/* Work Email + Conferences/yr row */}
-              <div
-                className="parlay-trial-grid-2"
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}
-              >
+              {/* Work Email */}
+              <div style={{ marginBottom: 14 }}>
                 <Field label="Work Email" required error={emailTouched ? errors.email : undefined}>
                   <TextInput
                     type="email"
@@ -632,25 +657,56 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     error={emailTouched && !!errors.email}
                   />
                 </Field>
-                <Field label="Conferences Attended / yr">
-                  <SelectInput
-                    value={form.confCount}
-                    onChange={set("confCount")}
-                    options={CONF_COUNTS}
-                    placeholder="Select"
-                  />
-                </Field>
               </div>
 
               {/* Role */}
-              <div style={{ marginBottom: 24 }}>
-                <Field label="Your Role" required error={errors.role}>
+              <div style={{ marginBottom: 14 }}>
+                <Field label="Select Your Role" required error={errors.role}>
                   <SelectInput
                     value={form.role}
                     onChange={set("role")}
                     options={ROLES}
                     placeholder="Select a role"
                     error={!!errors.role}
+                  />
+                </Field>
+              </div>
+
+              {/* Industry */}
+              <div style={{ marginBottom: 14 }}>
+                <Field label="Select Your Industry" required error={errors.industry}>
+                  <SelectInput
+                    value={form.industry}
+                    onChange={set("industry")}
+                    options={INDUSTRIES}
+                    placeholder="Select an industry"
+                    error={!!errors.industry}
+                  />
+                </Field>
+              </div>
+
+              {/* Divider */}
+              <div style={{ borderTop: "1px solid #f1f5f9", margin: "18px 0 16px" }} />
+
+              {/* Team size / Conferences per year row */}
+              <div
+                className="parlay-trial-grid-2"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }}
+              >
+                <Field label="Size of Revenue Team">
+                  <SelectInput
+                    value={form.teamSize}
+                    onChange={set("teamSize")}
+                    options={TEAM_SIZES}
+                    placeholder="Select"
+                  />
+                </Field>
+                <Field label="Conferences Attended / yr">
+                  <SelectInput
+                    value={form.confCount}
+                    onChange={set("confCount")}
+                    options={CONF_COUNTS}
+                    placeholder="Select"
                   />
                 </Field>
               </div>
