@@ -2,6 +2,7 @@
 
 import { Fragment, useState } from "react";
 import Link from "next/link";
+import BundleBuilder from "./BundleBuilder";
 
 // ── Price constants — update here to change everywhere ───────────────────────
 const PLAN_PRICES = {
@@ -488,31 +489,6 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 
 // ── Section 3: Bundle pricing ─────────────────────────────────────────────────
 function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
-  const [selected, setSelected] = useState<Set<string>>(new Set());
-
-  function toggle(id: string) {
-    setSelected((prev: Set<string>) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
-  }
-
-  let selectedTotal = 0;
-  selected.forEach((id: string) => { selectedTotal += BUNDLE_PRICES[id]?.annual ?? 0; });
-  const diff = ENTERPRISE_ANNUAL - selectedTotal;
-  const savings = selectedTotal - ENTERPRISE_ANNUAL;
-
-  const unselectedNames = BUNDLES_DATA
-    .filter((b) => !selected.has(b.id))
-    .map((b) => b.name);
-
-  const calcState: "empty" | "low" | "amber" | "green" =
-    selected.size === 0 ? "empty"
-    : selectedTotal < CALC_AMBER_THRESHOLD ? "low"
-    : selectedTotal <= ENTERPRISE_ANNUAL ? "amber"
-    : "green";
-
   return (
     <section className="bg-brand-light py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -528,132 +504,7 @@ function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
           Not every conference program needs everything. Start with the feature bundles your team actually uses. When your selection reaches the Enterprise threshold, we&apos;ll tell you.
         </p>
 
-        {/* Bundle cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: 20, marginBottom: 48 }}>
-          {BUNDLES_DATA.map((bundle) => {
-            const prices = BUNDLE_PRICES[bundle.id];
-            return (
-              <div
-                key={bundle.id}
-                style={{
-                  background: "#fff",
-                  border: "1px solid rgba(34,58,94,0.12)",
-                  borderRadius: 14,
-                  padding: 24,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#223A5E", marginBottom: 6 }}>{bundle.name}</p>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 4 }}>
-                  <span className="font-playfair" style={{ fontSize: 28, fontWeight: 700, color: "#223A5E", lineHeight: 1 }}>
-                    ${prices.annual}
-                  </span>
-                  <span style={{ fontSize: 12, color: "#94a3b8" }}>/mo</span>
-                </div>
-                <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 16 }}>
-                  ${prices.monthly}/mo billed monthly
-                </p>
-                <div style={{ height: 1, background: "rgba(34,58,94,0.07)", marginBottom: 16 }} />
-                <ul style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
-                  {bundle.bullets.map((b) => (
-                    <li key={b} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                      <CheckIcon />
-                      <span style={{ fontSize: 13, color: "#475569", lineHeight: 1.45 }}>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                {"note" in bundle && (
-                  <p style={{ fontSize: 11, color: "#94a3b8", marginTop: 12, fontStyle: "italic" }}>{bundle.note}</p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Calculator */}
-        <div style={{ background: "#fff", border: "1px solid rgba(34,58,94,0.12)", borderRadius: 16, padding: "32px 36px" }}>
-          <p className="font-inter" style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 6 }}>
-            Bundle calculator
-          </p>
-          <p className="font-playfair" style={{ fontSize: 22, fontWeight: 700, color: "#223A5E", marginBottom: 24 }}>
-            Point of indifference calculator
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 12, marginBottom: 28 }}>
-            {BUNDLES_DATA.map((bundle) => {
-              const checked = selected.has(bundle.id);
-              return (
-                <label
-                  key={bundle.id}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    padding: "12px 16px",
-                    borderRadius: 10,
-                    border: `1.5px solid ${checked ? "#34D399" : "rgba(34,58,94,0.12)"}`,
-                    background: checked ? "rgba(52,211,153,0.06)" : "#f8fafc",
-                    cursor: "pointer",
-                    transition: "all 150ms",
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => toggle(bundle.id)}
-                    style={{ accentColor: "#34D399", width: 16, height: 16, cursor: "pointer", flexShrink: 0 }}
-                  />
-                  <div>
-                    <p style={{ fontSize: 13, fontWeight: 600, color: "#223A5E", marginBottom: 1 }}>{bundle.name}</p>
-                    <p style={{ fontSize: 12, color: "#64748b" }}>${BUNDLE_PRICES[bundle.id].annual}/mo annual</p>
-                  </div>
-                </label>
-              );
-            })}
-          </div>
-
-          {/* Totals row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16, marginBottom: 20 }}>
-            <div style={{ background: "#f8fafc", borderRadius: 10, padding: "16px 20px", border: "1px solid rgba(34,58,94,0.08)" }}>
-              <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>Your bundle total</p>
-              <p className="font-playfair" style={{ fontSize: 32, fontWeight: 700, color: "#223A5E" }}>
-                {selected.size === 0 ? "—" : `$${selectedTotal}/mo`}
-              </p>
-              <p style={{ fontSize: 11, color: "#94a3b8" }}>annual pricing</p>
-            </div>
-            <div style={{ background: "#f8fafc", borderRadius: 10, padding: "16px 20px", border: "1px solid rgba(34,58,94,0.08)" }}>
-              <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>Enterprise plan</p>
-              <p className="font-playfair" style={{ fontSize: 32, fontWeight: 700, color: "#223A5E" }}>
-                ${ENTERPRISE_ANNUAL}/mo
-              </p>
-              <p style={{ fontSize: 11, color: "#94a3b8" }}>annual pricing · everything included</p>
-            </div>
-          </div>
-
-          {/* Dynamic callout */}
-          {calcState !== "empty" && (
-            <div style={{
-              borderRadius: 10, padding: "14px 18px",
-              background: calcState === "green" ? "rgba(52,211,153,0.08)" : calcState === "amber" ? "rgba(245,158,11,0.08)" : "#f8fafc",
-              border: `1px solid ${calcState === "green" ? "rgba(52,211,153,0.3)" : calcState === "amber" ? "rgba(245,158,11,0.3)" : "rgba(34,58,94,0.08)"}`,
-            }}>
-              <p className="font-inter" style={{
-                fontSize: 13, lineHeight: 1.6,
-                color: calcState === "green" ? "#059669" : calcState === "amber" ? "#92400e" : "#475569",
-              }}>
-                {calcState === "low" && (
-                  <>Your selection is <strong>${selectedTotal}/mo</strong>. Add bundles as your program grows.</>
-                )}
-                {calcState === "amber" && (
-                  <>You&apos;re approaching Enterprise value. Enterprise includes everything selected
-                  {unselectedNames.length > 0 && <> plus <strong>{unselectedNames.join(", ")}</strong></>} for <strong>${diff}/mo</strong> more per month.</>
-                )}
-                {calcState === "green" && (
-                  <>Enterprise includes everything you&apos;ve selected{unselectedNames.length > 0 && <> plus <strong>{unselectedNames.join(", ")}</strong></>} for <strong>${savings}/mo less</strong>. We&apos;d recommend Enterprise.</>
-                )}
-              </p>
-            </div>
-          )}
-        </div>
+        <BundleBuilder billing={billing} />
 
       </div>
     </section>
