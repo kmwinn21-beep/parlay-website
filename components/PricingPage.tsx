@@ -512,7 +512,7 @@ function PlanCards({ billing }: { billing: "monthly" | "annual" }) {
 // ── Section 3: Bundle pricing ─────────────────────────────────────────────────
 function BundleSection({ billing }: { billing: "monthly" | "annual" }) {
   return (
-    <section id="bundle-builder" className="py-24">
+    <section id="bundle-builder" className="pt-8 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <BundleBuilder billing={billing} />

@@ -552,8 +552,8 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
         {/* Left column: bundle cards */}
         <div className="lg:col-span-2" style={{ padding: "28px 32px" }}>
           <p style={{
-            fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-            letterSpacing: "0.09em", color: "#94a3b8", marginBottom: 16,
+            fontSize: 12, fontWeight: 700, textTransform: "uppercase",
+            letterSpacing: "0.09em", color: "rgb(34,58,94)", marginBottom: 16,
           }}>
             {mode === "build" ? "Add Feature Bundles" : "Remove Feature Bundles"}
           </p>
@@ -595,8 +595,8 @@ export default function BundleBuilder({ billing }: { billing: "monthly" | "annua
           <style>{`.bundle-builder-right{border-top:1px solid rgba(34,58,94,0.08)}@media(min-width:1024px){.bundle-builder-right{border-top:none;border-left:1px solid rgba(34,58,94,0.08)}}`}</style>
           <div>
             <p style={{
-              fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-              letterSpacing: "0.09em", color: "#94a3b8", marginBottom: 16,
+              fontSize: 12, fontWeight: 700, textTransform: "uppercase",
+              letterSpacing: "0.09em", color: "rgb(34,58,94)", marginBottom: 16,
             }}>
               Your Plan
             </p>
