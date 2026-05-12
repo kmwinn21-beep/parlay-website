@@ -383,9 +383,10 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
     setShowOverlay(true);
 
     try {
-      await fetch("https://useparlay.app/api/auth/trial-signup", {
+      const res = await fetch("https://work.useparlay.app/api/auth/trial-signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
           plan: activePlan,
           planPrice: activePrice,
@@ -401,13 +402,18 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
           conferencesPerYear: form.confCount || undefined,
         }),
       });
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = data.redirectTo;
+      } else {
+        setShowOverlay(false);
+        setErrors((e: Errors) => ({ ...e, email: data.error ?? "Something went wrong. Please try again." }));
+      }
     } catch (err) {
       console.error("Trial signup error:", err);
+      setShowOverlay(false);
+      setErrors((e: Errors) => ({ ...e, email: "Something went wrong. Please try again." }));
     }
-
-    setTimeout(() => {
-      window.location.href = "https://app.useparlay.app";
-    }, 2500);
   }
 
   function handleBackdropClick(e: MouseEvent<HTMLDivElement>) {
