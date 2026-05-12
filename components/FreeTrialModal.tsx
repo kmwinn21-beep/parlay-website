@@ -416,7 +416,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
     } catch (err) {
       console.error("Trial signup error:", err);
       setIsSubmitting(false);
-      setErrors((e: Errors) => ({ ...e, email: "Something went wrong. Please try again." }));
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setErrors((e: Errors) => ({ ...e, email: msg }));
     }
   }
 
