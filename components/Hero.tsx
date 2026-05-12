@@ -103,7 +103,7 @@ export default function Hero() {
 
           {/* Tagline */}
           <p className="font-inter text-sm text-white/40 tracking-widest uppercase mb-10">
-            From Conversations to Follow-Through
+            The conference operating system for revenue teams
           </p>
 
           {/* Dashboard teaser */}
