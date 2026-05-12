@@ -380,27 +380,31 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
       return;
     }
 
-    fetch("https://formspree.io/f/xdabwpwl", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        formType: "free-trial",
-        plan: activePlan,
-        planPrice: activePrice,
-        billing,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        title: form.title,
-        company: form.company,
-        email: form.email,
-        role: form.role,
-        industry: form.industry,
-        teamSize: form.teamSize || undefined,
-        conferencesPerYear: form.confCount || undefined,
-      }),
-    }).catch((err) => console.error("FormSpree error:", err));
-
     setShowOverlay(true);
+
+    try {
+      await fetch("https://useparlay.app/api/auth/trial-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          plan: activePlan,
+          planPrice: activePrice,
+          billing,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          title: form.title,
+          company: form.company,
+          email: form.email,
+          role: form.role,
+          industry: form.industry,
+          teamSize: form.teamSize || undefined,
+          conferencesPerYear: form.confCount || undefined,
+        }),
+      });
+    } catch (err) {
+      console.error("Trial signup error:", err);
+    }
+
     setTimeout(() => {
       window.location.href = "https://app.useparlay.app";
     }, 2500);
