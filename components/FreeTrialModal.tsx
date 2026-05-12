@@ -90,6 +90,7 @@ interface FormState {
   title: string;
   company: string;
   email: string;
+  password: string;
   role: string;
   industry: string;
   teamSize: string;
@@ -102,13 +103,14 @@ interface Errors {
   title?: string;
   company?: string;
   email?: string;
+  password?: string;
   role?: string;
   industry?: string;
 }
 
 const EMPTY: FormState = {
   firstName: "", lastName: "", title: "", company: "",
-  email: "", role: "", industry: "", teamSize: "", confCount: "",
+  email: "", password: "", role: "", industry: "", teamSize: "", confCount: "",
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -128,6 +130,8 @@ function validate(form: FormState): Errors {
   if (!form.company.trim()) e.company = "Company name is required.";
   const emailErr = getEmailError(form.email);
   if (emailErr) e.email = emailErr;
+  if (!form.password) e.password = "Password is required.";
+  else if (form.password.length < 8) e.password = "Password must be at least 8 characters.";
   if (!form.role) e.role = "Please select your role.";
   if (!form.industry) e.industry = "Please select your industry.";
   return e;
@@ -345,6 +349,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   const [emailTouched, setEmailTouched] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // The active plan — either passed in or picked interactively
   const activePlan: TrialPlanId | null = initialPlan ?? pickedPlan;
@@ -380,7 +385,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
       return;
     }
 
-    setShowOverlay(true);
+    setIsSubmitting(true);
 
     try {
       const res = await fetch("https://work.useparlay.app/api/auth/trial-signup", {
@@ -388,30 +393,29 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({
-          plan: activePlan,
-          planPrice: activePrice,
-          billing,
           firstName: form.firstName,
           lastName: form.lastName,
           title: form.title,
-          company: form.company,
+          companyName: form.company,
           email: form.email,
-          role: form.role,
-          industry: form.industry,
-          teamSize: form.teamSize || undefined,
-          conferencesPerYear: form.confCount || undefined,
+          password: form.password,
+          signupRole: form.role,
+          signupIndustry: form.industry,
+          signupTeamSize: form.teamSize || undefined,
+          signupConferencesPerYear: form.confCount || undefined,
         }),
       });
       const data = await res.json();
       if (res.ok) {
+        setShowOverlay(true);
         window.location.href = data.redirectTo;
       } else {
-        setShowOverlay(false);
+        setIsSubmitting(false);
         setErrors((e: Errors) => ({ ...e, email: data.error ?? "Something went wrong. Please try again." }));
       }
     } catch (err) {
       console.error("Trial signup error:", err);
-      setShowOverlay(false);
+      setIsSubmitting(false);
       setErrors((e: Errors) => ({ ...e, email: "Something went wrong. Please try again." }));
     }
   }
@@ -718,6 +722,18 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
+              {/* Password */}
+              <div style={{ marginBottom: 14 }}>
+                <Field label="Create a password" required error={errors.password}>
+                  <TextInput
+                    type="password"
+                    value={form.password}
+                    onChange={set("password")}
+                    error={!!errors.password}
+                  />
+                </Field>
+              </div>
+
               {/* Role */}
               <div style={{ marginBottom: 14 }}>
                 <Field label="Select Your Role" required error={errors.role}>
@@ -774,19 +790,19 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
               <div className="parlay-trial-action-row" style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
                 <button
                   type="submit"
-                  disabled={needsPlanPick}
+                  disabled={needsPlanPick || isSubmitting}
                   style={{
                     padding: "11px 20px",
                     fontSize: 14, fontWeight: 600,
                     fontFamily: "Inter, sans-serif",
                     border: "none", borderRadius: 8,
-                    background: needsPlanPick ? "#94a3b8" : "#34D399",
-                    color: needsPlanPick ? "white" : "#0f2d1f",
-                    cursor: needsPlanPick ? "default" : "pointer",
+                    background: needsPlanPick || isSubmitting ? "#94a3b8" : "#34D399",
+                    color: needsPlanPick || isSubmitting ? "white" : "#0f2d1f",
+                    cursor: needsPlanPick || isSubmitting ? "default" : "pointer",
                     transition: "background 150ms",
                   }}
                 >
-                  Create Parlay Account &amp; Start Trial →
+                  {isSubmitting ? "Creating account…" : "Create Parlay Account & Start Trial →"}
                 </button>
                 <button
                   type="button"
