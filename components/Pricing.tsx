@@ -200,19 +200,19 @@ export default function Pricing() {
                   For small teams who want shared visibility and accountability across every conference they attend.
                 </p>
               </div>
-              <Link
-                href="/signup?plan=starter"
+              <button
+                onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
                 style={{
-                  display: "block", textAlign: "center",
+                  display: "block", textAlign: "center", width: "100%",
                   fontSize: 14, fontWeight: 600,
                   padding: "11px 0", borderRadius: 9,
                   background: "#fff", color: "#223A5E",
                   border: "1.5px solid #223A5E",
-                  textDecoration: "none", marginBottom: 24,
+                  cursor: "pointer", marginBottom: 24,
                 }}
               >
                 Start Free Trial
-              </Link>
+              </button>
               <p style={{ fontSize: 11, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 12 }}>
                 What&apos;s included
               </p>
@@ -261,14 +261,14 @@ export default function Pricing() {
                   For active conference teams who need intelligence, coordination, and accountability across every event.
                 </p>
               </div>
-              <Link
-                href="/signup?plan=professional"
+              <button
+                onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
                 style={{
-                  display: "block", textAlign: "center",
+                  display: "block", textAlign: "center", width: "100%",
                   fontSize: 14, fontWeight: 600,
                   padding: "11px 0", borderRadius: 9,
                   background: "#34D399", color: "#064e3b",
-                  textDecoration: "none", marginBottom: 24,
+                  border: "none", cursor: "pointer", marginBottom: 24,
                 }}
               >
                 Start Free Trial →
@@ -381,19 +381,19 @@ export default function Pricing() {
 
             {/* Right */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", flexShrink: 0 }}>
-              <Link
-                href="/signup?plan=solo"
+              <button
+                onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
                 style={{
                   fontSize: 14, fontWeight: 600,
                   padding: "11px 22px", borderRadius: 9,
                   background: "#fff", color: "#223A5E",
                   border: "1.5px solid #223A5E",
-                  textDecoration: "none",
+                  cursor: "pointer",
                   whiteSpace: "nowrap", marginBottom: 8,
                 }}
               >
                 Start Free Trial
-              </Link>
+              </button>
               <p style={{ fontSize: 12, color: "#94a3b8" }}>14-day trial · no credit card needed</p>
             </div>
           </div>
@@ -492,17 +492,17 @@ export default function Pricing() {
 
           {/* CTA buttons */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
-            <Link
-              href="/signup?plan=professional"
+            <button
+              onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
               style={{
                 fontSize: 15, fontWeight: 600,
                 padding: "13px 28px", borderRadius: 10,
                 background: "#34D399", color: "#064e3b",
-                textDecoration: "none",
+                border: "none", cursor: "pointer",
               }}
             >
               Start my free trial →
-            </Link>
+            </button>
             <Link
               href="/demo"
               style={{

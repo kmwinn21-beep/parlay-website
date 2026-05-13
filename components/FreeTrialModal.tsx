@@ -350,6 +350,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   const [showOverlay, setShowOverlay] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // The active plan — either passed in or picked interactively
   const activePlan: TrialPlanId | null = initialPlan ?? pickedPlan;
@@ -386,9 +387,10 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      const res = await fetch("https://work.useparlay.app/api/auth/trial-signup", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/trial-signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -411,13 +413,17 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
         window.location.href = data.redirectTo;
       } else {
         setIsSubmitting(false);
-        setErrors((e: Errors) => ({ ...e, email: data.error ?? "Something went wrong. Please try again." }));
+        if (data.field === "email") {
+          setEmailTouched(true);
+          setErrors((e: Errors) => ({ ...e, email: data.error }));
+        } else {
+          setSubmitError(data.error ?? "Something went wrong. Please try again or contact support@useparlay.app.");
+        }
       }
     } catch (err) {
       console.error("Trial signup error:", err);
       setIsSubmitting(false);
-      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
-      setErrors((e: Errors) => ({ ...e, email: msg }));
+      setSubmitError("Something went wrong. Please try again or contact support@useparlay.app.");
     }
   }
 
@@ -712,6 +718,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     value={form.email}
                     onChange={(v) => {
                       set("email")(v);
+                      setSubmitError(null);
                       if (emailTouched) {
                         const err = getEmailError(v);
                         setErrors((e: Errors) => ({ ...e, email: err ?? undefined }));
@@ -786,6 +793,13 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                   />
                 </Field>
               </div>
+
+              {/* General submit error */}
+              {submitError && (
+                <p style={{ fontSize: 13, color: "#ef4444", marginBottom: 12, textAlign: "center" }}>
+                  {submitError}
+                </p>
+              )}
 
               {/* Action buttons — stacked on mobile, row on desktop */}
               <div className="parlay-trial-action-row" style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
