@@ -390,7 +390,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
     setSubmitError(null);
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/trial-signup`, {
+      const res = await fetch(`https://work.useparlay.app/api/auth/trial-signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
