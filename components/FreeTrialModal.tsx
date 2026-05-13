@@ -351,6 +351,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<"upcoming" | "planning" | null>(null);
+  const [trackError, setTrackError] = useState(false);
 
   // The active plan — either passed in or picked interactively
   const activePlan: TrialPlanId | null = initialPlan ?? pickedPlan;
@@ -380,11 +382,13 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   async function handleSubmit(evt: FormEvent) {
     evt.preventDefault();
     const errs = validate(form);
-    if (Object.keys(errs).length > 0) {
+    const hasFieldErrs = Object.keys(errs).length > 0;
+    if (hasFieldErrs) {
       setErrors(errs);
       setEmailTouched(true);
-      return;
     }
+    if (!selectedTrack) setTrackError(true);
+    if (hasFieldErrs || !selectedTrack) return;
 
     setIsSubmitting(true);
     setSubmitError(null);
@@ -405,6 +409,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
           signupIndustry: form.industry,
           signupTeamSize: form.teamSize || undefined,
           signupConferencesPerYear: form.confCount || undefined,
+          onboardingTrack: selectedTrack,
         }),
       });
       const data = await res.json();
@@ -481,7 +486,9 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
           .parlay-trial-action-row .parlay-trial-cancel {
             text-align: center;
           }
-        }
+          .parlay-trial-track-row {
+            flex-direction: column !important;
+          }
       `}</style>
 
       {/* Backdrop */}
@@ -792,6 +799,85 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     placeholder="Select"
                   />
                 </Field>
+              </div>
+
+              {/* Track selector */}
+              <div style={{ marginBottom: 20 }}>
+                <label style={{ fontSize: 14, fontWeight: 600, color: "#223A5E", letterSpacing: "0.02em", display: "block", marginBottom: 10 }}>
+                  What brings you to Parlay?<span style={{ color: "#ef4444", marginLeft: 2 }}>*</span>
+                </label>
+                <div className="parlay-trial-track-row" style={{ display: "flex", gap: 10 }}>
+                  {([
+                    {
+                      value: "upcoming" as const,
+                      heading: "I have a conference coming up",
+                      sub: "Upload your attendee list and arrive with a targeting strategy",
+                      icon: (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      value: "planning" as const,
+                      heading: "I'm planning next year's calendar",
+                      sub: "Upload past conference lists and score your history",
+                      icon: (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                      ),
+                    },
+                  ] as const).map((opt) => {
+                    const active = selectedTrack === opt.value;
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => { setSelectedTrack(opt.value); setTrackError(false); }}
+                        style={{
+                          flex: 1,
+                          textAlign: "left",
+                          padding: "14px 14px 12px",
+                          borderRadius: 10,
+                          border: active ? "2px solid #34D399" : "1.5px solid #e2e8f0",
+                          background: active ? "rgba(52,211,153,0.06)" : "white",
+                          cursor: "pointer",
+                          transition: "border-color 150ms, background 150ms",
+                          position: "relative",
+                          boxShadow: active ? "0 0 0 0px #34D399" : "none",
+                        }}
+                      >
+                        {active && (
+                          <span style={{
+                            position: "absolute", top: 10, right: 10,
+                            width: 18, height: 18, borderRadius: "50%",
+                            background: "#34D399",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                          }}>
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                              <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </span>
+                        )}
+                        <span style={{ color: active ? "#34D399" : "#94a3b8", display: "block", marginBottom: 6 }}>
+                          {opt.icon}
+                        </span>
+                        <p style={{ fontSize: 13, fontWeight: 600, color: "#223A5E", margin: "0 0 4px", lineHeight: 1.3, paddingRight: active ? 20 : 0 }}>
+                          {opt.heading}
+                        </p>
+                        <p style={{ fontSize: 12, color: "#64748b", margin: 0, lineHeight: 1.45 }}>
+                          {opt.sub}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+                {trackError && (
+                  <span style={{ fontSize: 11, color: "#ef4444", display: "block", marginTop: 6 }}>
+                    Please select an option to continue.
+                  </span>
+                )}
               </div>
 
               {/* General submit error */}
