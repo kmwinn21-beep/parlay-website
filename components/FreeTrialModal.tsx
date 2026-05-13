@@ -717,8 +717,11 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
-              {/* Work Email */}
-              <div style={{ marginBottom: 14 }}>
+              {/* Work Email | Password row */}
+              <div
+                className="parlay-trial-grid-2"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}
+              >
                 <Field label="Work Email" required error={emailTouched ? errors.email : undefined}>
                   <TextInput
                     type="email"
@@ -735,10 +738,6 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     error={emailTouched && !!errors.email}
                   />
                 </Field>
-              </div>
-
-              {/* Password */}
-              <div style={{ marginBottom: 14 }}>
                 <Field label="Create a password" required error={errors.password}>
                   <TextInput
                     type="password"
@@ -749,60 +748,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
-              {/* Role */}
-              <div style={{ marginBottom: 14 }}>
-                <Field label="Select Your Role" required error={errors.role}>
-                  <SelectInput
-                    value={form.role}
-                    onChange={set("role")}
-                    options={ROLES}
-                    placeholder="Select a role"
-                    error={!!errors.role}
-                  />
-                </Field>
-              </div>
-
-              {/* Industry */}
-              <div style={{ marginBottom: 14 }}>
-                <Field label="Select Your Industry" required error={errors.industry}>
-                  <SelectInput
-                    value={form.industry}
-                    onChange={set("industry")}
-                    options={INDUSTRIES}
-                    placeholder="Select an industry"
-                    error={!!errors.industry}
-                  />
-                </Field>
-              </div>
-
-              {/* Divider */}
-              <div style={{ borderTop: "1px solid #f1f5f9", margin: "18px 0 16px" }} />
-
-              {/* Team size / Conferences per year row */}
-              <div
-                className="parlay-trial-grid-2"
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }}
-              >
-                <Field label="Size of Revenue Team">
-                  <SelectInput
-                    value={form.teamSize}
-                    onChange={set("teamSize")}
-                    options={TEAM_SIZES}
-                    placeholder="Select"
-                  />
-                </Field>
-                <Field label="Conferences Attended / yr">
-                  <SelectInput
-                    value={form.confCount}
-                    onChange={set("confCount")}
-                    options={CONF_COUNTS}
-                    placeholder="Select"
-                  />
-                </Field>
-              </div>
-
               {/* Track selector */}
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 14 }}>
                 <label style={{ fontSize: 14, fontWeight: 600, color: "#223A5E", letterSpacing: "0.02em", display: "block", marginBottom: 10 }}>
                   What brings you to Parlay?<span style={{ color: "#ef4444", marginLeft: 2 }}>*</span>
                 </label>
@@ -845,7 +792,6 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                           cursor: "pointer",
                           transition: "border-color 150ms, background 150ms",
                           position: "relative",
-                          boxShadow: active ? "0 0 0 0px #34D399" : "none",
                         }}
                       >
                         {active && (
@@ -880,7 +826,57 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 )}
               </div>
 
-              {/* General submit error */}
+              {/* Role | Industry row */}
+              <div
+                className="parlay-trial-grid-2"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}
+              >
+                <Field label="Select Your Role" required error={errors.role}>
+                  <SelectInput
+                    value={form.role}
+                    onChange={set("role")}
+                    options={ROLES}
+                    placeholder="Select a role"
+                    error={!!errors.role}
+                  />
+                </Field>
+                <Field label="Select Your Industry" required error={errors.industry}>
+                  <SelectInput
+                    value={form.industry}
+                    onChange={set("industry")}
+                    options={INDUSTRIES}
+                    placeholder="Select an industry"
+                    error={!!errors.industry}
+                  />
+                </Field>
+              </div>
+
+              {/* Divider */}
+              <div style={{ borderTop: "1px solid #f1f5f9", margin: "18px 0 16px" }} />
+
+              {/* Team size / Conferences per year row */}
+              <div
+                className="parlay-trial-grid-2"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }}
+              >
+                <Field label="Size of Revenue Team">
+                  <SelectInput
+                    value={form.teamSize}
+                    onChange={set("teamSize")}
+                    options={TEAM_SIZES}
+                    placeholder="Select"
+                  />
+                </Field>
+                <Field label="Conferences Attended / yr">
+                  <SelectInput
+                    value={form.confCount}
+                    onChange={set("confCount")}
+                    options={CONF_COUNTS}
+                    placeholder="Select"
+                  />
+                </Field>
+              </div>
+
               {submitError && (
                 <p style={{ fontSize: 13, color: "#ef4444", marginBottom: 12, textAlign: "center" }}>
                   {submitError}
