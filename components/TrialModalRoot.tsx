@@ -12,6 +12,12 @@ export default function TrialModalRoot() {
     return () => window.removeEventListener("parlay:open-trial", handler);
   }, []);
 
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("trial") === "true") {
+      setOpen(true);
+    }
+  }, []);
+
   if (!open) return null;
   return (
     <FreeTrialModal
