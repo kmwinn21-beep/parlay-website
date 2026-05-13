@@ -272,7 +272,7 @@ export default function Pricing() {
                 }}
               >
                 Start Free Trial →
-              </Link>
+              </button>
               <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.05em", minHeight: 28, display: "flex", alignItems: "center", marginBottom: 12 }}>
                 Everything in Starter, plus
               </p>
