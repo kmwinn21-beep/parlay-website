@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Parlay — The Conference Intelligence Platform for Revenue Leaders",
+  title: "Parlay - Conference Operating System for Revenue Teams",
   description:
     "Four scoring engines that give revenue leaders real visibility into whether their conference program is working — and exactly what to do about it. Built for events, sales, and marketing leadership.",
   metadataBase: new URL("https://useparlay.app"),
