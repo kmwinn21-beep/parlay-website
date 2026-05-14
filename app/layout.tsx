@@ -27,11 +27,14 @@ export const metadata: Metadata = {
     url: "https://useparlay.app",
     siteName: "Parlay",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Parlay" }],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Parlay — Know Which Conferences Are Worth It. Before and After.",
     description:
       "Four scoring engines that give revenue leaders real visibility into whether their conference program is working — and exactly what to do about it. Built for events, sales, and marketing leadership.",
+    images: ["/og-image.png"],
   },
 };
 
