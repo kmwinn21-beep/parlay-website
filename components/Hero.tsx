@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 import EffectivenessHeroMock from "./EffectivenessHeroMock";
@@ -8,6 +8,12 @@ import DemoModal from "./DemoModal";
 
 export default function Hero() {
   const [showDemoModal, setShowDemoModal] = useState(false);
+
+  useEffect(() => {
+    function handler() { setShowDemoModal(true); }
+    window.addEventListener("parlay:open-demo", handler);
+    return () => window.removeEventListener("parlay:open-demo", handler);
+  }, []);
 
   return (
     <>

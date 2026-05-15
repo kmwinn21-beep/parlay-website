@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Self Guided Demo", href: "#demo" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -76,6 +76,17 @@ export default function Nav() {
                   <button
                     key="features-pricing"
                     onClick={() => window.dispatchEvent(new CustomEvent("parlay:show-comparison"))}
+                    className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              }
+              if (link.label === "Self Guided Demo") {
+                return (
+                  <button
+                    key="self-guided-demo"
+                    onClick={() => window.dispatchEvent(new Event("parlay:open-demo"))}
                     className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
                   >
                     {link.label}
@@ -175,6 +186,17 @@ export default function Nav() {
                 <button
                   key="features-pricing-mobile"
                   onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent("parlay:show-comparison")); }}
+                  className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
+                >
+                  {link.label}
+                </button>
+              );
+            }
+            if (link.label === "Self Guided Demo") {
+              return (
+                <button
+                  key="self-guided-demo-mobile"
+                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("parlay:open-demo")); }}
                   className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
                 >
                   {link.label}
