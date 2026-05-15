@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import TrialModalRoot from "@/components/TrialModalRoot";
+import DemoModalRoot from "@/components/DemoModalRoot";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body>
         {children}
         <TrialModalRoot />
+        <DemoModalRoot />
       </body>
     </html>
   );
