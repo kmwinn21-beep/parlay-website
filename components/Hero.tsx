@@ -1,20 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import AnimatedWord from "./AnimatedWord";
 import EffectivenessHeroMock from "./EffectivenessHeroMock";
-import DemoModal from "./DemoModal";
 
 export default function Hero() {
-  const [showDemoModal, setShowDemoModal] = useState(false);
-
-  useEffect(() => {
-    function handler() { setShowDemoModal(true); }
-    window.addEventListener("parlay:open-demo", handler);
-    return () => window.removeEventListener("parlay:open-demo", handler);
-  }, []);
-
   return (
     <>
     <section className="relative min-h-screen bg-brand-primary flex items-center overflow-hidden">
@@ -100,7 +90,7 @@ export default function Hero() {
             </button>
             <button
               type="button"
-              onClick={() => setShowDemoModal(true)}
+              onClick={() => window.dispatchEvent(new Event("parlay:open-demo"))}
               className="w-full sm:w-auto font-inter font-medium text-lg px-8 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"
             >
               Explore a Live Demo
@@ -135,7 +125,6 @@ export default function Hero() {
       </div>
     </section>
 
-    {showDemoModal && <DemoModal onClose={() => setShowDemoModal(false)} />}
     </>
   );
 }
