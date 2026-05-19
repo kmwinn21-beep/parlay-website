@@ -12,6 +12,13 @@ export default function DemoModalRoot() {
     return () => window.removeEventListener("parlay:open-demo", handler);
   }, []);
 
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("demo") === "true") {
+      setOpen(true);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
   if (!open) return null;
   return <DemoModal onClose={() => setOpen(false)} />;
 }
