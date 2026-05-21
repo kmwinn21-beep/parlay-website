@@ -97,7 +97,7 @@ export default function Hero() {
             </button>
           </div>
 
-          <p className="font-inter text-sm text-white/50 mt-2">
+          <p className="font-inter text-sm text-white/50 mt-2 mb-4">
             Have a conference list?{" "}
             <a href="/score" className="text-brand-teal hover:text-brand-glow transition-colors underline underline-offset-2">
               Score your audience free →
