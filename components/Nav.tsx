@@ -51,7 +51,7 @@ export default function Nav() {
           <Link href="/" className="flex items-center shrink-0">
             {scrolled ? (
               <Image
-                src="/V2ParlayLogoNew.png"
+                src="/ParlayLogoColor_New.png"
                 alt="Parlay"
                 width={120}
                 height={40}
@@ -59,7 +59,7 @@ export default function Nav() {
               />
             ) : (
               <Image
-                src="/ParlayLogoWhite_Green.png"
+                src="/ParlayLogoWhite_New.png"
                 alt="Parlay"
                 width={120}
                 height={40}
@@ -103,6 +103,12 @@ export default function Nav() {
                 </Link>
               );
             })}
+            <a
+              href="/score"
+              className="font-inter text-sm font-medium transition-colors duration-200 text-brand-teal hover:text-brand-glow border border-brand-teal/40 hover:border-brand-teal px-3 py-1.5 rounded-lg"
+            >
+              Score a Conference
+            </a>
             <a
               href="https://work.useparlay.app"
               className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
@@ -214,6 +220,12 @@ export default function Nav() {
               </Link>
             );
           })}
+          <a
+            href="/score"
+            className="block px-2 py-3 text-brand-teal font-medium font-inter rounded-md hover:bg-brand-light transition-colors"
+          >
+            Score a Conference
+          </a>
           <a
             href="https://work.useparlay.app"
             className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
