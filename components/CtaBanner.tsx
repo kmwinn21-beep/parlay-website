@@ -26,10 +26,10 @@ export default function CtaBanner() {
             Start Free Trial →
           </button>
           <a
-            href="https://app.useparlay.app/demo"
+            href="/pricing"
             className="w-full sm:w-auto font-inter font-medium text-lg px-10 py-4 rounded-lg border border-white/30 text-white hover:border-white/60 hover:bg-white/10 transition-colors duration-200"
           >
-            Book a Demo
+            See Pricing
           </a>
         </div>
 
