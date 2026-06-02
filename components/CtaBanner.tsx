@@ -11,10 +11,10 @@ export default function CtaBanner() {
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-white mb-6">
-          Your competitors are at the same conferences you are.
+          Don&apos;t just run your next conference. Execute it.
         </h2>
         <p className="font-inter text-lg text-white/70 mb-10 leading-relaxed">
-          The question isn&apos;t whether to attend. It&apos;s whether your team arrives with a targeting strategy, executes with accountability, and leaves knowing what worked — and what didn&apos;t. Most teams don&apos;t. Start your free trial and find out what your conference program is actually worth.
+          Parlay gives your team the structure to plan smarter, execute better, and <span className="text-brand-teal font-semibold">MEASURE</span> what actually moved the needle.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
