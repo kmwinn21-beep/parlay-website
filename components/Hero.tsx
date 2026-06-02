@@ -47,6 +47,11 @@ export default function Hero() {
 
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
         <div className="text-center">
+          {/* Tagline — above headline */}
+          <p className="font-inter text-sm text-white/40 tracking-widest uppercase mb-8">
+            The conference operating system for revenue teams
+          </p>
+
           {/* Split headline */}
           <div className="flex flex-col md:flex-row items-center gap-3 md:gap-0 mb-8 md:w-fit md:mx-auto">
             <h1 className="font-playfair text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight md:pr-8 lg:pr-12">
@@ -97,16 +102,11 @@ export default function Hero() {
             </button>
           </div>
 
-          <p className="font-inter text-sm text-white/50 mt-2 mb-4">
+          <p className="font-inter text-sm text-white/50 mt-2 mb-10">
             Have a conference list?{" "}
             <a href="/score" className="text-brand-teal hover:text-brand-glow transition-colors underline underline-offset-2">
               Score your audience free →
             </a>
-          </p>
-
-          {/* Tagline */}
-          <p className="font-inter text-sm text-white/40 tracking-widest uppercase mb-10">
-            The conference operating system for revenue teams
           </p>
 
           {/* Dashboard teaser */}
