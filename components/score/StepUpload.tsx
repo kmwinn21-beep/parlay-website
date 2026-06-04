@@ -20,14 +20,29 @@ export default function StepUpload({ onParsed }: Props) {
       const XLSX = await import("xlsx");
       const buffer = await file.arrayBuffer();
       const wb = XLSX.read(buffer, { type: "array" });
+      if (!wb.SheetNames.length) {
+        setError("No sheets found in the file. Please check your file and try again.");
+        setLoading(false);
+        return;
+      }
       const ws = wb.Sheets[wb.SheetNames[0]];
+      if (!ws) {
+        setError("Couldn't read the first sheet. Please check your file and try again.");
+        setLoading(false);
+        return;
+      }
       const raw: unknown[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
       if (!raw || raw.length < 2) {
         setError("File appears empty or has no data rows. Please check your file and try again.");
         setLoading(false);
         return;
       }
-      const headers = (raw[0] as string[]).map(String);
+      if (!Array.isArray(raw[0])) {
+        setError("Couldn't read the header row. Make sure the first row contains column names.");
+        setLoading(false);
+        return;
+      }
+      const headers = (raw[0] as string[]).map(String).filter(Boolean);
       const rows: Record<string, string>[] = [];
       for (let i = 1; i < raw.length; i++) {
         const row = raw[i] as unknown[];
