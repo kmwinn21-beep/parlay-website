@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "Self Guided Demo", href: "#demo" },
-  { label: "Pricing", href: "/pricing" },
 ];
 
 export default function Nav() {
@@ -69,61 +68,72 @@ export default function Nav() {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => {
-              if (link.label === "Features" && pathname === "/pricing") {
-                return (
-                  <button
-                    key="features-pricing"
-                    onClick={() => window.dispatchEvent(new CustomEvent("parlay:show-comparison"))}
-                    className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
-                  >
-                    {link.label}
-                  </button>
-                );
-              }
-              if (link.label === "Self Guided Demo") {
-                return (
-                  <button
-                    key="self-guided-demo"
-                    onClick={() => window.dispatchEvent(new Event("parlay:open-demo"))}
-                    className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
-                  >
-                    {link.label}
-                  </button>
-                );
-              }
-              return (
-                <Link
-                  key={link.label}
-                  href={link.label === "Features" ? featuresHref() : link.href}
-                  className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <a
-              href="/score"
-              className="font-inter text-sm font-medium transition-colors duration-200 text-brand-teal hover:text-brand-glow border border-brand-teal/40 hover:border-brand-teal px-3 py-1.5 rounded-lg"
+          <div className="hidden md:flex items-center gap-6">
+            {/* Features */}
+            {pathname === "/pricing" ? (
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("parlay:show-comparison"))}
+                className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
+              >
+                Features
+              </button>
+            ) : (
+              <Link href={featuresHref()} className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}>
+                Features
+              </Link>
+            )}
+
+            {/* Self Guided Demo */}
+            <button
+              onClick={() => window.dispatchEvent(new Event("parlay:open-demo"))}
+              className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
             >
-              Score a Conference
-            </a>
-            <a
-              href="/demo"
-              className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
-            >
+              Self Guided Demo
+            </button>
+
+            {/* Request a Demo */}
+            <Link href="/demo" className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}>
               Request a Demo
-            </a>
+            </Link>
+
+            {/* Pricing */}
+            <Link href="/pricing" className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}>
+              Pricing
+            </Link>
+
+            {/* Contact Us */}
+            <Link href="/contact" className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}>
+              Contact Us
+            </Link>
+
+            {/* Sign In */}
             <a
               href="https://work.useparlay.app"
               className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
             >
               Sign In
             </a>
+
+            {/* Score a Conference — teal unscrolled, navy scrolled */}
+            <a
+              href="/score"
+              className="font-inter text-sm font-medium transition-colors duration-200 px-3 py-1.5 rounded-lg"
+              style={{
+                color: scrolled ? "#223A5E" : "#34D399",
+                border: `1px solid ${scrolled ? "rgba(34,58,94,0.4)" : "rgba(52,211,153,0.4)"}`,
+              }}
+            >
+              Score a Conference
+            </a>
+
+            {/* Start Free Trial — teal unscrolled, navy scrolled */}
             <button
               onClick={() => window.dispatchEvent(new Event("parlay:open-trial"))}
-              className="font-inter text-sm font-semibold px-4 py-2 rounded-lg bg-brand-teal text-brand-charcoal hover:bg-brand-glow transition-colors duration-200"
+              className="font-inter text-sm font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
+              style={{
+                background: scrolled ? "#223A5E" : "#34D399",
+                color: scrolled ? "#ffffff" : "#111827",
+              }}
             >
               Start Free Trial
             </button>
@@ -192,58 +202,75 @@ export default function Nav() {
         } bg-white border-t border-gray-100 shadow-lg`}
       >
         <div className="px-4 py-4 space-y-1">
-          {NAV_LINKS.map((link) => {
-            if (link.label === "Features" && pathname === "/pricing") {
-              return (
-                <button
-                  key="features-pricing-mobile"
-                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent("parlay:show-comparison")); }}
-                  className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
-                >
-                  {link.label}
-                </button>
-              );
-            }
-            if (link.label === "Self Guided Demo") {
-              return (
-                <button
-                  key="self-guided-demo-mobile"
-                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("parlay:open-demo")); }}
-                  className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
-                >
-                  {link.label}
-                </button>
-              );
-            }
-            return (
-              <Link
-                key={link.label}
-                href={link.label === "Features" ? featuresHref() : link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <a
-            href="/score"
-            className="block px-2 py-3 text-brand-teal font-medium font-inter rounded-md hover:bg-brand-light transition-colors"
+          {/* Features */}
+          {pathname === "/pricing" ? (
+            <button
+              onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent("parlay:show-comparison")); }}
+              className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
+            >
+              Features
+            </button>
+          ) : (
+            <Link
+              href={featuresHref()}
+              onClick={() => setMobileOpen(false)}
+              className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
+            >
+              Features
+            </Link>
+          )}
+
+          {/* Self Guided Demo */}
+          <button
+            onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("parlay:open-demo")); }}
+            className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
           >
-            Score a Conference
-          </a>
-          <a
+            Self Guided Demo
+          </button>
+
+          {/* Request a Demo */}
+          <Link
             href="/demo"
+            onClick={() => setMobileOpen(false)}
             className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
           >
             Request a Demo
-          </a>
+          </Link>
+
+          {/* Pricing */}
+          <Link
+            href="/pricing"
+            onClick={() => setMobileOpen(false)}
+            className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
+          >
+            Pricing
+          </Link>
+
+          {/* Contact Us */}
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
+          >
+            Contact Us
+          </Link>
+
+          {/* Sign In */}
           <a
             href="https://work.useparlay.app"
             className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
           >
             Sign In
           </a>
+
+          {/* Score a Conference */}
+          <a
+            href="/score"
+            className="block px-2 py-3 text-brand-teal font-medium font-inter rounded-md hover:bg-brand-light transition-colors"
+          >
+            Score a Conference
+          </a>
+
           <div className="pt-2">
             <button
               onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("parlay:open-trial")); }}
