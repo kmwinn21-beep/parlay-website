@@ -406,7 +406,7 @@ function FormSection() {
     <form onSubmit={handleSubmit} noValidate>
 
       {/* First + Last name */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" style={{ marginBottom: 14 }}>
         <Field label="First name" error={errors.firstName}>
           <input
             type="text"
