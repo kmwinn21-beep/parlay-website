@@ -1,5 +1,44 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+
+// ── Form types ─────────────────────────────────────────────────
+
+interface FormFields {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
+  topic: string;
+  message: string;
+}
+
+type FieldErrors = Partial<Record<keyof FormFields, string>>;
+
+const EMPTY: FormFields = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  company: "",
+  topic: "",
+  message: "",
+};
+
+function validate(fields: FormFields): FieldErrors {
+  const errs: FieldErrors = {};
+  if (!fields.firstName.trim()) errs.firstName = "This field is required";
+  if (!fields.lastName.trim()) errs.lastName = "This field is required";
+  if (!fields.email.trim()) {
+    errs.email = "This field is required";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
+    errs.email = "Please enter a valid email address";
+  }
+  if (!fields.company.trim()) errs.company = "This field is required";
+  if (!fields.topic) errs.topic = "This field is required";
+  return errs;
+}
+
 export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-32">
@@ -173,21 +212,318 @@ export default function ContactPage() {
 // ── Sub-components ──────────────────────────────────────────────
 
 function FormSection() {
+  const [fields, setFields] = useState<FormFields>(EMPTY);
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  function set(key: keyof FormFields) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      setFields((f) => ({ ...f, [key]: e.target.value }));
+      if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+    };
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError(null);
+    const errs = validate(fields);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("https://formspree.io/f/mnjynedp", {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: fields.firstName,
+          lastName: fields.lastName,
+          email: fields.email,
+          company: fields.company,
+          topic: fields.topic,
+          message: fields.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(
+          "Something went wrong. Please try again or email us directly at hello@useparlay.app."
+        );
+      }
+    } catch {
+      setSubmitError(
+        "Something went wrong. Please try again or email us directly at hello@useparlay.app."
+      );
+    }
+    setSubmitting(false);
+  };
+
+  // ── Success state ─────────────────────────────────────────────
+  if (submitted) {
+    return (
+      <div style={{ textAlign: "center", padding: "32px 0" }}>
+        <div
+          style={{
+            width: 64,
+            height: 64,
+            borderRadius: "50%",
+            background: "rgba(110,231,183,0.15)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 20px",
+          }}
+        >
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <path
+              d="M6 15l7 7L24 8"
+              stroke="#6EE7B7"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <h2
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: 28,
+            fontWeight: 700,
+            color: "#fff",
+            margin: "0 0 10px",
+          }}
+        >
+          Message sent
+        </h2>
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 15,
+            color: "rgba(255,255,255,0.6)",
+            lineHeight: 1.6,
+            margin: "0 0 28px",
+          }}
+        >
+          Thanks for reaching out. We&apos;ll get back to you within one business day.
+        </p>
+        <Link
+          href="/"
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 14,
+            color: "#6EE7B7",
+            textDecoration: "none",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+          onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+        >
+          ← Back to useparlay.app
+        </Link>
+      </div>
+    );
+  }
+
+  // ── Form ──────────────────────────────────────────────────────
   return (
-    <div>
+    <form onSubmit={handleSubmit} noValidate>
+      {/* First + Last name row */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+        <Field
+          label="First name"
+          error={errors.firstName}
+        >
+          <input
+            type="text"
+            value={fields.firstName}
+            onChange={set("firstName")}
+            style={inputStyle(!!errors.firstName)}
+          />
+        </Field>
+        <Field label="Last name" error={errors.lastName}>
+          <input
+            type="text"
+            value={fields.lastName}
+            onChange={set("lastName")}
+            style={inputStyle(!!errors.lastName)}
+          />
+        </Field>
+      </div>
+
+      {/* Work email */}
+      <Field label="Work email" error={errors.email} style={{ marginBottom: 16 }}>
+        <input
+          type="email"
+          value={fields.email}
+          onChange={set("email")}
+          style={inputStyle(!!errors.email)}
+        />
+      </Field>
+
+      {/* Company */}
+      <Field label="Company" error={errors.company} style={{ marginBottom: 16 }}>
+        <input
+          type="text"
+          value={fields.company}
+          onChange={set("company")}
+          style={inputStyle(!!errors.company)}
+        />
+      </Field>
+
+      {/* Topic */}
+      <Field label="What can we help with?" error={errors.topic} style={{ marginBottom: 16 }}>
+        <select
+          value={fields.topic}
+          onChange={set("topic")}
+          style={{
+            ...inputStyle(!!errors.topic),
+            color: fields.topic ? "#fff" : "rgba(255,255,255,0.35)",
+          }}
+        >
+          <option value="" disabled hidden>Select a topic</option>
+          <option value="Product question">Product question</option>
+          <option value="Pricing & plans">Pricing &amp; plans</option>
+          <option value="Enterprise inquiry">Enterprise inquiry</option>
+          <option value="Partnership">Partnership</option>
+          <option value="Press">Press</option>
+          <option value="Other">Other</option>
+        </select>
+      </Field>
+
+      {/* Message */}
+      <Field label="Message" style={{ marginBottom: 24 }}>
+        <textarea
+          rows={4}
+          value={fields.message}
+          onChange={set("message")}
+          placeholder="Tell us what you're working on..."
+          style={{
+            ...inputStyle(false),
+            resize: "vertical",
+            minHeight: 100,
+          }}
+        />
+      </Field>
+
+      {/* Submit error */}
+      {submitError && (
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 13,
+            color: "#E24B4A",
+            marginBottom: 16,
+            lineHeight: 1.5,
+          }}
+        >
+          {submitError}
+        </p>
+      )}
+
+      {/* Submit button */}
+      <button
+        type="submit"
+        disabled={submitting}
+        style={{
+          width: "100%",
+          fontFamily: "var(--font-inter)",
+          fontSize: 15,
+          fontWeight: 600,
+          color: "#fff",
+          background: submitting ? "#0a5242" : "#0F6E56",
+          border: "none",
+          borderRadius: 10,
+          padding: "13px",
+          cursor: submitting ? "not-allowed" : "pointer",
+          transition: "background 150ms",
+          marginBottom: 12,
+        }}
+        onMouseEnter={(e) => !submitting && (e.currentTarget.style.background = "#0d5e49")}
+        onMouseLeave={(e) => !submitting && (e.currentTarget.style.background = "#0F6E56")}
+      >
+        {submitting ? "Sending..." : "Send message"}
+      </button>
+
       <p
         style={{
           fontFamily: "var(--font-inter)",
-          fontSize: 16,
-          color: "rgba(255,255,255,0.4)",
+          fontSize: 12,
+          color: "rgba(255,255,255,0.35)",
           textAlign: "center",
-          padding: "48px 0",
+          margin: 0,
         }}
       >
-        Form coming in Section 3
+        We&apos;ll get back to you within one business day.
       </p>
+    </form>
+  );
+}
+
+// ── Field wrapper ─────────────────────────────────────────────
+
+function Field({
+  label,
+  error,
+  children,
+  style,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div style={style}>
+      <label
+        style={{
+          display: "block",
+          fontFamily: "var(--font-inter)",
+          fontSize: 12,
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.6)",
+          letterSpacing: "0.06em",
+          marginBottom: 6,
+          textTransform: "uppercase",
+        }}
+      >
+        {label}
+      </label>
+      {children}
+      {error && (
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 12,
+            color: "#E24B4A",
+            margin: "5px 0 0",
+          }}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
+}
+
+// ── Shared input style ─────────────────────────────────────────
+
+function inputStyle(hasError: boolean): React.CSSProperties {
+  return {
+    width: "100%",
+    fontFamily: "var(--font-inter)",
+    fontSize: 14,
+    color: "#fff",
+    background: "rgba(255,255,255,0.07)",
+    border: `1.5px solid ${hasError ? "#E24B4A" : "rgba(255,255,255,0.15)"}`,
+    borderRadius: 8,
+    padding: "10px 12px",
+    outline: "none",
+    boxSizing: "border-box",
+    transition: "border-color 150ms",
+  };
 }
 
 function Divider() {
