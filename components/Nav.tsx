@@ -110,6 +110,12 @@ export default function Nav() {
               Score a Conference
             </a>
             <a
+              href="/demo"
+              className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
+            >
+              Request a Demo
+            </a>
+            <a
               href="https://work.useparlay.app"
               className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass}`}
             >
@@ -225,6 +231,12 @@ export default function Nav() {
             className="block px-2 py-3 text-brand-teal font-medium font-inter rounded-md hover:bg-brand-light transition-colors"
           >
             Score a Conference
+          </a>
+          <a
+            href="/demo"
+            className="block px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors"
+          >
+            Request a Demo
           </a>
           <a
             href="https://work.useparlay.app"
