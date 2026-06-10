@@ -130,8 +130,6 @@ function validate(form: FormState): Errors {
   if (!form.company.trim()) e.company = "Company name is required.";
   const emailErr = getEmailError(form.email);
   if (emailErr) e.email = emailErr;
-  if (!form.password) e.password = "Password is required.";
-  else if (form.password.length < 8) e.password = "Password must be at least 8 characters.";
   if (!form.role) e.role = "Please select your role.";
   if (!form.industry) e.industry = "Please select your industry.";
   return e;
@@ -717,7 +715,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 </Field>
               </div>
 
-              {/* Work Email | Password row */}
+              {/* Work Email | Role row */}
               <div
                 className="parlay-trial-grid-2"
                 style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}
@@ -738,7 +736,20 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                     error={emailTouched && !!errors.email}
                   />
                 </Field>
-                <Field label="Create a password" required error={errors.password}>
+                <Field label="Select Your Role" required error={errors.role}>
+                  <SelectInput
+                    value={form.role}
+                    onChange={set("role")}
+                    options={ROLES}
+                    placeholder="Select a role"
+                    error={!!errors.role}
+                  />
+                </Field>
+              </div>
+
+              {/* Password — hidden, kept for API submission */}
+              <div style={{ display: "none" }}>
+                <Field label="Create a password" error={errors.password}>
                   <TextInput
                     type="password"
                     value={form.password}
@@ -826,20 +837,8 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
                 )}
               </div>
 
-              {/* Role | Industry row */}
-              <div
-                className="parlay-trial-grid-2"
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}
-              >
-                <Field label="Select Your Role" required error={errors.role}>
-                  <SelectInput
-                    value={form.role}
-                    onChange={set("role")}
-                    options={ROLES}
-                    placeholder="Select a role"
-                    error={!!errors.role}
-                  />
-                </Field>
+              {/* Industry row */}
+              <div style={{ marginBottom: 14 }}>
                 <Field label="Select Your Industry" required error={errors.industry}>
                   <SelectInput
                     value={form.industry}
