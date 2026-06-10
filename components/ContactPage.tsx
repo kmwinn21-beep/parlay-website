@@ -383,13 +383,13 @@ function FormSection() {
             color: fields.topic ? "#fff" : "rgba(255,255,255,0.35)",
           }}
         >
-          <option value="" disabled hidden>Select a topic</option>
-          <option value="Product question">Product question</option>
-          <option value="Pricing & plans">Pricing &amp; plans</option>
-          <option value="Enterprise inquiry">Enterprise inquiry</option>
-          <option value="Partnership">Partnership</option>
-          <option value="Press">Press</option>
-          <option value="Other">Other</option>
+          <option value="" disabled hidden style={{ color: "#223A5E" }}>Select a topic</option>
+          <option value="Product question" style={{ color: "#223A5E" }}>Product question</option>
+          <option value="Pricing & plans" style={{ color: "#223A5E" }}>Pricing &amp; plans</option>
+          <option value="Enterprise inquiry" style={{ color: "#223A5E" }}>Enterprise inquiry</option>
+          <option value="Partnership" style={{ color: "#223A5E" }}>Partnership</option>
+          <option value="Press" style={{ color: "#223A5E" }}>Press</option>
+          <option value="Other" style={{ color: "#223A5E" }}>Other</option>
         </select>
       </Field>
 
