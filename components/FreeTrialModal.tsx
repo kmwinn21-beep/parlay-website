@@ -54,6 +54,15 @@ const TEAM_SIZES = ["Just me", "2 - 5", "6 - 10", "11 - 25", "26 - 50", "51 - 10
 
 const CONF_COUNTS = ["1 - 2", "3 - 5", "6 - 10", "11 - 20", "20+"];
 
+const SUBMITTING_MESSAGES = [
+  "Creating your workspace…",
+  "Setting up your account…",
+  "Provisioning your database…",
+  "Configuring your settings…",
+  "Almost there…",
+  "Just a moment longer…",
+];
+
 const TRIAL_PLANS = [
   {
     id: "essentials" as const,
@@ -332,6 +341,96 @@ function TransitionOverlay() {
   );
 }
 
+// ── Submitting overlay (shown during the ~90s API call) ───────────────────────
+function SubmittingOverlay() {
+  const [visible, setVisible] = useState(false);
+  const [msgIdx, setMsgIdx] = useState(0);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    const tick = setInterval(() => {
+      setMsgIdx((i) => Math.min(i + 1, SUBMITTING_MESSAGES.length - 1));
+    }, 14000);
+    return () => clearInterval(tick);
+  }, []);
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 9999,
+      background: "rgba(17, 28, 46, 0.95)",
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      padding: 24,
+      opacity: visible ? 1 : 0,
+      transition: "opacity 300ms ease",
+    }}>
+      <div style={{ maxWidth: 520, textAlign: "center" }}>
+        {/* Spinning ring */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
+          <svg
+            width="52" height="52" viewBox="0 0 52 52" fill="none"
+            style={{ animation: "parlaySpinner 1s linear infinite" }}
+            aria-hidden="true"
+          >
+            <circle cx="26" cy="26" r="22" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
+            <path d="M26 4 A22 22 0 0 1 48 26" stroke="#34D399" strokeWidth="4" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        {/* Rotating status message — key change triggers fade-in animation */}
+        <p key={msgIdx} style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontSize: "clamp(20px, 4vw, 28px)",
+          fontWeight: 700,
+          color: "white",
+          lineHeight: 1.35,
+          letterSpacing: "-0.02em",
+          margin: "0 0 18px",
+          animation: "parlayFadeMsg 500ms ease",
+        }}>
+          {SUBMITTING_MESSAGES[msgIdx]}
+        </p>
+
+        <p style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: 15,
+          color: "rgba(255,255,255,0.55)",
+          lineHeight: 1.65,
+          margin: "0 0 10px",
+        }}>
+          We&apos;re provisioning your workspace from scratch — this takes about 90 seconds.
+        </p>
+
+        <p style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: 14,
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.82)",
+          margin: 0,
+        }}>
+          Please don&apos;t close or refresh this page.
+        </p>
+      </div>
+
+      <style>{`
+        @keyframes parlaySpinner {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes parlayFadeMsg {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 export interface FreeTrialModalProps {
   initialPlan: TrialPlanId | null;
@@ -431,7 +530,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
   }
 
   function handleBackdropClick(e: MouseEvent<HTMLDivElement>) {
-    if (e.target === e.currentTarget && !showOverlay) onClose();
+    if (e.target === e.currentTarget && !showOverlay && !isSubmitting) onClose();
   }
 
   function handleBuildOwn() {
@@ -448,11 +547,11 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape" && !showOverlay) onClose();
+      if (e.key === "Escape" && !showOverlay && !isSubmitting) onClose();
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose, showOverlay]);
+  }, [onClose, showOverlay, isSubmitting]);
 
   // Determine whether user still needs to pick a plan
   const needsPlanPick = !activePlan;
@@ -921,6 +1020,7 @@ export default function FreeTrialModal({ initialPlan, customPrice, billing, onCl
         </div>
       </div>
 
+      {isSubmitting && !showOverlay && <SubmittingOverlay />}
       {showOverlay && <TransitionOverlay />}
     </>
   );
