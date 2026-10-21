@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
-import PricingPage from "@/components/PricingPageMock";
+import PricingPage from "@/components/PricingPage89";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Pricing (Mock) — Parlay",
-  robots: { index: false, follow: false },
-  description: "Unlimited users, unlimited conferences, unlimited attendees on every plan. Find the right depth of intelligence for your conference program.",
+  title: "Pricing — Parlay",
+  description: "Enterprise-level access for $89 per month for life when you sign up by December 31, 2026.",
 };
 
 export default function Page() {
