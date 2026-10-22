@@ -14,9 +14,10 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const isPricingPage = pathname === "/pricing" || pathname === "/pricing89";
 
   function featuresHref() {
-    return pathname === "/pricing" ? "#feature-comparison" : "#features";
+    return isPricingPage ? "#feature-comparison" : "#features";
   }
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function Nav() {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-6">
             {/* Features */}
-            {pathname === "/pricing" ? (
+            {isPricingPage ? (
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent("parlay:show-comparison"))}
                 className={`font-inter text-sm font-medium transition-colors duration-200 ${linkClass} bg-transparent border-none cursor-pointer p-0`}
@@ -203,7 +204,7 @@ export default function Nav() {
       >
         <div className="px-4 py-4 space-y-1">
           {/* Features */}
-          {pathname === "/pricing" ? (
+          {isPricingPage ? (
             <button
               onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent("parlay:show-comparison")); }}
               className="block w-full text-left px-2 py-3 text-brand-secondary font-medium font-inter rounded-md hover:bg-brand-light hover:text-brand-primary transition-colors bg-transparent border-none cursor-pointer"
